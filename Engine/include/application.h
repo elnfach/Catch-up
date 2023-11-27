@@ -5,7 +5,7 @@ typedef unsigned int SDL_bool;
 class Window;
 class Application
 {
-    Window* m_window;
+    Window* m_ptr_window;
 
     SDL_bool m_running = false;
 
@@ -16,11 +16,12 @@ public:
 
     void run();
 
-    inline Window& getWindow() {  }
 
-    inline static Application& get_instance() { return *s_ptr_instance; }
-private:
+    virtual void update() = 0;
 
+    inline Window& getWindow() { return *m_ptr_window; }
+
+    inline static Application& getInstance() { return *s_ptr_instance; }
 };
 
 Application* createApplication();

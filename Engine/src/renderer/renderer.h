@@ -3,18 +3,25 @@
 
 class Renderer
 {
-	SDL_Renderer* m_ptr_renderer = NULL;
-
-	Renderer(SDL_Window& window);
+protected:
+	Renderer() {}
 public:
-	Renderer() = delete;
 	Renderer(const Renderer&) = delete;
 	Renderer(const Renderer&&) = delete;
+	virtual ~Renderer();
 	void operator=(const Renderer&) = delete;
 
-	void init(SDL_Window& window);
+	virtual void setColor() = 0;
 
-	static Renderer& get_instance();
+	virtual void drawLine() = 0;
+	virtual void drawLines() = 0;
+	virtual void drawPoint() = 0;
+	virtual void drawPoints() = 0;
+	virtual void drawRectangle() = 0;
+	virtual void drawRectangles() = 0;
+	virtual void drawTexture() = 0;
 
-	~Renderer();
+	virtual Renderer& getInstance() const = 0;
+
+	static Renderer* create(SDL_Window& window);
 };

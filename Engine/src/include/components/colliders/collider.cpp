@@ -1,4 +1,4 @@
-#include "collider.h"
+#include "components/colliders/collider.h"
 
 Collider::Collider()
 {

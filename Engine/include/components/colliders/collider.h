@@ -18,7 +18,4 @@ protected:
 public:
 	Collider();
 	~Collider();
-
-private:
-
 };

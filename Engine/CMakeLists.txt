@@ -4,12 +4,22 @@ set(DIRECTORY_NAME CatchUpEngine)
 
 set(ENGINE_PUBLIC_INCLUDES
 	include/application.h
+	include/object.h
+	include/component.h
+	include/game_object.h
+	include/components/transform.h
+	include/components/vector2f.h
 	include/components/colliders/collider.h
 )
 
 set(ENGINE_PRIVATE_INCLUDES
-	
+	src/events/application_event.h
+	src/events/ingame_event.h
+	src/events/mouse_event.h
+	src/events/key_event.h
+	src/events/event.h
 	src/renderer/renderer.h
+	src/renderer/SDL/sdl_renderer.h
 	src/window/window.h
 	src/window/window_props.h
 	src/window/SDL/sdl_window.h
@@ -17,10 +27,15 @@ set(ENGINE_PRIVATE_INCLUDES
 
 set(ENGINE_PRIVATE_SOURCES
 	src/application.cpp
-	src/core.cpp
 	src/window/SDL/sdl_window.cpp
 	src/renderer/renderer.cpp
-	include/components/colliders/collider.cpp
+	src/renderer/SDL/sdl_renderer.cpp
+	src/include/component.cpp
+	src/include/game_object.cpp
+	src/include/components/transform.cpp
+	src/include/object.cpp
+	src/include/components/vector2f.cpp
+	src/include/components/colliders/collider.cpp
 )
 
 set(ENGINE_ALL_SOURCES

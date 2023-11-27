@@ -5,7 +5,6 @@
 class SDL_Window : public Window
 {
 	SDL_Window* m_ptr_window = nullptr;
-	SDL_Renderer* m_ptr_renderer = nullptr;
 
 	struct WindowData
 	{

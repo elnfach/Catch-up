@@ -15,14 +15,11 @@ void SDL_Window::init(const WindowProps& props)
 	}
 
 	m_ptr_window = SDL_CreateWindow(m_data.title.c_str(), m_data.width, m_data.height, NULL);
-	m_ptr_renderer = SDL_CreateRenderer(m_ptr_window, NULL, SDL_RENDERER_SOFTWARE);
 }
 
 void SDL_Window::shutdown()
 {
-	SDL_DestroyRenderer(m_ptr_renderer);
 	SDL_DestroyWindow(m_ptr_window);
-
 	SDL_Quit();
 }
 

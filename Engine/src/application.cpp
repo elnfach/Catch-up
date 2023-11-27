@@ -5,9 +5,13 @@ Application* Application::s_ptr_instance = nullptr;
 
 Application::Application()
 {
+    if (s_ptr_instance)
+    {
+        __debugbreak();
+    }
     s_ptr_instance = this;
 
-    m_window = Window::create();
+    m_ptr_window = Window::create();
 }
 
 void Application::run()
@@ -25,6 +29,7 @@ void Application::run()
             }
         }
 
-        m_window->onUpdate();
+        m_ptr_window->onUpdate();
+        update();
     }
 }

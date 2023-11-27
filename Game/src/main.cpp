@@ -1,20 +1,28 @@
 #include <iostream>
 #include "application.h"
+#include "game_object.h"
 
 class CatchUp : public Application
 {
 public:
 	CatchUp();
 	~CatchUp();
+
+	void update() override;
 };
 
 CatchUp::CatchUp()
 {
-	std::cout << "Hello world!";
+
 }
 
 CatchUp::~CatchUp()
 {
+}
+
+void CatchUp::update()
+{
+
 }
 
 Application* createApplication()
@@ -22,7 +30,7 @@ Application* createApplication()
 	return new CatchUp();
 }
 
-int WinMain()
+int main()
 {
 	auto app = createApplication();
 	app->run();
