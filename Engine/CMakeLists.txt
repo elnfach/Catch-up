@@ -8,6 +8,7 @@ set(ENGINE_PUBLIC_INCLUDES
 	include/component.h
 	include/game_object.h
 	include/components/transform.h
+	include/components/drawable.h
 	include/components/vector2f.h
 	include/components/colliders/collider.h
 )
@@ -32,6 +33,7 @@ set(ENGINE_PRIVATE_SOURCES
 	src/include/component.cpp
 	src/include/game_object.cpp
 	src/include/components/transform.cpp
+	src/include/components/drawable.cpp
 	src/include/object.cpp
 	src/include/components/vector2f.cpp
 	src/include/components/colliders/collider.cpp

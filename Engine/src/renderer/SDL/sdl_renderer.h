@@ -19,7 +19,7 @@ namespace Engine
 
 		void draw() override;
 		virtual void setVSync(bool enabled) override;
-		inline virtual void* getInstance() const { return m_ptr_renderer; }
+		inline void* getInstance() const { return m_ptr_renderer; }
 	};
 }
 

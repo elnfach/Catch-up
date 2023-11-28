@@ -17,13 +17,13 @@ namespace Engine
 
 	struct RendererProps
 	{
-		SDL_Window* window;
+		::SDL_Window* window;
 		const char* api_name;
 		Uint32 flags;
 
-		RendererProps(SDL_Window* window,
-			const char* api_name,
-			Uint32 flags
+		RendererProps(::SDL_Window* window,
+			const char* api_name = NULL,
+			Uint32 flags = SDL_RENDERER_SOFTWARE
 		) : window(window), api_name(api_name), flags(flags)
 		{}
 	};

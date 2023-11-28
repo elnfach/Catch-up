@@ -1,5 +1,8 @@
 #include "application.h"
 #include "window/window.h"
+#include "window/SDL/sdl_window.h"
+#include "renderer/SDL/sdl_renderer.h"
+#include <iostream>
 
 Engine::Application* Engine::Application::s_ptr_instance = nullptr;
 
@@ -30,6 +33,7 @@ void Engine::Application::run()
         }
 
         m_ptr_window->onUpdate();
+        //draw((::SDL_Renderer*)((Engine::SDL_Renderer*)((Engine::SDL_Window*)m_ptr_window->getNativeWindow())->getRenderer())->getInstance());
         update();
     }
 }

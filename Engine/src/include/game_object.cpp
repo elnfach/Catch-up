@@ -1,11 +1,8 @@
+#include "object.h"
 #include "game_object.h"
+#include <SDL.h>
 
-void Engine::GameObject::draw()
-{
-
-}
-
-Engine::GameObject::GameObject()
+Engine::GameObject::GameObject() : Object(ObjectType::GameObject)
 {
 
 }

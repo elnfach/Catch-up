@@ -16,7 +16,6 @@ namespace Engine
 
 		virtual void draw() = 0;
 		virtual void setVSync(bool enabled) = 0;
-		virtual void* getInstance() const = 0;
 
 		static Renderer* create(RendererProps props);
 	};

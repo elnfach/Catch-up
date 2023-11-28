@@ -7,16 +7,23 @@ namespace Engine
 {
 	class Component : public Object
 	{
-	private:
-		void draw() {
-
-		}
 	protected:
 
+		enum class ComponentType
+		{
+			Unknown = 0,
+			Transform = 1,
+			Drawable = 2,
+			BoxCollider2D = 3
+		};
 	public:
 		Component();
-		Component(ObjectType type);
+		Component(ComponentType type);
 		~Component();
+
+
+	private:
+		ComponentType component_type;
 	};
 }
 

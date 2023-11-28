@@ -5,8 +5,6 @@ namespace Engine
 {
 	class Vector2f
 	{
-		float m_x;
-		float m_y;
 	public:
 		Vector2f();
 		Vector2f(float x, float y);
@@ -30,6 +28,9 @@ namespace Engine
 
 		Vector2f normalized();
 		float magnitude();
+
+		float x;
+		float y;
 	};
 }
 

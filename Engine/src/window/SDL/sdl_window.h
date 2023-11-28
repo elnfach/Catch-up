@@ -34,5 +34,6 @@ namespace Engine
 		void setVSync(bool enabled) override;
 		bool isVSync() const override;
 		inline virtual void* getNativeWindow() const { return m_ptr_window; }
+		inline void* getRenderer() const { return m_ptr_renderer; }
 	};
 }

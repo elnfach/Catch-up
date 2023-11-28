@@ -8,10 +8,18 @@ namespace Engine
 {
 	class Transform final : public Component
 	{
-		Vector2f m_locale_position;
 	public:
 		Transform();
 		~Transform();
+
+		inline std::string toString() const override { return name; }
+		inline int getInstanceID() const override  { return id; }
+		inline ObjectType getInstanceType() const override  { return type; }
+
+		void translate(Vector2f translation);
+
+		Vector2f m_locale_position;
+		Vector2f position;
 	};
 }
 

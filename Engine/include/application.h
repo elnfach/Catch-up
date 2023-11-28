@@ -1,6 +1,8 @@
 #pragma once
-#include <iostream>
 
+#include <vector>
+
+struct SDL_Renderer;
 namespace Engine
 {
     typedef unsigned int SDL_bool;
@@ -10,16 +12,16 @@ namespace Engine
         Window* m_ptr_window;
 
         SDL_bool m_running = false;
-
+        //std::vector<Object*> objects;
         static Application* s_ptr_instance;
+
     public:
         Application();
         virtual ~Application() {}
 
         void run();
 
-
-        virtual void update() = 0;
+        virtual void update() {}
 
         inline Window& getWindow() { return *m_ptr_window; }
 

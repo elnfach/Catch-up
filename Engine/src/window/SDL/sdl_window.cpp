@@ -15,7 +15,7 @@ void Engine::SDL_Window::init(const WindowProps& props)
 	}
 
 	m_ptr_window = SDL_CreateWindow(m_data.title.c_str(), m_data.width, m_data.height, NULL);
-	m_ptr_renderer = Renderer::create(RendererProps(m_ptr_window, NULL, SDL_RENDERER_SOFTWARE));
+	m_ptr_renderer = Renderer::create(RendererProps(m_ptr_window));
 }
 
 void Engine::SDL_Window::shutdown()

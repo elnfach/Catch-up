@@ -7,26 +7,23 @@
 
 namespace Engine
 {
-	class Object : public Application
+	class SDL_Renderer;
+	class Object
 	{
-		static int m_id;
-		int id;
-
+		inline static int m_id = 0;
+		
 		enum class ObjectType;
-		ObjectType type;
-
-		std::vector<Object*> objects;
 	protected:
 		Object();
 		Object(ObjectType type);
+
+		int id;
+		ObjectType type;
 		std::string name;
 
-		inline std::string toString() { return name; }
-		inline int getInstanceID() { return id; }
-		inline ObjectType getInstanceType() { return type; }
-
-		virtual void draw() {}
-		void update() override;
+		inline virtual std::string toString() const { return name; }
+		inline virtual int getInstanceID() const  { return id; }
+		inline virtual ObjectType getInstanceType() const { return type; }
 
 		static void destroy(Object* object);
 
@@ -34,12 +31,9 @@ namespace Engine
 			Unknown = 0,
 			Object = 1,
 			Component = 2,
-			GameObject = 3,
-			Transform = 4,
-			Collider2D = 5,
-			BoxCollider2D = 6
+			GameObject = 3
 		};
-	public:
+
 		virtual ~Object();
 	};
 }

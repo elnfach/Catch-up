@@ -1,4 +1,5 @@
 #include "object.h"
+#include "SDL.h"
 
 Engine::Object::Object()
 {
@@ -6,8 +7,6 @@ Engine::Object::Object()
 	m_id += 1;
 	id = m_id;
 	type = ObjectType::Object;
-
-	objects.push_back(this);
 }
 
 Engine::Object::Object(ObjectType type)
@@ -16,12 +15,6 @@ Engine::Object::Object(ObjectType type)
 	m_id += 1;
 	id = m_id;
 	this->type = type;
-	objects.push_back(this);
-}
-
-void Engine::Object::update()
-{
-	draw();
 }
 
 void Engine::Object::destroy(Object* object)
