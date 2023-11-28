@@ -5,23 +5,30 @@
 
 namespace Engine
 {
+	class Transform;
+	class GameObject;
+	class ScriptBehaviour;
 	class Component : public Object
 	{
 	protected:
 
+		Component(const ScriptBehaviour& sb);
+
 		enum class ComponentType
 		{
 			Unknown = 0,
-			Transform = 1,
-			Drawable = 2,
-			BoxCollider2D = 3
+			ScriptBehaviour,
+			Transform,
+			Drawable,
+			BoxCollider2D
 		};
 	public:
 		Component();
 		Component(ComponentType type);
 		~Component();
 
-
+		GameObject* game_object;
+		Transform* transform;
 	private:
 		ComponentType component_type;
 	};

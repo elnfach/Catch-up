@@ -5,6 +5,7 @@ set(DIRECTORY_NAME CatchUpEngine)
 set(ENGINE_PUBLIC_INCLUDES
 	include/application.h
 	include/object.h
+	include/script_behaviour.h
 	include/component.h
 	include/game_object.h
 	include/components/transform.h
@@ -31,6 +32,7 @@ set(ENGINE_PRIVATE_SOURCES
 	src/window/SDL/sdl_window.cpp
 	src/renderer/SDL/sdl_renderer.cpp
 	src/include/component.cpp
+	src/include/script_behaviour.cpp
 	src/include/game_object.cpp
 	src/include/components/transform.cpp
 	src/include/components/drawable.cpp

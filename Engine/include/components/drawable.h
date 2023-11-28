@@ -3,16 +3,25 @@
 
 #include "transform.h"
 
+struct SDL_FRect;
 namespace Engine
 {
-	class Drawable final : public Component
+	enum class DrawableType
 	{
-		
+
+	};
+
+	
+	class Drawable final
+	{
 	public:
 		Drawable();
+		Drawable(Transform* transform);
 		~Drawable();
 
-		Transform transform;
+		::SDL_FRect* rect;
+
+		Transform* transform;
 	};
 }
 

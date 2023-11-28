@@ -1,5 +1,6 @@
 #include "object.h"
 #include "SDL.h"
+#include "script_behaviour.h"
 
 Engine::Object::Object()
 {

@@ -15,14 +15,11 @@ void Engine::SDL_Window::init(const WindowProps& props)
 	}
 
 	m_ptr_window = SDL_CreateWindow(m_data.title.c_str(), m_data.width, m_data.height, NULL);
-	m_ptr_renderer = Renderer::create(RendererProps(m_ptr_window));
 }
 
 void Engine::SDL_Window::shutdown()
 {
 	SDL_DestroyWindow(m_ptr_window);
-	m_ptr_renderer->~Renderer();
-	SDL_Quit();
 }
 
 Engine::Window* Engine::Window::create(const WindowProps& props)
@@ -42,16 +39,5 @@ Engine::SDL_Window::~SDL_Window()
 
 void Engine::SDL_Window::onUpdate()
 {
-	m_ptr_renderer->draw();
-}
 
-void Engine::SDL_Window::setVSync(bool enabled)
-{
-	m_ptr_renderer->setVSync(enabled);
-	m_data.vsync = enabled;
-}
-
-bool Engine::SDL_Window::isVSync() const
-{
-	return m_data.vsync;
 }

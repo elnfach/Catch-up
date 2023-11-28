@@ -4,7 +4,8 @@
 
 Engine::GameObject::GameObject() : Object(ObjectType::GameObject)
 {
-
+	drawable = new Drawable(transform);
+	transform = new Transform();
 }
 
 Engine::GameObject::~GameObject()

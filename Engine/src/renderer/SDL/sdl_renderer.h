@@ -10,16 +10,23 @@ namespace Engine
 	class SDL_Renderer : public Renderer
 	{
 		::SDL_Renderer* m_ptr_renderer = nullptr;
+
+		bool vsync;
 	private:
 		virtual void init(RendererProps& props);
-		virtual void shutdown();
 	public:
 		SDL_Renderer(RendererProps& props);
 		~SDL_Renderer();
 
-		void draw() override;
+		void setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a) override;
+		void clear() override;
+		void draw(Drawable* dr) override;
+
+		virtual void shutdown() override;
+
 		virtual void setVSync(bool enabled) override;
-		inline void* getInstance() const { return m_ptr_renderer; }
+		virtual bool isVSync() const override;
+		inline void* getInstance() const override { return m_ptr_renderer; }
 	};
 }
 

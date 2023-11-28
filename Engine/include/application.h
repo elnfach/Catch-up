@@ -6,22 +6,31 @@ struct SDL_Renderer;
 namespace Engine
 {
     typedef unsigned int SDL_bool;
+
+    class Drawable;
+    class Renderer;
+    class ScriptBehaviour;
     class Window;
     class Application
     {
         Window* m_ptr_window;
+        Renderer* m_ptr_renderer;
+        //ScriptBehaviour* m_ptr_script_behaviour;
 
         SDL_bool m_running = false;
-        //std::vector<Object*> objects;
+        
         static Application* s_ptr_instance;
 
     public:
         Application();
-        virtual ~Application() {}
+        virtual ~Application();
 
         void run();
 
-        virtual void update() {}
+        virtual void update() = 0;
+        virtual Drawable* draw() = 0;
+
+        void closeWindow();
 
         inline Window& getWindow() { return *m_ptr_window; }
 

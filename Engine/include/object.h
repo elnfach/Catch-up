@@ -7,6 +7,7 @@
 
 namespace Engine
 {
+	class ScriptBehaviour;
 	class SDL_Renderer;
 	class Object
 	{
