@@ -2,7 +2,7 @@
 #include "application.h"
 #include "game_object.h"
 
-class CatchUp : public Application
+class CatchUp : public Engine::Application
 {
 public:
 	CatchUp();
@@ -25,7 +25,7 @@ void CatchUp::update()
 
 }
 
-Application* createApplication()
+Engine::Application* createApplication()
 {
 	return new CatchUp();
 }

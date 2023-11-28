@@ -1,9 +1,9 @@
 #include "application.h"
 #include "window/window.h"
 
-Application* Application::s_ptr_instance = nullptr;
+Engine::Application* Engine::Application::s_ptr_instance = nullptr;
 
-Application::Application()
+Engine::Application::Application()
 {
     if (s_ptr_instance)
     {
@@ -14,7 +14,7 @@ Application::Application()
     m_ptr_window = Window::create();
 }
 
-void Application::run()
+void Engine::Application::run()
 {
     while (!m_running)
     {

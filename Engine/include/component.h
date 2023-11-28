@@ -3,18 +3,21 @@
 
 #include "object.h"
 
-class Component : public Object
+namespace Engine
 {
-private:
-	void draw() {
+	class Component : public Object
+	{
+	private:
+		void draw() {
 
-	}
-protected:
+		}
+	protected:
 
-public:
-	Component();
-	Component(ObjectType type);
-	~Component();
-};
+	public:
+		Component();
+		Component(ObjectType type);
+		~Component();
+	};
+}
 
 #endif // !CATCH_UP_ENGINE_INCLUDE_COMPONENT_H

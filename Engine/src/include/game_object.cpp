@@ -1,16 +1,16 @@
 #include "game_object.h"
 
-void GameObject::draw()
+void Engine::GameObject::draw()
 {
 
 }
 
-GameObject::GameObject()
+Engine::GameObject::GameObject()
 {
 
 }
 
-GameObject::~GameObject()
+Engine::GameObject::~GameObject()
 {
 
 }

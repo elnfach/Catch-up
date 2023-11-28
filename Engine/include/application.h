@@ -1,27 +1,30 @@
 #pragma once
 #include <iostream>
 
-typedef unsigned int SDL_bool;
-class Window;
-class Application
+namespace Engine
 {
-    Window* m_ptr_window;
+    typedef unsigned int SDL_bool;
+    class Window;
+    class Application
+    {
+        Window* m_ptr_window;
 
-    SDL_bool m_running = false;
+        SDL_bool m_running = false;
 
-    static Application* s_ptr_instance;
-public:
-    Application();
-    virtual ~Application() {}
+        static Application* s_ptr_instance;
+    public:
+        Application();
+        virtual ~Application() {}
 
-    void run();
+        void run();
 
 
-    virtual void update() = 0;
+        virtual void update() = 0;
 
-    inline Window& getWindow() { return *m_ptr_window; }
+        inline Window& getWindow() { return *m_ptr_window; }
 
-    inline static Application& getInstance() { return *s_ptr_instance; }
-};
+        inline static Application& getInstance() { return *s_ptr_instance; }
+    };
 
-Application* createApplication();
+    Application* createApplication();
+}

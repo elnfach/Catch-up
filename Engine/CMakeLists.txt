@@ -21,14 +21,13 @@ set(ENGINE_PRIVATE_INCLUDES
 	src/renderer/renderer.h
 	src/renderer/SDL/sdl_renderer.h
 	src/window/window.h
-	src/window/window_props.h
+	src/props.h
 	src/window/SDL/sdl_window.h
 )
 
 set(ENGINE_PRIVATE_SOURCES
 	src/application.cpp
 	src/window/SDL/sdl_window.cpp
-	src/renderer/renderer.cpp
 	src/renderer/SDL/sdl_renderer.cpp
 	src/include/component.cpp
 	src/include/game_object.cpp

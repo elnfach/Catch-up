@@ -4,13 +4,16 @@
 #include "object.h"
 #include <functional>
 
-class GameObject : public Object
+namespace Engine
 {
-private:
-	void draw() override;
-public:
-	GameObject();
-	~GameObject();
-};
+	class GameObject : public Object
+	{
+	private:
+		void draw() override;
+	public:
+		GameObject();
+		~GameObject();
+	};
+}
 
 #endif // !CATCH_UP_ENGINE_INCLUDE_GAME_OBJECT_H

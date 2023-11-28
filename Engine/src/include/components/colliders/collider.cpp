@@ -1,10 +1,10 @@
 #include "components/colliders/collider.h"
 
-Collider::Collider()
+Engine::Collider::Collider()
 {
 
 }
 
-Collider::~Collider()
+Engine::Collider::~Collider()
 {
 }

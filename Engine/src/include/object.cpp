@@ -1,6 +1,6 @@
 #include "object.h"
 
-Object::Object()
+Engine::Object::Object()
 {
 	name = "Default object name";
 	m_id += 1;
@@ -10,7 +10,7 @@ Object::Object()
 	objects.push_back(this);
 }
 
-Object::Object(ObjectType type)
+Engine::Object::Object(ObjectType type)
 {
 	name = "Default object name";
 	m_id += 1;
@@ -19,19 +19,19 @@ Object::Object(ObjectType type)
 	objects.push_back(this);
 }
 
-void Object::update()
+void Engine::Object::update()
 {
 	draw();
 }
 
-void Object::destroy(Object* object)
+void Engine::Object::destroy(Object* object)
 {
 	m_id -= 1;
 	
 	delete object;
 }
 
-Object::~Object()
+Engine::Object::~Object()
 {
 
 }
