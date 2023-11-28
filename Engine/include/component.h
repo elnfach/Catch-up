@@ -11,9 +11,6 @@ namespace Engine
 	class Component : public Object
 	{
 	protected:
-
-		Component(const ScriptBehaviour& sb);
-
 		enum class ComponentType
 		{
 			Unknown = 0,
