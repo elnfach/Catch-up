@@ -7,9 +7,7 @@ namespace Engine
 {
 	class Transform;
 	class GameObject;
-	class ComponentBase;
-	class ScriptBehaviour;
-	class Component : public Object, public ComponentBase
+	class Component : public Object
 	{
 	protected:
 		enum class ComponentType
@@ -28,7 +26,9 @@ namespace Engine
 		virtual void start() {}
 		virtual void update() {}
 		
-		virtual Component* getComponent() = 0;
+		virtual Component* getComponent() {
+			return nullptr;
+		}
 
 		GameObject* game_object;
 		Transform* transform;

@@ -7,41 +7,25 @@ namespace Engine
 {
     class ComponentBase
     {
-        static std::vector<Component*> component_list;
-
-    protected:
-
-        ComponentBase() { }
-        ~ComponentBase() { }
+        ComponentBase* m_ptr_component_base = nullptr;
+        static inline std::vector<Component*> component_list;
+        ComponentBase() {}
+        ~ComponentBase() {}
     public:
-        static ComponentBase& Instance()
-        {
+        
+        static ComponentBase* getInstance() {
             static ComponentBase instance;
-            return instance;
+            return &instance;
         }
+        ComponentBase(const ComponentBase&) = delete;
+        ComponentBase(const ComponentBase&&) = delete;
 
         static void addInstance(Component* newInstance) {
             component_list.push_back(newInstance);
         }
 
-        static void start()
-        {
-            for (size_t i = 0; i < component_list.size(); i++)
-            {
-                component_list[i]->start();
-            }
-        }
-
-        static void update()
-        {
-            for (size_t i = 0; i < component_list.size(); i++)
-            {
-                component_list[i]->update();
-            }
-        }
-
-        ComponentBase(ComponentBase const&) = delete;
-        ComponentBase& operator=(ComponentBase const&) = delete;
+        void start();
+        void update();
     };
 }
 

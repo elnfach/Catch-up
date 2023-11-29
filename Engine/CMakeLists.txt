@@ -33,6 +33,7 @@ set(ENGINE_PRIVATE_SOURCES
 	src/window/SDL/sdl_window.cpp
 	src/renderer/SDL/sdl_renderer.cpp
 	src/include/component.cpp
+	src/include/component_base.cpp
 	src/include/script_behaviour.cpp
 	src/include/game_object.cpp
 	src/include/components/transform.cpp

@@ -19,8 +19,8 @@ Engine::Vector2f::Vector2f()
 
 Engine::Vector2f::Vector2f(float x, float y)
 {
-	x = x;
-	y = y;
+	this->x = x;
+	this->y = y;
 }
 
 Engine::Vector2f::Vector2f(const Vector2f& vector)

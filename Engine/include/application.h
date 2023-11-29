@@ -7,15 +7,16 @@ namespace Engine
 {
     typedef unsigned int SDL_bool;
 
+    class Window;
     class Drawable;
     class Renderer;
     class ScriptBehaviour;
-    class Window;
+    class ComponentBase;
     class Application
     {
         Window* m_ptr_window;
         Renderer* m_ptr_renderer;
-        //ScriptBehaviour* m_ptr_script_behaviour;
+        ComponentBase* m_ptr_component_base;
 
         SDL_bool m_running = false;
         

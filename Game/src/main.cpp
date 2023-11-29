@@ -31,7 +31,6 @@ public:
 	void update() override;
 	Engine::Drawable* draw() override
 	{
-		std::cout << wolf->transform->position.x << std::endl;
 		return wolf->drawable;
 	}
 };

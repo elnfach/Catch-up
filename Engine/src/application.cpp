@@ -4,6 +4,7 @@
 #include "renderer/SDL/sdl_renderer.h"
 #include <iostream>
 #include "script_behaviour.h"
+#include "include/component_base.h"
 
 Engine::Application* Engine::Application::s_ptr_instance = nullptr;
 
@@ -22,9 +23,7 @@ Engine::Application::Application()
 
     m_ptr_window = Window::create();
     m_ptr_renderer = Renderer::create(RendererProps(m_ptr_window->getNativeWindow()));
-    //m_ptr_script_behaviour= ScriptBehaviour::create();
-    //m_ptr_script_behaviour->start();
-    
+    m_ptr_component_base = ComponentBase::getInstance();
 }
 
 Engine::Application::~Application()
@@ -51,7 +50,7 @@ void Engine::Application::run()
         m_ptr_renderer->setColor(255, 255, 255, 255);
         m_ptr_renderer->clear();
         m_ptr_renderer->draw(draw());
-        
+        m_ptr_component_base->update();
         //m_ptr_script_behaviour->update();
         update();
     }
