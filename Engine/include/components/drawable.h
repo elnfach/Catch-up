@@ -11,13 +11,16 @@ namespace Engine
 
 	};
 
-	
-	class Drawable final
+	class GameObject;
+	class Drawable : public Component
 	{
 	public:
 		Drawable();
+		Drawable(Vector2f position, Vector2f end);
 		Drawable(Transform* transform);
 		~Drawable();
+
+		void update();
 
 		::SDL_FRect* rect;
 

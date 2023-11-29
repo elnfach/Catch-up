@@ -6,7 +6,6 @@ Engine::Component::Component() : Object(ObjectType::Component)
 {
 	name = "Default component name";
 	component_type = ComponentType::Unknown;
-	transform = game_object->transform;
 }
 
 Engine::Component::Component(ComponentType type) : Object(ObjectType::Component)

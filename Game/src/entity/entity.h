@@ -3,45 +3,38 @@
 #include "components/colliders/collider.h"
 #include "script_behaviour.h"
 #include "components/vector2f.h"
+#include "BoxCollider.h"
 
-class Entity : Engine::ScriptBehaviour
+class Entity : public Engine::ScriptBehaviour
 {
 protected:
-	double x;
-	double y;
-
 	EntityType type;
-	Engine::Collider* collider;
+	BoxCollider* collider;
 public:
 	Entity();
 	Entity(double x, double y);
 	~Entity();
 
-	virtual bool is_collided(Engine::BoxCollider* collider) = 0;
-	virtual Engine::BoxCollider* getCollider() = 0;
-	virtual void updateCollider(Engine::Vector2f start, Engine::Vector2f end) = 0;
+	/*virtual bool is_collided(BoxCollider* collider) = 0;
+	virtual BoxCollider* getCollider() = 0;
+	virtual void updateCollider(Engine::Vector2f start, Engine::Vector2f end) = 0;*/
 
 	virtual EntityType getType()
 	{
 		return type;
 	}
-
-private:
-
 };
 
 Entity::Entity()
 {
-	x = 0;
-	y = 0;
 	collider = nullptr;
 	type = EntityType::UNKNOWN;
 }
 
 inline Entity::Entity(double x, double y)
 {
-	this->x = x;
-	this->y = y;
+	this->transform->position.x = x;
+	this->transform->position.x = y;
 	collider = nullptr;
 	type = EntityType::UNKNOWN;
 }

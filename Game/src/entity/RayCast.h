@@ -5,7 +5,7 @@
 #include <list>
 #include <iostream>
 
-#include "EntityType.h"
+#include "entity_type.h"
 #include <vector>
 
 # define M_PIl          3.141592653589793238462643383279502884L /* pi */
@@ -17,7 +17,7 @@ class RayCast
 
 	std::vector<float> list_of_rays;
 	
-	BoxCollider* collider = new BoxCollider("ray", vec2(m_x, m_y), vec2(m_x + 1, m_y + 1));
+	BoxCollider* collider = new BoxCollider("ray", Engine::Vector2f(m_x, m_y), Engine::Vector2f(m_x + 1, m_y + 1));
 
 	EntityType type;
 

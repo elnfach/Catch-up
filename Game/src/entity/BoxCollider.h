@@ -1,25 +1,25 @@
 #pragma once
 
 #include <string>
-#include "core.h"
+#include "components/vector2f.h"
 
 class BoxCollider
 {
 	std::string m_name;
 
-	vec2 m_start;
-	vec2 m_end;
+	Engine::Vector2f m_start;
+	Engine::Vector2f m_end;
 public:
 	
 	BoxCollider() = delete;
-	BoxCollider(std::string name, vec2 start, vec2 end)
+	BoxCollider(std::string name, Engine::Vector2f start, Engine::Vector2f end)
 	{
 		m_name = name;
 		m_start = start;
 		m_end = end;
 	}
 
-	void update(vec2 start, vec2 end)
+	void update(Engine::Vector2f start, Engine::Vector2f end)
 	{
 		m_start = start;
 		m_end = end;
@@ -32,24 +32,24 @@ public:
 			return false;
 		}
 
-		if (m_start.first <= collider->m_start.first && collider->m_start.first <= m_end.first)
+		if (m_start.x <= collider->m_start.x && collider->m_start.x <= m_end.x)
 		{
-			if (m_start.second <= collider->m_start.second && collider->m_start.second <= m_end.second)
+			if (m_start.y <= collider->m_start.y && collider->m_start.y <= m_end.y)
 			{
 				return true;
 			}
-			if (m_start.second <= collider->m_end.second && collider->m_end.second <= m_end.second)
+			if (m_start.y <= collider->m_end.y && collider->m_end.y <= m_end.y)
 			{
 				return true;
 			}
 		}
-		else if (m_start.first <= collider->m_end.first && collider->m_end.first <= m_end.first)
+		else if (m_start.x <= collider->m_end.x && collider->m_end.x <= m_end.x)
 		{
-			if (m_start.second <= collider->m_start.second && collider->m_start.second <= m_end.second)
+			if (m_start.y <= collider->m_start.y && collider->m_start.y <= m_end.y)
 			{
 				return true;
 			}
-			if (m_start.second <= collider->m_end.second && collider->m_end.second <= m_end.second)
+			if (m_start.y <= collider->m_end.y && collider->m_end.y <= m_end.y)
 			{
 				return true;
 			}

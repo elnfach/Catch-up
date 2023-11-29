@@ -5,16 +5,13 @@
 
 namespace Engine
 {
-	class ScriptBehaviour : Component
+	class ScriptBehaviour : public Component
 	{
 		std::vector<ScriptBehaviour*> list;
 		static ScriptBehaviour* m_ptr_instance;
 	public:
 		ScriptBehaviour();
 		~ScriptBehaviour();
-
-		virtual void start() {}
-		virtual void update() {}
 
 		static ScriptBehaviour* create();
 	};

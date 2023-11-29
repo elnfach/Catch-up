@@ -1,8 +1,12 @@
-cmake_minimum_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.26)
 
 set(DIRECTORY_NAME CatchUpGame)
 
 add_executable(${DIRECTORY_NAME}
+	src/entity/Wolf.h
+	src/entity/Wall.h
+	src/entity/Hare.h
+	src/entity/BoxCollider.h
 	src/entity/entity.h
 	src/entity/entity_type.h
 	src/entity/entity.cpp

@@ -4,12 +4,14 @@
 #include "script_behaviour.h"
 #include "components/drawable.h"
 
+#include "entity/Wolf.h"
+
 class MyClass : public Engine::ScriptBehaviour
 {
 public:
 	void start() override
 	{
-		std::cout << "My class";
+		
 	}
 
 	void update() override
@@ -20,6 +22,7 @@ public:
 };
 class CatchUp : public Engine::Application
 {
+	Wolf* wolf;
 	Engine::Drawable* drawable;
 public:
 	CatchUp();
@@ -28,21 +31,26 @@ public:
 	void update() override;
 	Engine::Drawable* draw() override
 	{
-		return drawable;
+		std::cout << wolf->transform->position.x << std::endl;
+		return wolf->drawable;
 	}
 };
 
 CatchUp::CatchUp()
 {
+	std::cout << "My class\n";
 	drawable = new Engine::Drawable();
+	wolf = new Wolf();
 }
 
 CatchUp::~CatchUp()
 {
+	
 }
 
 void CatchUp::update()
 {
+	//wolf->update();
 }
 
 Engine::Application* createApplication()
