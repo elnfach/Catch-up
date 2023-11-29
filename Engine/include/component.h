@@ -7,8 +7,9 @@ namespace Engine
 {
 	class Transform;
 	class GameObject;
+	class ComponentBase;
 	class ScriptBehaviour;
-	class Component : public Object
+	class Component : public Object, public ComponentBase
 	{
 	protected:
 		enum class ComponentType
@@ -24,26 +25,15 @@ namespace Engine
 		Component(ComponentType type);
 		~Component();
 
-		virtual void start() {
-			for (size_t i = 0; i < component_list.size(); i++)
-			{
-				component_list[i]->start();
-			}
-
-		}
-		virtual void update() {
-			for (size_t i = 0; i < component_list.size(); i++)
-			{
-				component_list[i]->start();
-			}
-
-		}
+		virtual void start() {}
+		virtual void update() {}
+		
+		virtual Component* getComponent() = 0;
 
 		GameObject* game_object;
 		Transform* transform;
 	private:
 		ComponentType component_type;
-		std::vector<Component*> component_list;
 	};
 }
 

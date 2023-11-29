@@ -15,6 +15,7 @@ set(ENGINE_PUBLIC_INCLUDES
 )
 
 set(ENGINE_PRIVATE_INCLUDES
+	src/include/component_base.h
 	src/events/application_event.h
 	src/events/ingame_event.h
 	src/events/mouse_event.h

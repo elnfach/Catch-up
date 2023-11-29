@@ -7,7 +7,6 @@ namespace Engine
 {
 	class ScriptBehaviour : public Component
 	{
-		std::vector<ScriptBehaviour*> list;
 		static ScriptBehaviour* m_ptr_instance;
 	public:
 		ScriptBehaviour();
