@@ -3,30 +3,32 @@
 
 #include <SDL_render.h>
 
-#include "renderer/renderer.h"
+#include "Catch-up/renderer/renderer_api.h"
+#include <functional>
 
 namespace Engine
 {
-	class SDL_Renderer : public Renderer
+	class Drawable;
+	class SDL_RendererAPI : public RendererAPI
 	{
+#define SDL_MAX_UINT8   ((Uint8)0xFF)           /* 255 */
+#define SDL_MIN_UINT8   ((Uint8)0x00)           /* 0 */
+		typedef uint8_t Uint8;
 		::SDL_Renderer* m_ptr_renderer = nullptr;
-
 		bool vsync;
 	private:
-		virtual void init(RendererProps& props);
+		void init(RendererProps& props);
+		~SDL_RendererAPI();
 	public:
-		SDL_Renderer(RendererProps& props);
-		~SDL_Renderer();
-
+		SDL_RendererAPI(RendererProps& props);
 		void setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a) override;
 		void clear() override;
-		void draw(Drawable* dr) override;
+		void draw(std::function<void(::SDL_Renderer*)> fn) override;
 
 		virtual void shutdown() override;
 
 		virtual void setVSync(bool enabled) override;
 		virtual bool isVSync() const override;
-		inline void* getInstance() const override { return m_ptr_renderer; }
 	};
 }
 

@@ -16,7 +16,6 @@ namespace Engine
 		vec2 m_end;
 
 		virtual void update() = 0;
-		virtual bool is_collided(Collider* collider) = 0;
 	public:
 		Collider();
 		~Collider();

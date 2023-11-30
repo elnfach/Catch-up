@@ -6,41 +6,58 @@ set(ENGINE_PUBLIC_INCLUDES
 	include/application.h
 	include/object.h
 	include/script_behaviour.h
-	include/component.h
 	include/game_object.h
+
+	include/component.h
+
 	include/components/transform.h
-	include/components/drawable.h
+	include/components/drawable/drawable.h
+	include/components/drawable/rectangle_drawable.h
 	include/components/vector2f.h
 	include/components/colliders/collider.h
 )
 
 set(ENGINE_PRIVATE_INCLUDES
-	src/include/component_base.h
-	src/events/application_event.h
-	src/events/ingame_event.h
-	src/events/mouse_event.h
-	src/events/key_event.h
-	src/events/event.h
-	src/renderer/renderer.h
-	src/renderer/SDL/sdl_renderer.h
-	src/window/window.h
-	src/props.h
-	src/window/SDL/sdl_window.h
+	src/Catch-up/props.h
+
+	src/Catch-up/core/window.h
+
+	src/Catch-up/include/component_base.h
+
+	src/Catch-up/events/application_event.h
+	src/Catch-up/events/ingame_event.h
+	src/Catch-up/events/mouse_event.h
+	src/Catch-up/events/key_event.h
+	src/Catch-up/events/event.h
+
+	src/Catch-up/renderer/renderer.h
+	src/Catch-up/renderer/renderer_api.h
+
+	src/Platform/SDL/sdl_window.h
+	src/Platform/SDL/sdl_renderer_api.h
 )
 
 set(ENGINE_PRIVATE_SOURCES
-	src/application.cpp
-	src/window/SDL/sdl_window.cpp
-	src/renderer/SDL/sdl_renderer.cpp
-	src/include/component.cpp
-	src/include/component_base.cpp
-	src/include/script_behaviour.cpp
-	src/include/game_object.cpp
-	src/include/components/transform.cpp
-	src/include/components/drawable.cpp
-	src/include/object.cpp
-	src/include/components/vector2f.cpp
-	src/include/components/colliders/collider.cpp
+	src/Catch-up/core/application.cpp
+
+	src/Catch-up/renderer/renderer.cpp
+	src/Catch-up/renderer/renderer_api.cpp
+
+	src/Catch-up/include/component.cpp
+	src/Catch-up/include/component_base.cpp
+	src/Catch-up/include/components/vector2f.cpp
+
+	src/Catch-up/include/components/transform.cpp
+	src/Catch-up/include/components/drawable/drawable.cpp
+
+	src/Catch-up/include/components/colliders/collider.cpp
+
+	src/Catch-up/include/script_behaviour.cpp
+	src/Catch-up/include/game_object.cpp
+	src/Catch-up/include/object.cpp
+
+	src/Platform/SDL/sdl_window.cpp
+	src/Platform/SDL/sdl_renderer_api.cpp
 )
 
 set(ENGINE_ALL_SOURCES

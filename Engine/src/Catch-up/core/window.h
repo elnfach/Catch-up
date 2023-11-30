@@ -2,7 +2,7 @@
 #include <SDL.h>
 #include <string>
 
-#include "props.h"
+#include "Catch-up/props.h"
 
 namespace Engine
 {

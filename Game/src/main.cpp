@@ -2,7 +2,7 @@
 #include "application.h"
 #include "game_object.h"
 #include "script_behaviour.h"
-#include "components/drawable.h"
+#include "components/drawable/drawable.h"
 
 #include "entity/Wolf.h"
 
@@ -23,28 +23,28 @@ public:
 class CatchUp : public Engine::Application
 {
 	Wolf* wolf;
-	Engine::Drawable* drawable;
+	Wolf* wolf2;
+	Wolf* wolf3;
 public:
 	CatchUp();
 	~CatchUp();
 
 	void update() override;
-	Engine::Drawable* draw() override
-	{
-		return wolf->drawable;
-	}
 };
 
 CatchUp::CatchUp()
 {
 	std::cout << "My class\n";
-	drawable = new Engine::Drawable();
 	wolf = new Wolf();
+	wolf2 = new Wolf(100, 100, 25, 25);
+	wolf3 = new Wolf(200, 100, 25, 25);
 }
 
 CatchUp::~CatchUp()
 {
-	
+	delete wolf;
+	delete wolf2;
+	delete wolf3;
 }
 
 void CatchUp::update()

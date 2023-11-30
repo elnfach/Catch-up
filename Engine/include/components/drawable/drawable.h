@@ -1,7 +1,7 @@
 #ifndef CATCHUP_ENGINE_INCLUDE_COMPONENTS_DRAWABLE_H
 #define CATCHUP_ENGINE_INCLUDE_COMPONENTS_DRAWABLE_H
 
-#include "transform.h"
+#include "components\transform.h"
 
 struct SDL_FRect;
 namespace Engine
@@ -11,7 +11,6 @@ namespace Engine
 
 	};
 
-	class GameObject;
 	class Drawable : public Component
 	{
 	public:
@@ -20,10 +19,7 @@ namespace Engine
 		Drawable(Transform* transform);
 		~Drawable();
 
-		void update();
-
 		::SDL_FRect* rect;
-
 		Transform* transform;
 	};
 }

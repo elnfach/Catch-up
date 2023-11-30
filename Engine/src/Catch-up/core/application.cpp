@@ -1,10 +1,10 @@
 #include "application.h"
-#include "window/window.h"
-#include "window/SDL/sdl_window.h"
-#include "renderer/SDL/sdl_renderer.h"
+#include "Catch-up/core/window.h"
+#include "Platform/SDL/sdl_window.h"
+#include "Platform/SDL/sdl_renderer_api.h"
 #include <iostream>
 #include "script_behaviour.h"
-#include "include/component_base.h"
+#include "Catch-up/include/component_base.h"
 
 Engine::Application* Engine::Application::s_ptr_instance = nullptr;
 
@@ -22,7 +22,7 @@ Engine::Application::Application()
     s_ptr_instance = this;
 
     m_ptr_window = Window::create();
-    m_ptr_renderer = Renderer::create(RendererProps(m_ptr_window->getNativeWindow()));
+    Renderer::init(m_ptr_window->getNativeWindow());
     m_ptr_component_base = ComponentBase::getInstance();
 }
 
@@ -47,11 +47,8 @@ void Engine::Application::run()
         }
 
         m_ptr_window->onUpdate();
-        m_ptr_renderer->setColor(255, 255, 255, 255);
-        m_ptr_renderer->clear();
-        m_ptr_renderer->draw(draw());
         m_ptr_component_base->update();
-        //m_ptr_script_behaviour->update();
+        Renderer::update();
         update();
     }
 }
@@ -59,6 +56,5 @@ void Engine::Application::run()
 void Engine::Application::closeWindow()
 {
     m_ptr_window->shutdown();
-    m_ptr_renderer->shutdown();
     SDL_Quit();
 }

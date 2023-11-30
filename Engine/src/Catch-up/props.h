@@ -19,11 +19,20 @@ namespace Engine
 	{
 		void* window;
 		const char* api_name;
-		Uint32 flags;
+		uint32_t flags;
+
+		typedef enum
+		{
+			SDL_RENDERER_SOFTWARE = 0x00000001,         /**< The renderer is a software fallback */
+			SDL_RENDERER_ACCELERATED = 0x00000002,      /**< The renderer uses hardware
+															 acceleration */
+			SDL_RENDERER_PRESENTVSYNC = 0x00000004      /**< Present is synchronized
+															 with the refresh rate */
+		} SDL_RendererFlags;
 
 		RendererProps(void* window,
 			const char* api_name = NULL,
-			Uint32 flags = SDL_RENDERER_SOFTWARE
+			uint32_t flags = SDL_RENDERER_SOFTWARE
 		) : window(window), api_name(api_name), flags(flags)
 		{}
 	};

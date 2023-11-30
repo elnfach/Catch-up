@@ -15,7 +15,6 @@ namespace Engine
     class Application
     {
         Window* m_ptr_window;
-        Renderer* m_ptr_renderer;
         ComponentBase* m_ptr_component_base;
 
         SDL_bool m_running = false;
@@ -29,7 +28,6 @@ namespace Engine
         void run();
 
         virtual void update() = 0;
-        virtual Drawable* draw() = 0;
 
         void closeWindow();
 
