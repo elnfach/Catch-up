@@ -48,7 +48,6 @@ void Engine::Application::run()
 
         m_ptr_window->onUpdate();
         m_ptr_component_base->update();
-        Renderer::update();
         update();
     }
 }

@@ -1,4 +1,5 @@
 #include "component_base.h"
+#include "Catch-up\renderer\renderer.h"
 
 void Engine::ComponentBase::start()
 {
@@ -14,4 +15,5 @@ void Engine::ComponentBase::update()
     {
         component_list[i]->update();
     }
+    Renderer::update();
 }

@@ -7,6 +7,7 @@
 struct SDL_Renderer;
 namespace Engine
 {
+	class Drawable;
 	class RendererAPI
 	{
 #define SDL_MAX_UINT8   ((Uint8)0xFF)           /* 255 */
@@ -31,7 +32,8 @@ namespace Engine
 
 		virtual void setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a) = 0;
 		virtual void clear() = 0;
-		virtual void draw(std::function<void(::SDL_Renderer*)> fn) = 0;
+		virtual void draw(Drawable* drawable) = 0;
+		virtual void present() = 0;
 
 		virtual void shutdown() = 0;
 

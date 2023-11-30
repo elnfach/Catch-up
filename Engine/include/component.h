@@ -18,6 +18,7 @@ namespace Engine
 			Drawable,
 			BoxCollider2D
 		};
+		Transform* transform;
 	public:
 		Component();
 		Component(ComponentType type);
@@ -29,9 +30,8 @@ namespace Engine
 		virtual Component* getComponent() {
 			return nullptr;
 		}
-
+		
 		GameObject* game_object;
-		Transform* transform;
 	private:
 		ComponentType component_type;
 	};

@@ -23,7 +23,8 @@ namespace Engine
 		SDL_RendererAPI(RendererProps& props);
 		void setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a) override;
 		void clear() override;
-		void draw(std::function<void(::SDL_Renderer*)> fn) override;
+		void draw(Drawable* drawable) override;
+		void present() override;
 
 		virtual void shutdown() override;
 

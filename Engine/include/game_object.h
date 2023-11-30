@@ -3,7 +3,7 @@
 
 #include <functional>
 #include "components/transform.h"
-#include <components/drawable/drawable.h>
+#include <components/drawable/rectangle_drawable.h>
 
 namespace Engine
 {
@@ -13,8 +13,8 @@ namespace Engine
 		GameObject();
 		~GameObject();
 
-		Drawable* drawable;
 		Transform* transform;
+		RectangleDrawable* drawable;
 	};
 }
 

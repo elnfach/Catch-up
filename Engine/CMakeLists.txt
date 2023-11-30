@@ -49,6 +49,7 @@ set(ENGINE_PRIVATE_SOURCES
 
 	src/Catch-up/include/components/transform.cpp
 	src/Catch-up/include/components/drawable/drawable.cpp
+	src/Catch-up/include/components/drawable/rectangle_drawable.cpp
 
 	src/Catch-up/include/components/colliders/collider.cpp
 

@@ -35,12 +35,18 @@ void Engine::SDL_RendererAPI::setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 void Engine::SDL_RendererAPI::clear()
 {
 	SDL_RenderClear(m_ptr_renderer);
-	SDL_RenderPresent(m_ptr_renderer);
 }
 
-void Engine::SDL_RendererAPI::draw(std::function<void(::SDL_Renderer* renderer)> fn)
+void Engine::SDL_RendererAPI::draw(Drawable* drawable)
 {
-	fn(m_ptr_renderer);
+	SDL_SetRenderDrawColor(m_ptr_renderer, 0, 0, 0, 0);
+	SDL_RenderFillRect(m_ptr_renderer, drawable->rect);
+	
+}
+
+void Engine::SDL_RendererAPI::present()
+{
+	SDL_RenderPresent(m_ptr_renderer);
 }
 
 void Engine::SDL_RendererAPI::setVSync(bool enabled)

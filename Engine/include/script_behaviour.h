@@ -12,6 +12,11 @@ namespace Engine
 		ScriptBehaviour();
 		~ScriptBehaviour();
 
+		ScriptBehaviour(const ScriptBehaviour&) = delete;
+		ScriptBehaviour(const ScriptBehaviour&&) = delete;
+
+		void operator=(const ScriptBehaviour&) = delete;
+
 		static ScriptBehaviour* create();
 	};
 }

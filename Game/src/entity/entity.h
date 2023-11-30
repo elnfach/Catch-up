@@ -31,10 +31,10 @@ Entity::Entity()
 	type = EntityType::UNKNOWN;
 }
 
-inline Entity::Entity(double x, double y)
+inline Entity::Entity(double x, double y) : ScriptBehaviour()
 {
-	this->transform->position.x = x;
-	this->transform->position.x = y;
+	game_object->transform->position.x = x;
+	game_object->transform->position.y = y;
 	collider = nullptr;
 	type = EntityType::UNKNOWN;
 }

@@ -16,7 +16,7 @@ public:
 
 	void update() override
 	{
-
+		
 	}
 	
 };
@@ -36,7 +36,7 @@ CatchUp::CatchUp()
 {
 	std::cout << "My class\n";
 	wolf = new Wolf();
-	wolf2 = new Wolf(100, 100, 25, 25);
+	wolf2 = new Wolf(500, 100, 25, 25);
 	wolf3 = new Wolf(200, 100, 25, 25);
 }
 
@@ -49,7 +49,9 @@ CatchUp::~CatchUp()
 
 void CatchUp::update()
 {
-	//wolf->update();
+	wolf->move();
+	wolf->game_object->transform->position.x += 1.0f;
+	std::cout << wolf->game_object->transform->position.x << std::endl;
 }
 
 Engine::Application* createApplication()

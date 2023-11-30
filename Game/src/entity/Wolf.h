@@ -5,7 +5,7 @@
 #include "RayCast.h"
 #include <vector>
 #include <functional>
-#include "components/drawable/drawable_component.h"
+#include "components\drawable\rectangle_drawable.h"
 
 class Wolf : public Entity
 {

@@ -32,7 +32,7 @@ namespace Engine
 
 		RendererProps(void* window,
 			const char* api_name = NULL,
-			uint32_t flags = SDL_RENDERER_SOFTWARE
+			uint32_t flags = SDL_RENDERER_ACCELERATED
 		) : window(window), api_name(api_name), flags(flags)
 		{}
 	};

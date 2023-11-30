@@ -1,22 +1,24 @@
 #include <SDL.h>
 
+#include "Catch-up\renderer\renderer.h"
 #include "components/drawable/drawable.h"
+#include <iostream>
 
 
-Engine::Drawable::Drawable()
+Engine::Drawable::Drawable() : Component(ComponentType::Drawable)
 {
-	transform = new Transform();
 	::SDL_FRect* rectangle = new ::SDL_FRect();
 
-	rectangle->x = 1280/ 2 - 25;
-	rectangle->y = 720 / 2 - 25;
+	rectangle->x = transform->position.x;
+	rectangle->y = transform->position.y;
 	rectangle->w = 25;
 	rectangle->h = 25;
-	
+
+	if (rect == nullptr) delete rect;
 	rect = rectangle;
 }
 
-Engine::Drawable::Drawable(Vector2f position, Vector2f end)
+Engine::Drawable::Drawable(Vector2f position, Vector2f end) : Component(ComponentType::Drawable)
 {
 	transform->position = position;
 	::SDL_FRect* rectangle = new ::SDL_FRect();
@@ -26,10 +28,11 @@ Engine::Drawable::Drawable(Vector2f position, Vector2f end)
 	rectangle->w = end.x;
 	rectangle->h = end.y;
 
+	if(rect == nullptr) delete rect;
 	rect = rectangle;
 }
 
-Engine::Drawable::Drawable(Transform* transform)
+Engine::Drawable::Drawable(Transform* transform) : Component(ComponentType::Drawable)
 {
 	this->transform = transform;
 	::SDL_FRect* rectangle = new ::SDL_FRect();
@@ -39,11 +42,19 @@ Engine::Drawable::Drawable(Transform* transform)
 	rectangle->w = 25;
 	rectangle->h = 25;
 
+	if (rect == nullptr) delete rect;
 	rect = rectangle;
 }
 
 Engine::Drawable::~Drawable()
 {
+	delete rect;
+	delete transform;
+}
+
+void Engine::Drawable::update()
+{
+	
 }
 
 //void Engine::Drawable::update()

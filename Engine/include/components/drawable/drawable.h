@@ -2,6 +2,7 @@
 #define CATCHUP_ENGINE_INCLUDE_COMPONENTS_DRAWABLE_H
 
 #include "components\transform.h"
+#include <functional>
 
 struct SDL_FRect;
 namespace Engine
@@ -13,12 +14,17 @@ namespace Engine
 
 	class Drawable : public Component
 	{
-	public:
+	protected:
 		Drawable();
 		Drawable(Vector2f position, Vector2f end);
 		Drawable(Transform* transform);
-		~Drawable();
 
+		
+
+		virtual ~Drawable();
+	public:
+		void update() override;
+		virtual Drawable* draw() = 0;
 		::SDL_FRect* rect;
 		Transform* transform;
 	};
