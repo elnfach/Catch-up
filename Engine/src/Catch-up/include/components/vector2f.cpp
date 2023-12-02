@@ -11,70 +11,56 @@ Engine::Vector2f Engine::Vector2f::normalized()
 	return Vector2f(pow(x / magnitude(), 2) + pow(y / magnitude(), 2), 0);
 }
 
-Engine::Vector2f::Vector2f()
+Engine::Vector2f::Vector2f() : x(0.0f), y(0.0f)
 {
-	x = 1;
-	y = 0;
 }
 
-Engine::Vector2f::Vector2f(float x, float y)
+Engine::Vector2f::Vector2f(float x, float y) : x(x), y(y)
 {
-	this->x = x;
-	this->y = y;
 }
 
-Engine::Vector2f::Vector2f(const Vector2f& vector)
+Engine::Vector2f::Vector2f(const Vector2f& vector) : x(vector.x), y (vector.y)
 {
-	x = vector.x;
-	y = vector.y;
 }
 
 Engine::Vector2f Engine::Vector2f::operator+(const float number)
 {
-	Vector2f temp = *this;
-	return Vector2f(temp.x + number, temp.y + number);
+	return Vector2f(x + number, y + number);
 }
 
 Engine::Vector2f Engine::Vector2f::operator+(const Vector2f& vector)
 {
-	Vector2f temp = *this;
-	return Vector2f(temp.x + vector.x, temp.y + vector.y);
+	return Vector2f(x + vector.x, y + vector.y);
 }
 
 Engine::Vector2f Engine::Vector2f::operator-(const float number)
 {
-	Vector2f temp = *this;
-	return Vector2f(temp.x - number, temp.y - number);
+	return Vector2f(x - number, y - number);
 }
 
 Engine::Vector2f Engine::Vector2f::operator-(const Vector2f& vector)
 {
-	Vector2f temp = *this;
-	return Vector2f(temp.x - vector.x, temp.y - vector.y);
+	return Vector2f(x - vector.x, y - vector.y);
 }
 
 Engine::Vector2f Engine::Vector2f::operator*(float number)
 {
-	Vector2f temp = *this;
-	return Vector2f(temp.x * number, temp.y * number);
+	return Vector2f(x * number, y * number);
 }
 
 Engine::Vector2f Engine::Vector2f::operator*(const Vector2f& vector)
 {
-	Vector2f temp = *this;
-	return Vector2f(temp.x * vector.x, temp.y * vector.y);
+	return Vector2f(x * vector.x, y * vector.y);
 }
 
 Engine::Vector2f Engine::Vector2f::operator/(const float number)
 {
-	Vector2f temp = *this;
-	return Vector2f(temp.x / number, temp.y / number);
+	return Vector2f(x / number, y / number);
 }
 
 Engine::Vector2f Engine::Vector2f::operator/(const Vector2f& vector)
 {
-	Vector2f temp = *this;
-	return Vector2f(temp.x / vector.x, temp.y / vector.y);
+	return Vector2f(x / vector.x, y / vector.y);
 }
 
 void Engine::Vector2f::operator=(const Vector2f& vector)
@@ -85,9 +71,5 @@ void Engine::Vector2f::operator=(const Vector2f& vector)
 
 bool Engine::Vector2f::operator==(const Vector2f& vector)
 {
-	if (x == vector.x && y == vector.y)
-	{
-		return true;
-	}
-	return false;
+	return (x == vector.x && y == vector.y);
 }

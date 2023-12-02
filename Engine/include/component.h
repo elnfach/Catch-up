@@ -13,7 +13,7 @@ namespace Engine
 			Unknown = 0,
 			ScriptBehaviour,
 			Transform,
-			Drawable,
+			RectangleDrawable,
 			BoxCollider2D
 		};
 	public:
@@ -30,8 +30,8 @@ namespace Engine
 				return "ScriptBehaviour";
 			case ComponentType::Transform:
 				return "Transform";
-			case ComponentType::Drawable:
-				return "Drawable";
+			case ComponentType::RectangleDrawable:
+				return "RectangleDrawable";
 			case ComponentType::BoxCollider2D:
 				return "BoxCollider2D";
 			default:

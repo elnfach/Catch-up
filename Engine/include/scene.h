@@ -24,16 +24,10 @@ namespace Engine
         void createGameObject(GameObject& object);
 
         template<class T>
-        void addComponent(GameObject entity, T& component)
-        {
-
-        }
+        void addComponent(GameObject entity, T& component);
 
         template<class T>
-        bool hasComponent(entt::entity entity)
-        {
-
-        }
+        bool hasComponent(entt::entity entity);
 
         void start();
         void update();

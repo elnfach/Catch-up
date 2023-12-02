@@ -22,17 +22,29 @@ namespace Engine
 		void print();
 
 		template<class T>
-		bool hasComponent();
+		bool hasComponent()
+		{
+			return m_scene->m_game_objects.all_of<T>(m_entity);
+		}
 
 		template<class T>
-		T& getComponent();
+		T& getComponent()
+		{
+			if (!hasComponent<T>())
+			{
+				std::cout << hasComponent<T>() << "GameObject does not have component!" << std::endl;
+			}
+			return m_scene->m_game_objects.get<T>(m_entity);
+		}
 
 		template<class T, class... Args>
 		T& addComponent(Args && ...args)
 		{
-			std::cout << "GameObject already has component!" << std::endl;
+			if (hasComponent<T>())
+			{
+				std::cout << hasComponent<T>() << "GameObject already has component!" << std::endl;
+			}
 			T& component = m_scene->m_game_objects.emplace<T>(m_entity, std::forward<Args>(args)...);
-			m_scene->addComponent(*this, component);
 			return component;
 		}
 

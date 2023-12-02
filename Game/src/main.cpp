@@ -1,14 +1,11 @@
 #include <iostream>
 #include "application.h"
-#include "components/drawable/drawable.h"
-
 #include "entity/Wolf.h"
+#include <components\transform.h>
 
 class CatchUp : public Engine::Application
 {
 	Wolf* wolf;
-	Wolf* wolf2;
-	Wolf* wolf3;
 public:
 	CatchUp();
 	~CatchUp();
@@ -18,24 +15,18 @@ public:
 
 CatchUp::CatchUp()
 {
-	std::cout << "My class\n";
-	wolf = new Wolf();
-	wolf2 = new Wolf(500, 100, 25, 25);
-	wolf3 = new Wolf(200, 100, 25, 25);
-
-	//std::cout << wolf->hasComponent<Engine::Transform>();
+	wolf = new Wolf(100, 0, 100, 100);
 }
 
 CatchUp::~CatchUp()
 {
 	delete wolf;
-	delete wolf2;
-	delete wolf3;
 }
-
+float x;
 void CatchUp::update()
 {
-	wolf->move();
+	x += 0.1f;
+	wolf->move(x, 0);
 }
 
 Engine::Application* createApplication()

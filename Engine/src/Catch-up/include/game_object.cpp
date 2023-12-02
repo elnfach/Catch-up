@@ -17,7 +17,7 @@ Engine::GameObject::GameObject(entt::entity handle, Scene* scene) : m_entity(han
 
 Engine::GameObject::~GameObject()
 {
-
+	
 }
 
 void Engine::GameObject::print()
@@ -38,19 +38,6 @@ Engine::GameObject::operator entt::entity() const
 Engine::GameObject::operator unsigned int() const
 {
 	return (unsigned int)m_entity;
-}
-
-template<class T>
-bool Engine::GameObject::hasComponent()
-{
-	return m_scene->m_game_objects.all_of<T>(m_entity);
-}
-
-template<class T>
-T& Engine::GameObject::getComponent()
-{
-	std::cout << "GameObject does not have component!" << std::endl;
-	return m_scene->m_game_objects.get<T>(m_entity);
 }
 
 template<class T, class ...Args>

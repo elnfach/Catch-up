@@ -12,9 +12,9 @@ set(ENGINE_PUBLIC_INCLUDES
 	include/script_behaviour.h
 
 	include/components/transform.h
-	include/components/drawable/drawable.h
 	include/components/drawable/rectangle_drawable.h
 	include/components/vector2f.h
+	include/components/vector4f.h
 	include/components/colliders/collider.h
 )
 
@@ -46,9 +46,9 @@ set(ENGINE_PRIVATE_SOURCES
 	src/Catch-up/include/component.cpp
 	src/Catch-up/include/scene.cpp
 	src/Catch-up/include/components/vector2f.cpp
+	src/Catch-up/include/components/vector4f.cpp
 
 	src/Catch-up/include/components/transform.cpp
-	src/Catch-up/include/components/drawable/drawable.cpp
 	src/Catch-up/include/components/drawable/rectangle_drawable.cpp
 
 	src/Catch-up/include/components/colliders/collider.cpp

@@ -21,9 +21,9 @@ namespace Engine
 		~SDL_RendererAPI();
 	public:
 		SDL_RendererAPI(RendererProps& props);
-		void setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a) override;
+		void setColor(const Vector4f color) override;
 		void clear() override;
-		void draw(Drawable* drawable) override;
+		void drawRectangle(const Transform transform, Vector2f size, const Vector4f color) override;
 		void present() override;
 
 		virtual void shutdown() override;

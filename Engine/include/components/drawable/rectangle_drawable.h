@@ -1,21 +1,23 @@
 #ifndef CATCHUP_ENGINE_INCLUDE_COMPONENTS_RECTANGLE_DRAWABLE_H
 #define CATCHUP_ENGINE_INCLUDE_COMPONENTS_RECTANGLE_DRAWABLE_H
 
-#include "drawable.h"
+#include "component.h"
+#include "components\vector4f.h"
+#include "components\vector2f.h"
 
 namespace Engine
 {
-	class RectangleDrawable : public Drawable
+	class RectangleDrawable : Component
 	{
 	public:
 		RectangleDrawable();
-		RectangleDrawable(Vector2f position, Vector2f end);
-		RectangleDrawable(Transform* transform);
 		~RectangleDrawable();
 
-		Drawable* draw() override;
-	private:
+		inline std::string toString() const override { return name; }
+		inline int getInstanceID() const override { return id; }
 
+		Vector4f color;
+		Vector2f size;
 	};
 }
 

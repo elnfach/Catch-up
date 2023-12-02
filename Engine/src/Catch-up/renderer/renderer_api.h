@@ -3,6 +3,8 @@
 
 #include <functional>
 #include "Catch-up\props.h"
+#include "components\vector4f.h"
+#include "components\transform.h"
 
 struct SDL_Renderer;
 namespace Engine
@@ -30,9 +32,9 @@ namespace Engine
 
 		void operator=(const RendererAPI&) = delete;
 
-		virtual void setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a) = 0;
+		virtual void setColor(Vector4f color) = 0;
 		virtual void clear() = 0;
-		virtual void draw(Drawable* drawable) = 0;
+		virtual void drawRectangle(const Transform transform, Vector2f size, const Vector4f color) = 0;
 		virtual void present() = 0;
 
 		virtual void shutdown() = 0;

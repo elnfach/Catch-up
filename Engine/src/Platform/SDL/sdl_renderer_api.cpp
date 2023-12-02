@@ -1,7 +1,7 @@
-#include "Platform\SDL\sdl_renderer_api.h"
-#include <components/drawable/drawable.h>
 #include <iostream>
 #include <functional>
+
+#include "Platform\SDL\sdl_renderer_api.h"
 
 void Engine::SDL_RendererAPI::init(RendererProps& props)
 {
@@ -27,9 +27,9 @@ Engine::SDL_RendererAPI::~SDL_RendererAPI()
 	shutdown();
 }
 
-void Engine::SDL_RendererAPI::setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
+void Engine::SDL_RendererAPI::setColor(const Vector4f color)
 {
-	SDL_SetRenderDrawColor(m_ptr_renderer, r, g, b, a);
+	SDL_SetRenderDrawColor(m_ptr_renderer, color.x, color.y, color.z, color.w);
 }
 
 void Engine::SDL_RendererAPI::clear()
@@ -37,11 +37,15 @@ void Engine::SDL_RendererAPI::clear()
 	SDL_RenderClear(m_ptr_renderer);
 }
 
-void Engine::SDL_RendererAPI::draw(Drawable* drawable)
+void Engine::SDL_RendererAPI::drawRectangle(const Transform transform, Vector2f size, const Vector4f color)
 {
-	SDL_SetRenderDrawColor(m_ptr_renderer, 0, 0, 0, 0);
-	SDL_RenderFillRect(m_ptr_renderer, drawable->rect);
-	
+	::SDL_FRect rect{};
+	rect.x = transform.position.x;
+	rect.y = transform.position.y;
+	rect.w = size.x;
+	rect.h = size.y;
+	SDL_SetRenderDrawColor(m_ptr_renderer, color.x, color.y, color.z, color.w);
+	SDL_RenderFillRect(m_ptr_renderer, &rect);
 }
 
 void Engine::SDL_RendererAPI::present()

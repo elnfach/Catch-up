@@ -29,6 +29,7 @@ Engine::Application::Application()
 
 Engine::Application::~Application()
 {
+    Renderer::shutdown();
     closeWindow();
 }
 

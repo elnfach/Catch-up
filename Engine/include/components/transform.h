@@ -18,8 +18,9 @@ namespace Engine
 
 		void translate(Vector2f translation);
 
-		Vector2f locale_position;
 		Vector2f position;
+		Vector2f rotation;
+		Vector2f scale;
 	};
 }
 

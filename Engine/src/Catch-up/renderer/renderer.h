@@ -4,6 +4,7 @@
 #include <functional>
 #include "Catch-up\props.h"
 #include "renderer_api.h"
+#include "components\vector4f.h"
 
 namespace Engine
 {
@@ -12,7 +13,6 @@ namespace Engine
 	class Renderer
 	{
 		static RendererAPI* m_ptr_renderer_api;
-		static std::vector<Drawable*> m_drawable_list;
 	protected:
 		Renderer() {}
 		virtual ~Renderer() {}
@@ -29,11 +29,14 @@ namespace Engine
 			static Renderer instance;
 			return &instance;
 		}
+
+		static void clear(const Vector4f color);
+		static void drawRectangle(const Transform transform, Vector2f size, const Vector4f color);
+		static void drawCircle();
+		static void present();
+
 		static void shutdown();
 
 		static void OnWindowResize(unsigned int width, unsigned int height);
-
-		static void submit(Drawable* drawable);
-		static void update();
 	};
 }
