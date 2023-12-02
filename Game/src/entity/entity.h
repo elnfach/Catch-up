@@ -2,7 +2,6 @@
 #include "entity_type.h"
 #include "components/colliders/collider.h"
 #include "script_behaviour.h"
-#include "components/vector2f.h"
 #include "BoxCollider.h"
 
 class Entity : public Engine::ScriptBehaviour
@@ -33,8 +32,6 @@ Entity::Entity()
 
 inline Entity::Entity(double x, double y) : ScriptBehaviour()
 {
-	game_object->transform->position.x = x;
-	game_object->transform->position.y = y;
 	collider = nullptr;
 	type = EntityType::UNKNOWN;
 }

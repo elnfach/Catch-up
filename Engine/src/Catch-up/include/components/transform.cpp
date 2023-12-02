@@ -1,5 +1,4 @@
 #include "components/transform.h"
-#include <SDL.h>
 
 Engine::Transform::Transform() : Component(ComponentType::Transform)
 {

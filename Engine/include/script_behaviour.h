@@ -1,11 +1,11 @@
 #ifndef CATHCHUP_ENGINE_INCLUDE_SCRIPT_BEHAVIOUR_H
 #define CATHCHUP_ENGINE_INCLUDE_SCRIPT_BEHAVIOUR_H
 
-#include "component.h"
+#include "game_object.h"
 
 namespace Engine
 {
-	class ScriptBehaviour : public Component
+	class ScriptBehaviour : public GameObject
 	{
 		static ScriptBehaviour* m_ptr_instance;
 	public:
@@ -17,7 +17,7 @@ namespace Engine
 
 		void operator=(const ScriptBehaviour&) = delete;
 
-		static ScriptBehaviour* create();
+		ScriptBehaviour* create();
 	};
 }
 

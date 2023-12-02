@@ -11,11 +11,11 @@ namespace Engine
     class Drawable;
     class Renderer;
     class ScriptBehaviour;
-    class ComponentBase;
+    class Scene;
     class Application
     {
         Window* m_ptr_window;
-        ComponentBase* m_ptr_component_base;
+        Scene* m_ptr_scene;
 
         SDL_bool m_running = false;
         

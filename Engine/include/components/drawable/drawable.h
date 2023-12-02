@@ -1,6 +1,7 @@
 #ifndef CATCHUP_ENGINE_INCLUDE_COMPONENTS_DRAWABLE_H
 #define CATCHUP_ENGINE_INCLUDE_COMPONENTS_DRAWABLE_H
 
+#include "component.h"
 #include "components\transform.h"
 #include <functional>
 

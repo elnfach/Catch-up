@@ -3,6 +3,7 @@
 
 #include "component.h"
 #include "vector2f.h"
+#include <string>
 
 namespace Engine
 {
@@ -14,7 +15,6 @@ namespace Engine
 
 		inline std::string toString() const override { return name; }
 		inline int getInstanceID() const override  { return id; }
-		inline ObjectType getInstanceType() const override  { return type; }
 
 		void translate(Vector2f translation);
 

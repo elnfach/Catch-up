@@ -1,25 +1,9 @@
 #include <iostream>
 #include "application.h"
-#include "game_object.h"
-#include "script_behaviour.h"
 #include "components/drawable/drawable.h"
 
 #include "entity/Wolf.h"
 
-class MyClass : public Engine::ScriptBehaviour
-{
-public:
-	void start() override
-	{
-		
-	}
-
-	void update() override
-	{
-		
-	}
-	
-};
 class CatchUp : public Engine::Application
 {
 	Wolf* wolf;
@@ -38,6 +22,8 @@ CatchUp::CatchUp()
 	wolf = new Wolf();
 	wolf2 = new Wolf(500, 100, 25, 25);
 	wolf3 = new Wolf(200, 100, 25, 25);
+
+	wolf = wolf2;
 }
 
 CatchUp::~CatchUp()
@@ -50,8 +36,6 @@ CatchUp::~CatchUp()
 void CatchUp::update()
 {
 	wolf->move();
-	wolf->game_object->transform->position.x += 1.0f;
-	std::cout << wolf->game_object->transform->position.x << std::endl;
 }
 
 Engine::Application* createApplication()

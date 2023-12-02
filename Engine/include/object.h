@@ -24,7 +24,21 @@ namespace Engine
 
 		inline virtual std::string toString() const { return name; }
 		inline virtual int getInstanceID() const  { return id; }
-		inline virtual ObjectType getInstanceType() const { return type; }
+		inline virtual std::string getInstanceType() const { 
+			switch (type)
+			{
+			case Engine::Object::ObjectType::Unknown:
+				return "Unknown";
+			case Engine::Object::ObjectType::Object:
+				return "Object";
+			case Engine::Object::ObjectType::Component:
+				return "Component";
+			case Engine::Object::ObjectType::GameObject:
+				return "GameObject";
+			default:
+				return "Invalid type";
+			}
+		}
 
 		static void destroy(Object* object);
 

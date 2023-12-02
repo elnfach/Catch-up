@@ -2,9 +2,10 @@
 #include "Catch-up/core/window.h"
 #include "Platform/SDL/sdl_window.h"
 #include "Platform/SDL/sdl_renderer_api.h"
-#include <iostream>
+#include "Catch-up/include/scene.h"
 #include "script_behaviour.h"
-#include "Catch-up/include/component_base.h"
+
+#include <iostream>
 
 Engine::Application* Engine::Application::s_ptr_instance = nullptr;
 
@@ -23,7 +24,7 @@ Engine::Application::Application()
 
     m_ptr_window = Window::create();
     Renderer::init(m_ptr_window->getNativeWindow());
-    m_ptr_component_base = ComponentBase::getInstance();
+    m_ptr_scene = Scene::getInstance();
 }
 
 Engine::Application::~Application()
@@ -47,7 +48,7 @@ void Engine::Application::run()
         }
 
         m_ptr_window->onUpdate();
-        m_ptr_component_base->update();
+        m_ptr_scene->update();
         update();
     }
 }

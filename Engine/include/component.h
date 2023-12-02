@@ -5,8 +5,6 @@
 
 namespace Engine
 {
-	class Transform;
-	class GameObject;
 	class Component : public Object
 	{
 	protected:
@@ -18,20 +16,31 @@ namespace Engine
 			Drawable,
 			BoxCollider2D
 		};
-		Transform* transform;
 	public:
 		Component();
 		Component(ComponentType type);
 		~Component();
 
+		inline std::string getInstanceType() const override {
+			switch (component_type)
+			{
+			case ComponentType::Unknown:
+				return "Unknown";
+			case ComponentType::ScriptBehaviour:
+				return "ScriptBehaviour";
+			case ComponentType::Transform:
+				return "Transform";
+			case ComponentType::Drawable:
+				return "Drawable";
+			case ComponentType::BoxCollider2D:
+				return "BoxCollider2D";
+			default:
+				return "Invalid type";
+			}
+		}
+
 		virtual void start() {}
 		virtual void update() {}
-		
-		virtual Component* getComponent() {
-			return nullptr;
-		}
-		
-		GameObject* game_object;
 	private:
 		ComponentType component_type;
 	};

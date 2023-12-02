@@ -13,5 +13,5 @@ add_executable(${DIRECTORY_NAME}
 	src/main.cpp
 )
 
-target_link_libraries(${DIRECTORY_NAME} CatchUpEngine)
+target_link_libraries(${DIRECTORY_NAME} CatchUpEngine EnTT::EnTT)
 set_target_properties(${DIRECTORY_NAME} PROPERTIES RUNTIME_OUTPUT_DERICTORIES ${CMAKE_BINARY_DIR}/bin/)
