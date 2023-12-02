@@ -23,7 +23,7 @@ CatchUp::CatchUp()
 	wolf2 = new Wolf(500, 100, 25, 25);
 	wolf3 = new Wolf(200, 100, 25, 25);
 
-	wolf = wolf2;
+	//std::cout << wolf->hasComponent<Engine::Transform>();
 }
 
 CatchUp::~CatchUp()

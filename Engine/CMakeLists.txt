@@ -4,6 +4,8 @@ set(DIRECTORY_NAME CatchUpEngine)
 
 set(ENGINE_PUBLIC_INCLUDES
 	include/application.h
+	include/uuid.h
+	include/scene.h
 	include/object.h
 	include/component.h
 	include/game_object.h
@@ -21,8 +23,6 @@ set(ENGINE_PRIVATE_INCLUDES
 
 	src/Catch-up/core/window.h
 
-	src/Catch-up/include/scene.h
-
 	src/Catch-up/events/application_event.h
 	src/Catch-up/events/ingame_event.h
 	src/Catch-up/events/mouse_event.h
@@ -38,6 +38,7 @@ set(ENGINE_PRIVATE_INCLUDES
 
 set(ENGINE_PRIVATE_SOURCES
 	src/Catch-up/core/application.cpp
+	src/Catch-up/core/uuid.cpp
 
 	src/Catch-up/renderer/renderer.cpp
 	src/Catch-up/renderer/renderer_api.cpp
@@ -79,6 +80,7 @@ target_include_directories(${DIRECTORY_NAME} PRIVATE src)
 target_compile_features(${DIRECTORY_NAME} PUBLIC cxx_std_20)
 
 add_subdirectory(libs/entt ${CMAKE_CURRENT_BINARY_DIR}/entt)
+target_include_directories(${DIRECTORY_NAME} PUBLIC libs/entt/single_include/entt)
 target_link_libraries(${DIRECTORY_NAME} PRIVATE EnTT::EnTT)
 
 add_subdirectory(libs/SDL ${CMAKE_CURRENT_BINARY_DIR}/SDL)

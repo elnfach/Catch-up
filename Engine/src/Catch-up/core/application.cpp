@@ -2,7 +2,7 @@
 #include "Catch-up/core/window.h"
 #include "Platform/SDL/sdl_window.h"
 #include "Platform/SDL/sdl_renderer_api.h"
-#include "Catch-up/include/scene.h"
+#include "scene.h"
 #include "script_behaviour.h"
 
 #include <iostream>

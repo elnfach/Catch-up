@@ -3,6 +3,9 @@
 
 #include <entt\entt.hpp>
 
+#include <string>
+
+#include "uuid.h"
 #include "component.h"
 
 namespace Engine
@@ -11,7 +14,6 @@ namespace Engine
     class Scene
     {
     public:
-        
         static Scene* getInstance() {
             static Scene instance;
             return &instance;
@@ -19,21 +21,29 @@ namespace Engine
         Scene(const Scene&) = delete;
         Scene(const Scene&&) = delete;
 
-        template<typename T>
-        void addComponent(GameObject entity, T& component);
+        void createGameObject(GameObject& object);
 
-        template<typename T>
-        bool hasComponent(entt::entity entity);
+        template<class T>
+        void addComponent(GameObject entity, T& component)
+        {
+
+        }
+
+        template<class T>
+        bool hasComponent(entt::entity entity)
+        {
+
+        }
 
         void start();
         void update();
 
     private:
-        Scene* m_ptr_component_base = nullptr;
         Scene() {}
         ~Scene() {}
 
         entt::registry m_game_objects;
+        std::unordered_map<UUID, entt::entity> m_game_objects_map;
 
         friend GameObject;
     };
