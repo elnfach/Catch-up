@@ -6,9 +6,8 @@ namespace Engine
 {
     typedef unsigned int SDL_bool;
 
-    class Window;
-    class ScriptBehaviour;
     class Scene;
+    class Window;
     class Application
     {
         Window* m_ptr_window;
