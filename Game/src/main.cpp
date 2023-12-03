@@ -1,6 +1,6 @@
 #include <iostream>
 #include "application.h"
-#include "entity/Wolf.h"
+#include "wolf/Wolf.h"
 #include <components\transform.h>
 
 class CatchUp : public Engine::Application

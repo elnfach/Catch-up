@@ -2,7 +2,7 @@
 #include "entity_type.h"
 #include "components/colliders/box_collider.h"
 #include "script_behaviour.h"
-#include "BoxCollider.h"
+#include "utils\box_collider.h"
 
 class Entity : public Engine::ScriptBehaviour
 {

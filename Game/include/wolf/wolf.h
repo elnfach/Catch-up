@@ -1,8 +1,8 @@
 #pragma once
 #include <time.h>
 
-#include "Entity.h"
-#include "RayCast.h"
+#include "entity/entity.h"
+#include "utils/RayCast.h"
 #include <vector>
 #include <functional>
 #include "components\transform.h"
