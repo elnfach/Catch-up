@@ -21,8 +21,6 @@ void Engine::Scene::createGameObject(GameObject& object)
 {
     object.addComponent<Transform>();
     object.addComponent<RectangleDrawable>();
-    object.addComponent<RigidBody>();
-    object.addComponent<BoxCollider>();
 
     m_game_objects_map[UUID()] = object;
 }

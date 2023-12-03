@@ -28,13 +28,14 @@ namespace Engine
 
         void start();
         void update(Timestep ts);
-        void renderScene();
-        void physicsStart();
-        void onPhysicsStop();
 
     private:
         Scene() {}
         ~Scene() {}
+
+        void renderScene();
+        void physicsStart();
+        void onPhysicsStop();
 
         int m_step_frames = 60;
 

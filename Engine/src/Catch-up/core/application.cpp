@@ -11,11 +11,6 @@
 
 Engine::Application* Engine::Application::s_ptr_instance = nullptr;
 
-Engine::ScriptBehaviour* Engine::ScriptBehaviour::create()
-{
-    return new ScriptBehaviour();
-}
-
 Engine::Application::Application()
 {
     if (s_ptr_instance)
@@ -37,7 +32,9 @@ Engine::Application::~Application()
 
 void Engine::Application::run()
 {
+    start();
     m_ptr_scene->start();
+    
     while (!m_running)
     {
         SDL_Event event;

@@ -19,7 +19,6 @@ namespace Engine
 		GameObject(entt::entity handle, Scene* scene);
 		~GameObject();
 
-		void print();
 		virtual void onCollisionEnter(GameObject* game_object) {}
 
 		template<class T>
@@ -35,18 +34,18 @@ namespace Engine
 			{
 				return m_scene->m_game_objects.get<T>(m_entity);
 			}
-			std::cout << hasComponent<T>() << "GameObject does not have component!" << std::endl;
+			std::cout << "GameObject \"" << name << "\" does not have component!" << std::endl;
 		}
 
 		template<class T, class... Args>
 		T& addComponent(Args && ...args)
 		{
-			if (hasComponent<T>())
+			if (!hasComponent<T>())
 			{
-				std::cout << hasComponent<T>() << "GameObject already has component!" << std::endl;
+				T& component = m_scene->m_game_objects.emplace<T>(m_entity, std::forward<Args>(args)...);
+				return component;
 			}
-			T& component = m_scene->m_game_objects.emplace<T>(m_entity, std::forward<Args>(args)...);
-			return component;
+			std::cout << "GameObject \"" << name << "\" does not have component!" << std::endl;
 		}
 
 		template<class T, class... Args>
@@ -59,7 +58,7 @@ namespace Engine
 		template<class T>
 		void removeComponent()
 		{
-			if(!hasComponent<T>()) std::cout << "Entity does not have component!" << std::endl;
+			if (!hasComponent<T>()) std::cout << "GameObject \"" << name << "\" does not have component!" << std::endl;
 			m_scene->m_game_objects.remove<T>(m_entity);
 		}
 

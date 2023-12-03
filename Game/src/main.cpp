@@ -5,19 +5,18 @@
 
 class CatchUp : public Engine::Application
 {
-	Wolf* wolf;
-	Wolf* wolf1;
+	Wolf* wolf = nullptr;
+	Wolf* wolf1 = nullptr;
 public:
 	CatchUp();
 	~CatchUp();
 
+	void start() override;
 	void update() override;
 };
 
 CatchUp::CatchUp()
 {
-	wolf = new Wolf(100, 0, 25, 25);
-	wolf1 = new Wolf(100, 0, 25, 25);
 }
 
 CatchUp::~CatchUp()
@@ -26,6 +25,11 @@ CatchUp::~CatchUp()
 }
 float x;
 float y;
+void CatchUp::start()
+{
+	wolf = new Wolf(100, 650, 25, 25);
+	wolf1 = new Wolf(100, 625, 25, 25);
+}
 void CatchUp::update()
 {
 	y += 0.1f;

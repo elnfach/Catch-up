@@ -16,8 +16,6 @@ namespace Engine
 		ScriptBehaviour(const ScriptBehaviour&&) = delete;
 
 		void operator=(const ScriptBehaviour&) = delete;
-
-		ScriptBehaviour* create();
 	};
 }
 

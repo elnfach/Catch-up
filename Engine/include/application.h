@@ -2,14 +2,11 @@
 
 #include <vector>
 
-struct SDL_Renderer;
 namespace Engine
 {
     typedef unsigned int SDL_bool;
 
     class Window;
-    class Drawable;
-    class Renderer;
     class ScriptBehaviour;
     class Scene;
     class Application
@@ -28,6 +25,7 @@ namespace Engine
 
         void run();
 
+        virtual void start() = 0;
         virtual void update() = 0;
 
         void closeWindow();

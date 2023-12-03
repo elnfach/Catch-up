@@ -1,10 +1,11 @@
 #pragma once
 #include <time.h>
+#include <vector>
+#include <functional>
 
 #include "entity/entity.h"
 #include "utils/RayCast.h"
-#include <vector>
-#include <functional>
+
 #include "components\transform.h"
 #include "components\drawable\rectangle_drawable.h"
 #include "components\rigidbody\rigid_body.h"
@@ -17,8 +18,6 @@ public:
 	~Wolf();
 
 	void move(float x, float y);
-
-	void handleCollision(Entity& entity, std::function<void()> callback);
 
 	EntityType getType() override
 	{
@@ -35,19 +34,24 @@ private:
 
 Wolf::Wolf() : Entity(0, 0)
 {
+	name = "wolf";
 	type = EntityType::WOLF;
 	transform = &getComponent<Engine::Transform>();
 	drawable = &getComponent<Engine::RectangleDrawable>();
-	rigid_body = &getComponent<Engine::RigidBody>();
-	box_collider = &getComponent<Engine::BoxCollider>();
+
+	rigid_body = &addComponent<Engine::RigidBody>();
+	box_collider = &addComponent<Engine::BoxCollider>();
 }
 
 inline Wolf::Wolf(double x, double y, int width, int height) : Entity(x, y)
 {
+	name = "wolf";
 	transform = &getComponent<Engine::Transform>();
 	drawable = &getComponent<Engine::RectangleDrawable>();
-	rigid_body = &getComponent<Engine::RigidBody>();
-	box_collider = &getComponent<Engine::BoxCollider>();
+
+	rigid_body = &addComponent<Engine::RigidBody>();
+	box_collider = &addComponent<Engine::BoxCollider>();
+
 	transform->position.x = x;
 	transform->position.y = y;
 	drawable->size.x = width;
@@ -64,8 +68,4 @@ inline void Wolf::move(float x, float y)
 {
 	transform->position.x = x;
 	transform->position.y = y;
-}
-
-inline void Wolf::handleCollision(Entity& entity, std::function<void()> callback)
-{
 }

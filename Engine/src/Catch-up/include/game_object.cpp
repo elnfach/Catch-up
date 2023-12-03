@@ -20,11 +20,6 @@ Engine::GameObject::~GameObject()
 	
 }
 
-void Engine::GameObject::print()
-{
-	std::cout << "GameObject name: " << name << std::endl;
-}
-
 Engine::GameObject::operator bool() const
 {
 	return m_entity != entt::null;
