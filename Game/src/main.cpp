@@ -27,13 +27,12 @@ float x;
 float y;
 void CatchUp::start()
 {
-	wolf = new Wolf(100, 650, 25, 25);
-	wolf1 = new Wolf(100, 625, 25, 25);
+	wolf = new Wolf(100, 0, 25, 25);
+	wolf1 = new Wolf(100, 500, 25, 25);
 }
 void CatchUp::update()
 {
-	y += 0.1f;
-	wolf->move(100, y);
+	wolf->move(Engine::Vector2f(0, 0.1f));
 }
 
 Engine::Application* createApplication()

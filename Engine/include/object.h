@@ -39,6 +39,7 @@ namespace Engine
 				return "Invalid type";
 			}
 		}
+		inline virtual std::string getName() const { return name; }
 
 		static void destroy(Object* object);
 

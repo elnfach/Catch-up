@@ -41,6 +41,8 @@ set(ENGINE_PRIVATE_INCLUDES
 
 	src/Platform/SDL/sdl_window.h
 	src/Platform/SDL/sdl_renderer_api.h
+
+	src/Catch-up/include/components/id/id_component.h
 )
 
 set(ENGINE_PRIVATE_SOURCES

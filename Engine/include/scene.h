@@ -25,6 +25,9 @@ namespace Engine
         Scene(const Scene&&) = delete;
 
         void createGameObject(GameObject& object);
+        void createGameObjectWithUUID(UUID uuid, GameObject& object);
+
+        GameObject getGameObjectByUUID(UUID uuid);
 
         void start();
         void update(Timestep ts);
@@ -42,6 +45,7 @@ namespace Engine
         b2World* m_physics_world = nullptr;
         CollisionListener* listener = nullptr;
 
+        std::vector<GameObject*> m_game_object_list;
         entt::registry m_game_objects;
         std::unordered_map<UUID, entt::entity> m_game_objects_map;
 

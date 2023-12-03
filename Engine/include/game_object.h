@@ -19,6 +19,7 @@ namespace Engine
 		GameObject(entt::entity handle, Scene* scene);
 		~GameObject();
 
+		std::string getName() const { return name; }
 		virtual void onCollisionEnter(GameObject* game_object) {}
 
 		template<class T>
@@ -66,6 +67,17 @@ namespace Engine
 		operator entt::entity() const;
 		operator unsigned int() const;
 
+		UUID GetUUID();
+
+		bool operator==(const GameObject& other) const
+		{
+			return m_entity == other.m_entity && m_scene == other.m_scene;
+		}
+
+		bool operator!=(const GameObject& other) const
+		{
+			return !(*this == other);
+		}
 	private:
 		entt::entity m_entity{ entt::null };
 		Scene* m_scene = nullptr;

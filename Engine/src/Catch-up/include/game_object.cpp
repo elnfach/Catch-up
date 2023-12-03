@@ -1,5 +1,6 @@
 #include "game_object.h"
 #include "scene.h"
+#include "components\id\id_component.h"
 
 Engine::GameObject::GameObject()
 {
@@ -33,4 +34,9 @@ Engine::GameObject::operator entt::entity() const
 Engine::GameObject::operator unsigned int() const
 {
 	return (unsigned int)m_entity;
+}
+
+Engine::UUID Engine::GameObject::GetUUID()
+{
+	return getComponent<IDComponent>().ID;
 }

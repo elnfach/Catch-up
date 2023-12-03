@@ -17,7 +17,8 @@ public:
 	Wolf(double x, double y, int width, int height);
 	~Wolf();
 
-	void move(float x, float y);
+	void move(Engine::Vector2f vec);
+	void onCollisionEnter(GameObject* game_object) override;
 
 	EntityType getType() override
 	{
@@ -29,7 +30,7 @@ public:
 	Engine::RigidBody* rigid_body;
 	Engine::BoxCollider* box_collider;
 private:
-
+	bool vector = false;
 };
 
 Wolf::Wolf() : Entity(0, 0)
@@ -64,8 +65,18 @@ Wolf::~Wolf()
 {
 }
 
-inline void Wolf::move(float x, float y)
+inline void Wolf::move(Engine::Vector2f vec)
 {
-	transform->position.x = x;
-	transform->position.y = y;
+	if (vector)
+	{
+		transform->position = transform->position + (vec * (-1));
+		return;
+	}
+	transform->position = transform->position + vec;
+}
+
+inline void Wolf::onCollisionEnter(GameObject* game_object)
+{
+	std::cout << game_object->getName() << std::endl;
+	vector = true;
 }
