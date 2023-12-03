@@ -39,18 +39,3 @@ Engine::GameObject::operator unsigned int() const
 {
 	return (unsigned int)m_entity;
 }
-
-template<class T, class ...Args>
-T& Engine::GameObject::addOrReplaceComponent(Args && ...args)
-{
-	T& component = m_scene->m_game_objects.emplace_or_replace<T>(m_entity, std::forward<Args>(args)...);
-	m_scene->addComponent(*this, component);
-	return component;
-}
-
-template<class T>
-void Engine::GameObject::removeComponent()
-{
-	std::cout << "Entity does not have component!" << std::endl;
-	m_scene->m_game_objects.remove<T>(m_entity);
-}

@@ -8,8 +8,11 @@
 #include "uuid.h"
 #include "component.h"
 
+class b2World;
 namespace Engine
 {
+    class CollisionListener;
+    class Timestep;
     class GameObject;
     class Scene
     {
@@ -23,18 +26,20 @@ namespace Engine
 
         void createGameObject(GameObject& object);
 
-        template<class T>
-        void addComponent(GameObject entity, T& component);
-
-        template<class T>
-        bool hasComponent(entt::entity entity);
-
         void start();
-        void update();
+        void update(Timestep ts);
+        void renderScene();
+        void physicsStart();
+        void onPhysicsStop();
 
     private:
         Scene() {}
         ~Scene() {}
+
+        int m_step_frames = 60;
+
+        b2World* m_physics_world = nullptr;
+        CollisionListener* listener = nullptr;
 
         entt::registry m_game_objects;
         std::unordered_map<UUID, entt::entity> m_game_objects_map;

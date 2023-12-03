@@ -15,13 +15,15 @@ set(ENGINE_PUBLIC_INCLUDES
 	include/components/drawable/rectangle_drawable.h
 	include/components/vector2f.h
 	include/components/vector4f.h
-	include/components/colliders/collider.h
+	include/components/colliders/box_collider.h
+	include/components/rigidbody/rigid_body.h
 )
 
 set(ENGINE_PRIVATE_INCLUDES
 	src/Catch-up/props.h
 
 	src/Catch-up/core/window.h
+	src/Catch-up/core/time_step.h
 
 	src/Catch-up/events/application_event.h
 	src/Catch-up/events/ingame_event.h
@@ -29,8 +31,13 @@ set(ENGINE_PRIVATE_INCLUDES
 	src/Catch-up/events/key_event.h
 	src/Catch-up/events/event.h
 
+	src/Catch-up/physics/physics2d.h
+	src/Catch-up/physics/collision_listener.h
+
 	src/Catch-up/renderer/renderer.h
 	src/Catch-up/renderer/renderer_api.h
+
+	src/Catch-up/utils/platform_utils.h
 
 	src/Platform/SDL/sdl_window.h
 	src/Platform/SDL/sdl_renderer_api.h
@@ -51,7 +58,9 @@ set(ENGINE_PRIVATE_SOURCES
 	src/Catch-up/include/components/transform.cpp
 	src/Catch-up/include/components/drawable/rectangle_drawable.cpp
 
-	src/Catch-up/include/components/colliders/collider.cpp
+	src/Catch-up/include/components/rigidbody/rigid_body.cpp
+
+	src/Catch-up/include/components/colliders/box_collider.cpp
 
 	src/Catch-up/include/script_behaviour.cpp
 	src/Catch-up/include/game_object.cpp
@@ -59,6 +68,8 @@ set(ENGINE_PRIVATE_SOURCES
 
 	src/Platform/SDL/sdl_window.cpp
 	src/Platform/SDL/sdl_renderer_api.cpp
+	src/Platform/SDL/sdl_platform_utils.cpp
+	
 )
 
 set(ENGINE_ALL_SOURCES
@@ -85,3 +96,6 @@ target_link_libraries(${DIRECTORY_NAME} PRIVATE EnTT::EnTT)
 
 add_subdirectory(libs/SDL ${CMAKE_CURRENT_BINARY_DIR}/SDL)
 target_link_libraries(${DIRECTORY_NAME} PRIVATE SDL3::SDL3)
+
+add_subdirectory(libs/box2d ${CMAKE_CURRENT_BINARY_DIR}/box2d)
+target_link_libraries(${DIRECTORY_NAME} PRIVATE box2d)

@@ -6,6 +6,7 @@
 class CatchUp : public Engine::Application
 {
 	Wolf* wolf;
+	Wolf* wolf1;
 public:
 	CatchUp();
 	~CatchUp();
@@ -15,7 +16,8 @@ public:
 
 CatchUp::CatchUp()
 {
-	wolf = new Wolf(100, 0, 100, 100);
+	wolf = new Wolf(100, 0, 25, 25);
+	wolf1 = new Wolf(100, 0, 25, 25);
 }
 
 CatchUp::~CatchUp()
@@ -23,10 +25,11 @@ CatchUp::~CatchUp()
 	delete wolf;
 }
 float x;
+float y;
 void CatchUp::update()
 {
-	x += 0.1f;
-	wolf->move(x, 0);
+	y += 0.1f;
+	wolf->move(100, y);
 }
 
 Engine::Application* createApplication()
@@ -36,6 +39,7 @@ Engine::Application* createApplication()
 
 int main()
 {
+	setlocale(0, "");
 	auto app = createApplication();
 	app->run();
 	delete app;

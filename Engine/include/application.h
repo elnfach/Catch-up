@@ -19,6 +19,7 @@ namespace Engine
 
         SDL_bool m_running = false;
         
+        float m_LastFrameTime = 0.0f;
         static Application* s_ptr_instance;
 
     public:

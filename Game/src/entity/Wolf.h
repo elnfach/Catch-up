@@ -7,6 +7,7 @@
 #include <functional>
 #include "components\transform.h"
 #include "components\drawable\rectangle_drawable.h"
+#include "components\rigidbody\rigid_body.h"
 
 class Wolf : public Entity
 {
@@ -26,6 +27,8 @@ public:
 
 	Engine::Transform* transform;
 	Engine::RectangleDrawable* drawable;
+	Engine::RigidBody* rigid_body;
+	Engine::BoxCollider* box_collider;
 private:
 
 };
@@ -35,12 +38,16 @@ Wolf::Wolf() : Entity(0, 0)
 	type = EntityType::WOLF;
 	transform = &getComponent<Engine::Transform>();
 	drawable = &getComponent<Engine::RectangleDrawable>();
+	rigid_body = &getComponent<Engine::RigidBody>();
+	box_collider = &getComponent<Engine::BoxCollider>();
 }
 
 inline Wolf::Wolf(double x, double y, int width, int height) : Entity(x, y)
 {
 	transform = &getComponent<Engine::Transform>();
 	drawable = &getComponent<Engine::RectangleDrawable>();
+	rigid_body = &getComponent<Engine::RigidBody>();
+	box_collider = &getComponent<Engine::BoxCollider>();
 	transform->position.x = x;
 	transform->position.y = y;
 	drawable->size.x = width;

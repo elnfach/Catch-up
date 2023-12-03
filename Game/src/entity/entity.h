@@ -1,6 +1,6 @@
 #pragma once
 #include "entity_type.h"
-#include "components/colliders/collider.h"
+#include "components/colliders/box_collider.h"
 #include "script_behaviour.h"
 #include "BoxCollider.h"
 

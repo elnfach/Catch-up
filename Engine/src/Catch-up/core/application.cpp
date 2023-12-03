@@ -3,6 +3,8 @@
 #include "Platform/SDL/sdl_window.h"
 #include "Platform/SDL/sdl_renderer_api.h"
 #include "scene.h"
+#include "Catch-up\utils\platform_utils.h"
+#include "time_step.h"
 #include "script_behaviour.h"
 
 #include <iostream>
@@ -35,6 +37,7 @@ Engine::Application::~Application()
 
 void Engine::Application::run()
 {
+    m_ptr_scene->start();
     while (!m_running)
     {
         SDL_Event event;
@@ -48,8 +51,11 @@ void Engine::Application::run()
             }
         }
 
+        float time = Engine::Time::GetTime();
+        Timestep timestep = time - m_LastFrameTime;
+        m_LastFrameTime = time;
         m_ptr_window->onUpdate();
-        m_ptr_scene->update();
+        m_ptr_scene->update(time);
         update();
     }
 }
