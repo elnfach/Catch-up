@@ -39,7 +39,7 @@ void Wolf::move(Engine::Vector2f vec)
 void Wolf::onCollisionEnter(GameObject game_object)
 {
 	std::cout << name << " collided with " << game_object.getName() << std::endl;
-	vector = true;
+	vector = (vector) ? false : true;
 }
 
 EntityType Wolf::getType()

@@ -37,6 +37,11 @@ void Engine::Scene::destroyGameObject()
 {
 	for (auto i = m_pending_deletion_list.begin(); i != m_pending_deletion_list.end(); i++)
 	{
+		std::vector<GameObject*>::iterator temp;
+		for (auto j = m_game_object_list.begin(); j != m_game_object_list.end(); j++)
+			if ((*i)->GetUUID() == (*j)->GetUUID())
+				temp = j;
+		m_game_object_list.erase(temp);
 		m_game_objects_map.erase((*i)->GetUUID());
 		m_game_objects.destroy(*(*i));
 		delete (*i);
@@ -95,9 +100,8 @@ void Engine::Scene::update(Engine::Timestep ts)
 				}
 			}
 		}
-		destroyGameObject();
 	}
-	
+	destroyGameObject();
 	renderScene();
 }
 
