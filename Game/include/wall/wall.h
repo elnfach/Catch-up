@@ -1,6 +1,7 @@
 #pragma once
 
 #include "entity\entity.h"
+#include <components/rigidbody/rigid_body.h>
 
 class Wall : public  Entity
 {
@@ -12,5 +13,6 @@ public:
 	void onCollisionEnter(GameObject game_object) override;
 	EntityType getType() override;
 private:
+	Engine::RigidBody* rigid_body;
 	Engine::BoxCollider* box_collider;
 };

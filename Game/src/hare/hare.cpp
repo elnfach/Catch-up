@@ -1,10 +1,12 @@
 #include "hare/hare.h"
+#include <components/rigidbody/rigid_body.h>
 
 Hare::Hare() : Entity()
 {
 	name = "hare";
 	type = EntityType::HARE;
 
+	rigid_body = &addComponent<Engine::RigidBody>(Engine::RigidBody::BodyType::Dynamic, false);
 	box_collider = &addComponent<Engine::BoxCollider>();
 }
 
@@ -12,6 +14,7 @@ Hare::Hare(double x, double y, int width, int height)
 {
 	name = "hare";
 
+	rigid_body = &addComponent<Engine::RigidBody>(Engine::RigidBody::BodyType::Dynamic, false);
 	box_collider = &addComponent<Engine::BoxCollider>(Engine::Vector2f(width, height));
 
 	transform->position.x = x;

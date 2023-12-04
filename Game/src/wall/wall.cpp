@@ -5,6 +5,7 @@ Wall::Wall() : Entity()
 	name = "wall";
 	type = EntityType::WALL;
 
+	rigid_body = &addComponent<Engine::RigidBody>();
 	box_collider = &addComponent<Engine::BoxCollider>();
 }
 
@@ -12,6 +13,7 @@ Wall::Wall(double x, double y, int width, int height) : Entity()
 {
 	name = "wall";
 
+	rigid_body = &addComponent<Engine::RigidBody>();
 	box_collider = &addComponent<Engine::BoxCollider>(Engine::Vector2f(width, height));
 
 	transform->position.x = x;
@@ -28,7 +30,7 @@ Wall::~Wall()
 
 void Wall::onCollisionEnter(GameObject game_object)
 {
-	std::cout << name << " collided with " << game_object.getName() << std::endl;
+	
 }
 
 EntityType Wall::getType()

@@ -5,6 +5,7 @@ Wolf::Wolf() : Entity()
 	name = "wolf";
 	type = EntityType::WOLF;
 
+	rigid_body = &addComponent<Engine::RigidBody>(Engine::RigidBody::BodyType::Dynamic, false);
 	box_collider = &addComponent<Engine::BoxCollider>();
 }
 
@@ -12,6 +13,7 @@ Wolf::Wolf(double x, double y, int width, int height) : Entity()
 {
 	name = "wolf";
 
+	rigid_body = &addComponent<Engine::RigidBody>(Engine::RigidBody::BodyType::Dynamic, false);
 	box_collider = &addComponent<Engine::BoxCollider>(Engine::Vector2f(width, height));
 
 	transform->position.x = x;

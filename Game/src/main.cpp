@@ -29,8 +29,7 @@ CatchUp::~CatchUp()
 {
 	delete wolf;
 }
-float x;
-float y;
+
 void CatchUp::start()
 {
 	wolf = new Wolf(100, 100, 25, 25);
@@ -38,12 +37,12 @@ void CatchUp::start()
 
 	top_wall = new Wall(0, 0, 1280, 10);
 	bottom_wall = new Wall(0, 710, 1280, 10);
-	//left_wall = new Wall();
-	//right_wall = new Wall();
+	left_wall = new Wall(0, 0, 10, 710);
+	right_wall = new Wall(1270, 0, 10, 710);
 }
 void CatchUp::update()
 {
-	wolf->move(Engine::Vector2f(0, -0.1f));
+	wolf->move(Engine::Vector2f(0, -1.0f));
 }
 
 Engine::Application* createApplication()

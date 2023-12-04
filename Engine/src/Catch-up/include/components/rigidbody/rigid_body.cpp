@@ -2,8 +2,13 @@
 
 Engine::RigidBody::RigidBody()
 {
-	type = BodyType::Dynamic;
+	type = BodyType::Static;
 	fixed_rotation = false;
+	runtime_body = nullptr;
+}
+
+Engine::RigidBody::RigidBody(const BodyType type, bool fixed_rotation) : type(type), fixed_rotation(fixed_rotation)
+{
 	runtime_body = nullptr;
 }
 

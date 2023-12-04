@@ -1,5 +1,6 @@
 #pragma once
 
+#include "components/rigidbody/rigid_body.h"
 #include "entity\entity.h"
 
 class Hare : Entity
@@ -14,5 +15,6 @@ public:
 
 	EntityType getType() override;
 private:
+	Engine::RigidBody* rigid_body;
 	Engine::BoxCollider* box_collider;
 };

@@ -65,20 +65,23 @@ void Engine::Scene::start()
 void Engine::Scene::update(Engine::Timestep ts)
 {
 	{
-		auto view = m_game_objects.view<Engine::BoxCollider>();
+		auto view = m_game_objects.view<Engine::RigidBody>();
 		for (auto i : view)
 		{
 			GameObject game_object_1 = { i, this };
+			auto& rigid_body_1 = game_object_1.getComponent<RigidBody>();
 			auto& transform_1 = game_object_1.getComponent<Transform>();
 			auto& box_collider_1 = game_object_1.getComponent<BoxCollider>();
 
 			for (auto j : view)
 			{
 				GameObject game_object_2 = { j, this };
+				auto& rigid_body_2 = game_object_2.getComponent<RigidBody>();
 				auto& transform_2 = game_object_2.getComponent<Transform>();
 				auto& box_collider_2 = game_object_2.getComponent<BoxCollider>();
 
-				if (game_object_1.GetUUID() != game_object_2.GetUUID())
+				if (game_object_1.GetUUID() != game_object_2.GetUUID() &&
+					(rigid_body_1.type != RigidBody::BodyType::Static || rigid_body_2.type != RigidBody::BodyType::Static))
 				{
 					if (transform_1.position.x <= transform_2.position.x + box_collider_2.size.x &&
 						transform_1.position.x + box_collider_1.size.x >= transform_2.position.x &&
