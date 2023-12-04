@@ -33,6 +33,17 @@ void Engine::Scene::createGameObjectWithUUID(UUID uuid, GameObject& object)
 	m_game_objects_map[uuid] = object;
 }
 
+void Engine::Scene::destroyGameObject()
+{
+	for (auto i = m_pending_deletion_list.begin(); i != m_pending_deletion_list.end(); i++)
+	{
+		m_game_objects_map.erase((*i)->GetUUID());
+		m_game_objects.destroy(*(*i));
+		delete (*i);
+	}
+	m_pending_deletion_list.clear();
+}
+
 Engine::GameObject Engine::Scene::getGameObjectByUUID(UUID uuid)
 {
 	if (m_game_objects_map.find(uuid) != m_game_objects_map.end())
@@ -62,24 +73,29 @@ void Engine::Scene::update(Engine::Timestep ts)
 				auto& transform_2 = game_object_2.getComponent<Transform>();
 				auto& box_collider_2 = game_object_2.getComponent<BoxCollider>();
 
-				if (transform_1.position.x != transform_2.position.x || transform_1.position.y != transform_2.position.y)
+				if (game_object_1.GetUUID() != game_object_2.GetUUID())
 				{
 					if (transform_1.position.x <= transform_2.position.x + box_collider_2.size.x &&
 						transform_1.position.x + box_collider_1.size.x >= transform_2.position.x &&
 						transform_1.position.y <= transform_2.position.y + box_collider_2.size.y &&
 						transform_1.position.y + box_collider_1.size.y >= transform_2.position.y)
 					{
-						for (auto* go : m_game_object_list)
+						for (auto* go_1 : m_game_object_list)
 						{
-							if (go->GetUUID() == game_object_1.GetUUID())
+							for (auto* go_2 : m_game_object_list)
 							{
-								go->onCollisionEnter(&game_object_2);
+								if (go_1->GetUUID() == game_object_1.GetUUID() && 
+									go_2->GetUUID() == game_object_2.GetUUID())
+								{
+									go_1->onCollisionEnter(*go_2);
+								}
 							}
 						}
 					}
 				}
 			}
 		}
+		destroyGameObject();
 	}
 	
 	renderScene();

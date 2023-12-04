@@ -2,11 +2,12 @@
 #include "application.h"
 #include "wolf/Wolf.h"
 #include <components\transform.h>
+#include <hare/hare.h>
 
 class CatchUp : public Engine::Application
 {
 	Wolf* wolf = nullptr;
-	Wolf* wolf1 = nullptr;
+	Hare* hare = nullptr;
 public:
 	CatchUp();
 	~CatchUp();
@@ -28,7 +29,7 @@ float y;
 void CatchUp::start()
 {
 	wolf = new Wolf(100, 0, 25, 25);
-	wolf1 = new Wolf(100, 500, 25, 25);
+	hare = new Hare(100, 500, 25, 25);
 }
 void CatchUp::update()
 {

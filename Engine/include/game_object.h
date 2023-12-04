@@ -1,6 +1,7 @@
 #ifndef CATCH_UP_ENGINE_INCLUDE_GAME_OBJECT_H
 #define CATCH_UP_ENGINE_INCLUDE_GAME_OBJECT_H
 
+#include <format>
 #include <functional>
 #include <iostream>
 
@@ -20,7 +21,8 @@ namespace Engine
 		~GameObject();
 
 		std::string getName() const { return name; }
-		virtual void onCollisionEnter(GameObject* game_object) {}
+		virtual void onCollisionEnter(GameObject game_object) {}
+		void destroy(GameObject* game_object);
 
 		template<class T>
 		bool hasComponent()
@@ -31,22 +33,24 @@ namespace Engine
 		template<class T>
 		T& getComponent()
 		{
-			if (hasComponent<T>())
+			if (!hasComponent<T>())
 			{
-				return m_scene->m_game_objects.get<T>(m_entity);
+				std::cout << std::format("GameObject {0} does not have component!", name) << std::endl;
+				__debugbreak();
 			}
-			std::cout << "GameObject \"" << name << "\" does not have component!" << std::endl;
+			return m_scene->m_game_objects.get<T>(m_entity);
 		}
 
 		template<class T, class... Args>
 		T& addComponent(Args && ...args)
 		{
-			if (!hasComponent<T>())
+			if (hasComponent<T>())
 			{
-				T& component = m_scene->m_game_objects.emplace<T>(m_entity, std::forward<Args>(args)...);
-				return component;
+				std::cout << std::format("GameObject {0} already has component!", name) << std::endl;
+				__debugbreak();
 			}
-			std::cout << "GameObject \"" << name << "\" does not have component!" << std::endl;
+			T& component = m_scene->m_game_objects.emplace<T>(m_entity, std::forward<Args>(args)...);
+			return component;
 		}
 
 		template<class T, class... Args>
@@ -59,7 +63,11 @@ namespace Engine
 		template<class T>
 		void removeComponent()
 		{
-			if (!hasComponent<T>()) std::cout << "GameObject \"" << name << "\" does not have component!" << std::endl;
+			if (!hasComponent<T>())
+			{
+				std::cout << std::format("GameObject {0} does not have component!", name) << std::endl;
+				__debugbreak();
+			}
 			m_scene->m_game_objects.remove<T>(m_entity);
 		}
 

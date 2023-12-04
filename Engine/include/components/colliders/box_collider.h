@@ -9,6 +9,7 @@ namespace Engine
 	{	
 	public:
 		BoxCollider();
+		BoxCollider(Vector2f size);
 		~BoxCollider();
 
 		Vector2f offset;

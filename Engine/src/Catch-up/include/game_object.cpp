@@ -21,6 +21,11 @@ Engine::GameObject::~GameObject()
 	
 }
 
+void Engine::GameObject::destroy(GameObject* game_object)
+{
+	m_scene->m_pending_deletion_list.push_back(game_object);
+}
+
 Engine::GameObject::operator bool() const
 {
 	return m_entity != entt::null;

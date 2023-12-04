@@ -16,8 +16,6 @@ class RayCast
 	float m_y;
 
 	std::vector<float> list_of_rays;
-	
-	BoxCollider* collider = new BoxCollider("ray", Engine::Vector2f(m_x, m_y), Engine::Vector2f(m_x + 1, m_y + 1));
 
 	EntityType type;
 

@@ -13,7 +13,10 @@ set(CATCH_UP_INCLUDES
 )
 
 set(CATCH_UP_SOURCES
-	src/entity.cpp
+	src/entity/entity.cpp
+	src/wolf/wolf.cpp
+	src/hare/hare.cpp
+	src/wall/wall.cpp
 	src/main.cpp
 )
 

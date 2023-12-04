@@ -8,9 +8,23 @@ Engine::Transform::Transform() : Component(ComponentType::Transform)
 	scale = Vector2f(1.0f, 1.0f);
 }
 
+Engine::Transform::Transform(float x, float y) : position(Vector2f(x, y))
+{
+}
+
+Engine::Transform::Transform(Vector2f translation) : position(translation)
+{
+}
+
+Engine::Transform::Transform(Vector2f translation, 
+	Vector2f rotation, 
+	Vector2f scale) 
+	: position(translation), rotation(rotation), scale(scale)
+{
+}
+
 Engine::Transform::~Transform()
 {
-
 }
 
 void Engine::Transform::translate(Vector2f translation)

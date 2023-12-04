@@ -11,6 +11,9 @@ namespace Engine
 	{
 	public:
 		Transform();
+		Transform(float x, float y);
+		Transform(Vector2f translation);
+		Transform(Vector2f translation, Vector2f rotation, Vector2f scale);
 		~Transform();
 
 		inline std::string toString() const override { return name; }

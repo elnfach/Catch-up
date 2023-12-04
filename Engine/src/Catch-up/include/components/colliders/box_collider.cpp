@@ -4,6 +4,10 @@ Engine::BoxCollider::BoxCollider() : offset(Vector2f(0, 0)), size(Vector2f(25.0f
 {
 }
 
+Engine::BoxCollider::BoxCollider(Vector2f size) : offset(Vector2f(0, 0)), size(size)
+{
+}
+
 Engine::BoxCollider::~BoxCollider()
 {
 }
