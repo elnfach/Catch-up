@@ -69,6 +69,54 @@ void Engine::Vector2f::operator=(const Vector2f& vector)
 	y = vector.y;
 }
 
+void Engine::Vector2f::operator+=(const Vector2f& vector)
+{
+	x = x + vector.x;
+	y = y + vector.y;
+}
+
+void Engine::Vector2f::operator+=(const float number)
+{
+	x = x + number;
+	y = y + number;
+}
+
+void Engine::Vector2f::operator-=(const Vector2f& vector)
+{
+	x = x - vector.x;
+	y = y - vector.y;
+}
+
+void Engine::Vector2f::operator-=(const float number)
+{
+	x = x - number;
+	y = y - number;
+}
+
+void Engine::Vector2f::operator*=(const Vector2f& vector)
+{
+	x = x * vector.x;
+	y = y * vector.y;
+}
+
+void Engine::Vector2f::operator*=(const float number)
+{
+	x = x * number;
+	y = y * number;
+}
+
+void Engine::Vector2f::operator/=(const Vector2f& vector)
+{
+	x = x / vector.x;
+	y = y / vector.y;
+}
+
+void Engine::Vector2f::operator/=(const float number)
+{
+	x = x / number;
+	y = y / number;
+}
+
 bool Engine::Vector2f::operator==(const Vector2f& vector)
 {
 	return (x == vector.x && y == vector.y);

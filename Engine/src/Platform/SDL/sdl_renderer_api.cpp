@@ -37,15 +37,55 @@ void Engine::SDL_RendererAPI::clear()
 	SDL_RenderClear(m_ptr_renderer);
 }
 
+namespace Engine
+{
+	Vector2f Rotate(Vector2f pointR, Vector2f vector, float a) {
+		float R = sqrt(pow(vector.x - pointR.x, 2) + pow(vector.y - pointR.y, 2));
+		Vector2f vec1;
+		vec1.x = R * cos(a) + pointR.x;
+		vec1.y = R * sin(a) + pointR.y;
+		return vec1;
+	}
+}
+
 void Engine::SDL_RendererAPI::drawRectangle(const Transform transform, Vector2f size, const Vector4f color)
 {
-	::SDL_FRect rect{};
-	rect.x = transform.position.x;
-	rect.y = transform.position.y;
-	rect.w = size.x;
-	rect.h = size.y;
+	float xOffset = size.x / 2;
+	float yOffset = size.y / 2;
+	SDL_Point rectangle[4] = { 
+		{transform.position.x - xOffset, transform.position.y - yOffset},
+		{transform.position.x + xOffset, transform.position.y - yOffset}, 
+		{transform.position.x + xOffset, transform.position.y + yOffset},
+		{transform.position.x - xOffset, transform.position.y + yOffset} 
+	};
+
+	float centerX = (rectangle[0].x + rectangle[1].x + rectangle[2].x + rectangle[3].x) / 4;
+	float centerY = (rectangle[0].y + rectangle[1].y + rectangle[2].y + rectangle[3].y) / 4;
+
+	for (int i = 0; i < 4; ++i) {
+		rectangle[i].x -= centerX;
+		rectangle[i].y -= centerY;
+	}
+
+	float angle = transform.rotation.z * SDL_PI_F / 180.0f;
+
+	for (int i = 0; i < 4; ++i) {
+		float x = rectangle[i].x;
+		float y = rectangle[i].y;
+		rectangle[i].x = x * cos(angle) - y * sin(angle);
+		rectangle[i].y = x * sin(angle) + y * cos(angle);
+	}
+
+	for (int i = 0; i < 4; ++i) {
+		rectangle[i].x += centerX;
+		rectangle[i].y += centerY;
+	}
+
 	SDL_SetRenderDrawColor(m_ptr_renderer, color.x, color.y, color.z, color.w);
-	SDL_RenderFillRect(m_ptr_renderer, &rect);
+
+	for (int i = 0; i < 4; ++i) {
+		SDL_RenderLine(m_ptr_renderer, rectangle[i].x, rectangle[i].y, rectangle[(i + 1) % 4].x, rectangle[(i + 1) % 4].y);
+	}
 }
 
 void Engine::SDL_RendererAPI::present()

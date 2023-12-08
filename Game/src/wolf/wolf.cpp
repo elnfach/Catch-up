@@ -7,6 +7,8 @@ Wolf::Wolf() : Entity()
 
 	rigid_body = &addComponent<Engine::RigidBody>(Engine::RigidBody::BodyType::Dynamic, false);
 	box_collider = &addComponent<Engine::BoxCollider>();
+
+	//body = new EntityBody(transform->position, box_collider->size);
 }
 
 Wolf::Wolf(double x, double y, int width, int height) : Entity()
@@ -16,11 +18,14 @@ Wolf::Wolf(double x, double y, int width, int height) : Entity()
 	rigid_body = &addComponent<Engine::RigidBody>(Engine::RigidBody::BodyType::Dynamic, false);
 	box_collider = &addComponent<Engine::BoxCollider>(Engine::Vector2f(width, height));
 
+	
+
 	transform->position.x = x;
 	transform->position.y = y;
 	drawable->size.x = width;
 	drawable->size.y = height;
 
+	//body = new EntityBody(transform->position, box_collider->size);
 	type = EntityType::WOLF;
 }
 
@@ -28,14 +33,34 @@ Wolf::~Wolf()
 {
 }
 
-void Wolf::move(Engine::Vector2f vec)
+void Wolf::move(Engine::Vector2f vec, float deltaTime)
 {
+	transform->rotation += Engine::Vector3f(0.0f, 0.0f, 10.0f) * deltaTime * 5.0f;
+	float angleInRadians = transform->rotation.z * 3.14 / 180.0f;
+	float cosAngle = cos(angleInRadians);
+	float sinAngle = sin(angleInRadians);
+
+	float dirX = cosAngle;
+	float dirY = sinAngle;
+
+	float length = sqrt(dirX * dirX + dirY * dirY);
+	if (length != 0.0f) {
+		dirX /= length;
+		dirY /= length;
+	}
+
+	float speed = 10.0f;
+	float moveX = dirX * speed;
+	float moveY = dirY * speed;
+
 	if (vector)
 	{
-		transform->position = transform->position + (vec * (-1));
+		transform->position += (vec * (-1)) * deltaTime;
 		return;
 	}
-	transform->position = transform->position + vec;
+	transform->position += Engine::Vector2f(
+		moveX, 
+		moveY) * deltaTime;
 }
 
 void Wolf::onCollisionEnter(GameObject game_object)

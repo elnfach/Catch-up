@@ -1,9 +1,11 @@
 #ifndef CATCH_UP_ENGINE_INCLUDE_COMPONENTS_TRANSFORM_H
 #define CATCH_UP_ENGINE_INCLUDE_COMPONENTS_TRANSFORM_H
 
+#include <string>
+
 #include "component.h"
 #include "vector2f.h"
-#include <string>
+#include "vector3f.h"
 
 namespace Engine
 {
@@ -13,7 +15,7 @@ namespace Engine
 		Transform();
 		Transform(float x, float y);
 		Transform(Vector2f translation);
-		Transform(Vector2f translation, Vector2f rotation, Vector2f scale);
+		Transform(Vector2f translation, Vector3f rotation, Vector2f scale);
 		~Transform();
 
 		inline std::string toString() const override { return name; }
@@ -22,7 +24,7 @@ namespace Engine
 		void translate(Vector2f translation);
 
 		Vector2f position;
-		Vector2f rotation;
+		Vector3f rotation;
 		Vector2f scale;
 	};
 }

@@ -4,19 +4,28 @@ set(DIRECTORY_NAME CatchUpGame)
 
 set(CATCH_UP_INCLUDES
 	include/wolf/wolf.h
+	include/body.h
+
 	include/wall/wall.h
+
 	include/hare/hare.h
-	include/utils/box_collider.h
+
 	include/entity/entity.h
 	include/entity/entity_type.h
+
 	include/utils/RayCast.h
 )
 
 set(CATCH_UP_SOURCES
 	src/entity/entity.cpp
+
 	src/wolf/wolf.cpp
+	src/body.cpp
+
 	src/hare/hare.cpp
+
 	src/wall/wall.cpp
+
 	src/main.cpp
 )
 

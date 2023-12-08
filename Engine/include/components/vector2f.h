@@ -24,6 +24,16 @@ namespace Engine
 		Vector2f operator/(const Vector2f& vector);
 
 		void operator=(const Vector2f& vector);
+
+		void operator+=(const Vector2f& vector);
+		void operator+=(const float number);
+		void operator-=(const Vector2f& vector);
+		void operator-=(const float number);
+		void operator*=(const Vector2f& vector);
+		void operator*=(const float number);
+		void operator/=(const Vector2f& vector);
+		void operator/=(const float number);
+
 		bool operator==(const Vector2f& vector);
 
 		Vector2f normalized();

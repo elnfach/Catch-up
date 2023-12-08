@@ -14,6 +14,7 @@ set(ENGINE_PUBLIC_INCLUDES
 	include/components/transform.h
 	include/components/drawable/rectangle_drawable.h
 	include/components/vector2f.h
+	include/components/vector3f.h
 	include/components/vector4f.h
 	include/components/colliders/box_collider.h
 	include/components/rigidbody/rigid_body.h
@@ -55,6 +56,7 @@ set(ENGINE_PRIVATE_SOURCES
 	src/Catch-up/include/component.cpp
 	src/Catch-up/include/scene.cpp
 	src/Catch-up/include/components/vector2f.cpp
+	src/Catch-up/include/components/vector3f.cpp
 	src/Catch-up/include/components/vector4f.cpp
 
 	src/Catch-up/include/components/transform.cpp
