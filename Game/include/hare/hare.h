@@ -3,7 +3,7 @@
 #include "components/rigidbody/rigid_body.h"
 #include "entity\entity.h"
 
-class Hare : Entity
+class Hare : public Entity
 {
 public:
 	Hare();

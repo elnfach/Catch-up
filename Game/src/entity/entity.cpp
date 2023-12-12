@@ -1,6 +1,6 @@
 #include "entity/entity.h"
 
-Entity::Entity()
+Entity::Entity() : Engine::ScriptBehaviour()
 {
 	type = EntityType::UNKNOWN;
 	transform = &getComponent<Engine::Transform>();

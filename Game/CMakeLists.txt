@@ -26,6 +26,8 @@ set(CATCH_UP_SOURCES
 
 	src/wall/wall.cpp
 
+	src/utils/RayCast.cpp
+
 	src/main.cpp
 )
 

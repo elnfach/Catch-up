@@ -83,10 +83,22 @@ void Engine::Scene::update(Engine::Timestep ts)
 				if (game_object_1.GetUUID() != game_object_2.GetUUID() &&
 					(rigid_body_1.type != RigidBody::BodyType::Static || rigid_body_2.type != RigidBody::BodyType::Static))
 				{
-					if (transform_1.position.x <= transform_2.position.x + box_collider_2.size.x &&
-						transform_1.position.x + box_collider_1.size.x >= transform_2.position.x &&
-						transform_1.position.y <= transform_2.position.y + box_collider_2.size.y &&
-						transform_1.position.y + box_collider_1.size.y >= transform_2.position.y)
+					float x_offset_1 = box_collider_1.size.x / 2;
+					float y_offset_1 = box_collider_1.size.y / 2;
+
+					float x_offset_2 = box_collider_2.size.x / 2;
+					float y_offset_2 = box_collider_2.size.y / 2;
+
+					//	***
+					//	
+					//	Primitive collision handling system.
+					//	This system does not take into account the rotation of the gameObject.
+					//	
+					//	***
+					if (transform_1.position.x - x_offset_1 <= transform_2.position.x + x_offset_2 &&
+						transform_1.position.y - y_offset_1 <= transform_2.position.y + y_offset_2 &&
+						transform_1.position.x + x_offset_1 >= transform_2.position.x - x_offset_2 &&
+						transform_1.position.y + y_offset_1 >= transform_2.position.y - y_offset_2	)
 					{
 						for (auto* go_1 : m_game_object_list)
 						{

@@ -15,7 +15,7 @@ namespace Engine
 		Transform();
 		Transform(float x, float y);
 		Transform(Vector2f translation);
-		Transform(Vector2f translation, Vector3f rotation, Vector2f scale);
+		Transform(Vector2f translation, Vector3f rotation, Vector2f scale, Vector2f offset);
 		~Transform();
 
 		inline std::string toString() const override { return name; }
@@ -26,6 +26,9 @@ namespace Engine
 		Vector2f position;
 		Vector3f rotation;
 		Vector2f scale;
+
+		// TEMPORARY
+		Vector2f offset;
 	};
 }
 

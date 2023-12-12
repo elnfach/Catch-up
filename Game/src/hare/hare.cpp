@@ -37,6 +37,7 @@ void Hare::onCollisionEnter(GameObject game_object)
 {
 	if (game_object.getName() == "wolf")
 	{
+		std::cout << name << " killed by a " << game_object.getName();
 		destroy(this);
 	}
 }
