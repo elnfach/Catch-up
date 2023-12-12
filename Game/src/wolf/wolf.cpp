@@ -18,9 +18,7 @@ Wolf::Wolf(double x, double y, int width, int height) : Entity()
 	name = "wolf";
 
 	rigid_body = &addComponent<Engine::RigidBody>(Engine::RigidBody::BodyType::Dynamic, false);
-	box_collider = &addComponent<Engine::BoxCollider>(Engine::Vector2f(width, height));
-
-	
+	box_collider = &addComponent<Engine::BoxCollider>(Engine::Vector2f(width, height));	
 
 	transform->position.x = x;
 	transform->position.y = y;
@@ -51,13 +49,15 @@ void Wolf::move(Engine::Vector2f vec)
 		dirY /= length;
 	}
 
-	float speed = 10.0f;
+	float speed = 100.0f;
 	float moveX = dirX * speed;
 	float moveY = dirY * speed;
 
 	if (vector)
 	{
-		transform->position += (vec * (-1)) * Engine::Timestep::getInstance()->getDeltaTime();
+		transform->position += (Engine::Vector2f(
+			moveX,
+			moveY) * (-1)) * Engine::Timestep::getInstance()->getDeltaTime();
 		return;
 	}
 	transform->position += Engine::Vector2f(
