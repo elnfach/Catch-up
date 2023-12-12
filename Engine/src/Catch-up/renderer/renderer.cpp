@@ -7,7 +7,7 @@ void Engine::Renderer::init(void* window)
 	m_ptr_renderer_api = RendererAPI::create(RendererProps(window));
 }
 
-void Engine::Renderer::clear(const Vector4f color)
+void Engine::Renderer::clear(const Vector4f color = Vector4f(0.0f, 0.0f, 0.0f, 0.0f))
 {
 	m_ptr_renderer_api->setColor(color);
 	m_ptr_renderer_api->clear();

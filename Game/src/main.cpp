@@ -18,7 +18,7 @@ public:
 	~CatchUp();
 
 	void start() override;
-	void update(float deltaTime) override;
+	void update() override;
 };
 
 CatchUp::CatchUp()
@@ -42,9 +42,9 @@ void CatchUp::start()
 	left_wall = new Wall(0, 360, 10, 710);
 	right_wall = new Wall(1270, 360, 10, 710);
 }
-void CatchUp::update(float deltaTime)
+void CatchUp::update()
 {
-	wolf->move(Engine::Vector2f(0, 1.0f), deltaTime);
+	wolf->move(Engine::Vector2f(0, 1.0f));
 }
 
 Engine::Application* createApplication()

@@ -17,7 +17,7 @@ public:
 	Wolf(double x, double y, int width, int height);
 	~Wolf();
 
-	void move(Engine::Vector2f vec, float deltaTime);
+	void move(Engine::Vector2f vec);
 	void onCollisionEnter(GameObject game_object) override;
 
 	EntityType getType() override;

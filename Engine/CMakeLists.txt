@@ -7,6 +7,7 @@ set(ENGINE_PUBLIC_INCLUDES
 	include/uuid.h
 	include/scene.h
 	include/object.h
+	include/time_step.h
 	include/component.h
 	include/game_object.h
 	include/script_behaviour.h
@@ -24,7 +25,6 @@ set(ENGINE_PRIVATE_INCLUDES
 	src/Catch-up/props.h
 
 	src/Catch-up/core/window.h
-	src/Catch-up/core/time_step.h
 
 	src/Catch-up/events/application_event.h
 	src/Catch-up/events/ingame_event.h
@@ -69,6 +69,7 @@ set(ENGINE_PRIVATE_SOURCES
 	src/Catch-up/include/script_behaviour.cpp
 	src/Catch-up/include/game_object.cpp
 	src/Catch-up/include/object.cpp
+	src/Catch-up/include/time_step.cpp
 
 	src/Platform/SDL/sdl_window.cpp
 	src/Platform/SDL/sdl_renderer_api.cpp

@@ -1,6 +1,6 @@
 #include "scene.h"
 #include "game_object.h"
-#include "Catch-up\core\time_step.h"
+#include "time_step.h"
 #include "Catch-up\renderer\renderer.h"
 #include "components\colliders\box_collider.h"
 #include "components\rigidbody\rigid_body.h"
@@ -62,7 +62,7 @@ void Engine::Scene::start()
 	physicsStart();
 }
 
-void Engine::Scene::update(Engine::Timestep ts)
+void Engine::Scene::update()
 {
 	{
 		auto view = m_game_objects.view<Engine::RigidBody>();

@@ -49,11 +49,11 @@ void Engine::Application::run()
         }
 
         float time = Engine::Time::GetTime();
-        Timestep timestep = time - m_LastFrameTime;
+        Timestep::getInstance()->setDeltaTime(time - m_LastFrameTime);
         m_LastFrameTime = time;
         m_ptr_window->onUpdate();
-        m_ptr_scene->update(timestep);
-        update(timestep.getSeconds());
+        m_ptr_scene->update();
+        update();
     }
 }
 

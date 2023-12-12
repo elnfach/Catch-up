@@ -1,5 +1,7 @@
 #include "wolf/wolf.h"
 
+#include "time_step.h"
+
 Wolf::Wolf() : Entity()
 {
 	name = "wolf";
@@ -33,9 +35,9 @@ Wolf::~Wolf()
 {
 }
 
-void Wolf::move(Engine::Vector2f vec, float deltaTime)
+void Wolf::move(Engine::Vector2f vec)
 {
-	transform->rotation += Engine::Vector3f(0.0f, 0.0f, 10.0f) * deltaTime * 5.0f;
+	transform->rotation += Engine::Vector3f(0.0f, 0.0f, 10.0f) * Engine::Timestep::getInstance()->getDeltaTime() * 5.0f;
 	float angleInRadians = transform->rotation.z * 3.14 / 180.0f;
 	float cosAngle = cos(angleInRadians);
 	float sinAngle = sin(angleInRadians);
@@ -55,12 +57,12 @@ void Wolf::move(Engine::Vector2f vec, float deltaTime)
 
 	if (vector)
 	{
-		transform->position += (vec * (-1)) * deltaTime;
+		transform->position += (vec * (-1)) * Engine::Timestep::getInstance()->getDeltaTime();
 		return;
 	}
 	transform->position += Engine::Vector2f(
 		moveX, 
-		moveY) * deltaTime;
+		moveY) * Engine::Timestep::getInstance()->getDeltaTime();
 }
 
 void Wolf::onCollisionEnter(GameObject game_object)

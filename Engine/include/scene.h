@@ -31,7 +31,7 @@ namespace Engine
         GameObject getGameObjectByUUID(UUID uuid);
 
         void start();
-        void update(Timestep ts);
+        void update();
 
     private:
         Scene() {}
