@@ -19,6 +19,7 @@ public:
 
 	void move(Engine::Vector2f vec);
 	void onCollisionEnter(GameObject game_object) override;
+	void onCollisionExit(GameObject game_object) override;
 
 	EntityType getType() override;
 private:
@@ -27,4 +28,5 @@ private:
 
 	EntityBody* body;
 	bool vector = false;
+	Engine::Vector2f velocity = Engine::Vector2f(0.0f, 0.0f);
 };

@@ -22,7 +22,9 @@ First, you should install CMake to build the project.
 
 If you already have a folder named `~/build`, go to it within your project directory, and then enter the following command:
 ```sh
-cmake ..
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
 ```
 
 Open `CatchUp.sln` in the `~/build` folder.

@@ -13,18 +13,22 @@ set(CATCH_UP_INCLUDES
 	include/entity/entity.h
 	include/entity/entity_type.h
 
+	include/catch_up.h
+
 	include/utils/RayCast.h
 )
 
 set(CATCH_UP_SOURCES
-	src/entity/entity.cpp
+	src/scripts/entity/entity.cpp
 
-	src/wolf/wolf.cpp
-	src/body.cpp
+	src/scripts/wolf/wolf.cpp
+	src/scripts/body/body.cpp
 
-	src/hare/hare.cpp
+	src/scripts/hare/hare.cpp
 
-	src/wall/wall.cpp
+	src/scripts/wall/wall.cpp
+
+	src/scripts/catch_up.cpp
 
 	src/main.cpp
 )
