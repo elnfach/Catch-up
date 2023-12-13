@@ -24,9 +24,15 @@ namespace Game
 
 		static uint32_t s_cooldown_carrot_time;
 		static uint32_t s_duration_carrot_time;
+
+		static EventManager* s_ptr_instance;
+
+		~EventManager() = default;
 	public:
 
 		static EventManager* getInstance();
+
+		static void destroy();
 
 		void setNumberOfWolfAndSize(uint32_t number, Engine::Vector2f size = Engine::Vector2f(25.0f, 25.0f));
 		void setNumberOfHareAndSize(uint32_t number, Engine::Vector2f size = Engine::Vector2f(25.0f, 25.0f));
