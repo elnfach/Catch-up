@@ -40,6 +40,5 @@ int Engine::Random::Next(int range)
 /// </returns>
 int Engine::Random::Next(int start, int range)
 {
-    start += s_uniform_distribution(s_engine);
-    return start % range;
+    return start + s_uniform_distribution(s_engine) % range;
 }
