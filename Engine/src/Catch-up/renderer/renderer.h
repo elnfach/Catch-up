@@ -30,7 +30,7 @@ namespace Engine
 			return &instance;
 		}
 
-		static void clear(const Vector4f color);
+		static void clear(const Vector4f color = Vector4f(0.0f, 0.0f, 0.0f, 0.0f));
 		static void drawRectangle(const Transform transform, Vector2f size, const Vector4f color);
 		static void drawCircle();
 		static void present();

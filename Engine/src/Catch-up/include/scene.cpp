@@ -122,7 +122,7 @@ void Engine::Scene::update()
 
 void Engine::Scene::renderScene()
 {
-	Renderer::clear(Vector4f(0, 0, 0, 0));
+	Renderer::clear();
 
 	auto view = m_game_objects.view<Transform, RectangleDrawable>();
 	for (auto entity : view)
