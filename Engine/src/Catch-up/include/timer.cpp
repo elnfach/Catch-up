@@ -25,7 +25,7 @@ void Engine::Timer::add(
 {
 	if (asynchronous) {
 		std::thread([=]() {
-			std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+			std::this_thread::sleep_for(std::chrono::seconds(delay));
 			callback();
 			}).detach();
 	}
