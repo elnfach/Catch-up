@@ -2,6 +2,7 @@
 
 #include "catch_up.h"
 #include "time_step.h"
+#include "event/event_manager.h"
 
 Hare::Hare() : Entity()
 {
@@ -49,7 +50,7 @@ void Hare::update()
 	else {
 		transform->rotation += Engine::Vector3f(0.0f, 0.0f, -10.0f) * Engine::Timestep::getInstance()->getDeltaTime() * 15.0f;
 	}
-	transform->position += m_velocity;
+	//transform->position += m_velocity;
 }
 
 void Hare::onCollisionEnter(GameObject game_object)
@@ -60,7 +61,7 @@ void Hare::onCollisionEnter(GameObject game_object)
 	}
 	if (game_object.getName() == "wolf")
 	{
-		destroy(this);
+		Game::EventManager::getInstance()->destroy(this->GetUUID());
 	}
 }
 

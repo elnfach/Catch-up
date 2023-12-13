@@ -3,6 +3,7 @@
 #include <corecrt_math_defines.h>
 #include "time_step.h"
 #include "random.h"
+#include "event/event_manager.h"
 
 Wolf::Wolf() : Entity()
 {
@@ -42,8 +43,12 @@ void Wolf::start()
 void Wolf::update()
 {
 	Engine::Vector2f direction = calcDirection(transform->rotation);				// calc direction by rotation
-	Engine::Vector2f a = Engine::Vector2f(direction.x, direction.y).normalized();	// wolf
-	Engine::Vector2f b = Engine::Vector2f(Engine::Vector2f() - transform->position).normalized();// hare
+	Engine::Vector2f a = Engine::Vector2f(direction.x, direction.y).normalized();		// wolf
+	Engine::Vector2f b;
+	for (auto& i : Game::EventManager::getInstance()->getHareTeam())
+	{
+		b = Engine::Vector2f(i - transform->position).normalized();						// hare
+	}
 	
 	float angle = acos(a.x * b.x + a.y * b.y) * 180.0f * M_PI;
 
