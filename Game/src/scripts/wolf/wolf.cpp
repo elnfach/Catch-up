@@ -1,5 +1,6 @@
 #include "wolf/wolf.h"
 
+#include <corecrt_math_defines.h>
 #include "time_step.h"
 
 Wolf::Wolf() : Entity()
@@ -33,49 +34,37 @@ Wolf::~Wolf()
 {
 }
 
-void Wolf::move(Engine::Vector2f vec)
+void Wolf::move(Engine::Vector2f vec, Engine::Vector2f other)
 {
-	srand(time(0));
-	
+	Engine::Vector2f direction = calcDirection(transform->rotation);			// calc direction by rotation
+	Engine::Vector2f a = Engine::Vector2f(direction.x, direction.y).normalized();	// wolf
+	Engine::Vector2f b = Engine::Vector2f(other - transform->position).normalized();// hare
 
-	if (rand() % 10 > 5)
+	float angle = acos(a.x * b.x + a.y * b.y) * 180.0f * M_PI;
+
+	m_velocity = Engine::Vector2f(direction.x, direction.y) * Engine::Timestep::getInstance()->getDeltaTime() * m_speed;
+
+	if (m_angle / 2 > angle)
 	{
-		transform->rotation += Engine::Vector3f(0.0f, 0.0f, 10.0f) * Engine::Timestep::getInstance()->getDeltaTime() * 15.0f;
+		transform->position += b * Engine::Timestep::getInstance()->getDeltaTime() * m_speed;
+		transform->rotation = Engine::Vector3f(0.0f, 0.0f, calcDirectionAngle(b));
+	} else {
+		srand(time(0));
+		if (rand() % 10 > 5) {
+			transform->rotation += Engine::Vector3f(0.0f, 0.0f, 10.0f) * Engine::Timestep::getInstance()->getDeltaTime() * 15.0f;
+		}
+		else {
+			transform->rotation += Engine::Vector3f(0.0f, 0.0f, -10.0f) * Engine::Timestep::getInstance()->getDeltaTime() * 15.0f;
+		}
+		transform->position += m_velocity;
 	}
-	else {
-		transform->rotation += Engine::Vector3f(0.0f, 0.0f, -10.0f) * Engine::Timestep::getInstance()->getDeltaTime() * 15.0f;
-	}
-	float angle_in_radians = transform->rotation.z * 3.14 / 180.0f;
-	float cos_angle = cos(angle_in_radians);
-	float sin_angle = sin(angle_in_radians);
-
-	float dir_x = cos_angle;
-	float dir_y = sin_angle;
-
-	float length = sqrt(dir_x * dir_x + dir_y * dir_y);
-	if (length != 0.0f) {
-		dir_x /= length;
-		dir_y /= length;
-	}
-
-	float speed = 500.0f;
-	float move_x = dir_x * speed;
-	float move_y = dir_y * speed;
-
-	auto a = Engine::Vector2f(dir_x, dir_y).normalized();
-	//auto b = Engine::Vector2f(other - transform->position).normalized();
-
-	//float angle = acos(a.x * b.x + a.y * b.y) * 180.0f * 3.14159265358979323846;
-
-	velocity = Engine::Vector2f(move_x, move_y) * Engine::Timestep::getInstance()->getDeltaTime();
-	transform->position += velocity;
 }
 
 void Wolf::onCollisionEnter(GameObject game_object)
 {
 	if (game_object.getName() == "wall")
 	{
-		transform->position += velocity * (-1);
+		transform->position -= m_velocity;
 	}
 }
 

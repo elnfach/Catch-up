@@ -5,7 +5,7 @@
 
 static Engine::Application* createApplication()
 {
-	return new CatchUp();
+	return new Game::CatchUp();
 }
 
 int main()

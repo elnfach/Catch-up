@@ -1,5 +1,7 @@
 #include "hare/hare.h"
-#include <components/rigidbody/rigid_body.h>
+
+#include "catch_up.h"
+#include "time_step.h"
 
 Hare::Hare() : Entity()
 {
@@ -29,12 +31,29 @@ Hare::~Hare()
 {
 }
 
-void Hare::move(Engine::Vector2f vec)
+void Hare::move(Engine::Vector2f vec, Engine::Vector2f target)
 {
+	Engine::Vector2f direction = calcDirection(transform->rotation);
+	Engine::Vector2f dir = Engine::Vector2f(direction.x, direction.y).normalized();
+
+	m_velocity = Engine::Vector2f(direction.x, direction.y) * Engine::Timestep::getInstance()->getDeltaTime() * m_speed;
+
+	srand(time(0));
+	if (rand() % 10 > 5) {
+		transform->rotation += Engine::Vector3f(0.0f, 0.0f, 10.0f) * Engine::Timestep::getInstance()->getDeltaTime() * 15.0f;
+	}
+	else {
+		transform->rotation += Engine::Vector3f(0.0f, 0.0f, -10.0f) * Engine::Timestep::getInstance()->getDeltaTime() * 15.0f;
+	}
+	transform->position += m_velocity;
 }
 
 void Hare::onCollisionEnter(GameObject game_object)
 {
+	if (game_object.getName() == "wall")
+	{
+		transform->position -= m_velocity;
+	}
 	if (game_object.getName() == "wolf")
 	{
 		destroy(this);

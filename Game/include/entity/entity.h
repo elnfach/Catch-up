@@ -15,5 +15,8 @@ public:
 	Entity();
 	~Entity();
 
+	Engine::Vector2f calcDirection(Engine::Vector3f rotation);
+	float calcDirectionAngle(Engine::Vector2f direction);
+
 	virtual EntityType getType() = 0;
 };
