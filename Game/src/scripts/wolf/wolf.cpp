@@ -2,6 +2,7 @@
 
 #include <corecrt_math_defines.h>
 #include "time_step.h"
+#include "random.h"
 
 Wolf::Wolf() : Entity()
 {
@@ -34,12 +35,16 @@ Wolf::~Wolf()
 {
 }
 
-void Wolf::move(Engine::Vector2f vec, Engine::Vector2f other)
+void Wolf::start()
 {
-	Engine::Vector2f direction = calcDirection(transform->rotation);			// calc direction by rotation
-	Engine::Vector2f a = Engine::Vector2f(direction.x, direction.y).normalized();	// wolf
-	Engine::Vector2f b = Engine::Vector2f(other - transform->position).normalized();// hare
+}
 
+void Wolf::update()
+{
+	Engine::Vector2f direction = calcDirection(transform->rotation);				// calc direction by rotation
+	Engine::Vector2f a = Engine::Vector2f(direction.x, direction.y).normalized();	// wolf
+	Engine::Vector2f b = Engine::Vector2f(Engine::Vector2f() - transform->position).normalized();// hare
+	
 	float angle = acos(a.x * b.x + a.y * b.y) * 180.0f * M_PI;
 
 	m_velocity = Engine::Vector2f(direction.x, direction.y) * Engine::Timestep::getInstance()->getDeltaTime() * m_speed;
@@ -49,8 +54,8 @@ void Wolf::move(Engine::Vector2f vec, Engine::Vector2f other)
 		transform->position += b * Engine::Timestep::getInstance()->getDeltaTime() * m_speed;
 		transform->rotation = Engine::Vector3f(0.0f, 0.0f, calcDirectionAngle(b));
 	} else {
-		srand(time(0));
-		if (rand() % 10 > 5) {
+		Engine::Random random;
+		if (random.Next(100) > 30) {
 			transform->rotation += Engine::Vector3f(0.0f, 0.0f, 10.0f) * Engine::Timestep::getInstance()->getDeltaTime() * 15.0f;
 		}
 		else {
@@ -63,8 +68,10 @@ void Wolf::move(Engine::Vector2f vec, Engine::Vector2f other)
 void Wolf::onCollisionEnter(GameObject game_object)
 {
 	if (game_object.getName() == "wall")
-	{
 		transform->position -= m_velocity;
+	if (game_object.getName() == "hare")
+	{
+		
 	}
 }
 

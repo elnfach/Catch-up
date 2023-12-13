@@ -60,10 +60,19 @@ Engine::GameObject Engine::Scene::getGameObjectByUUID(UUID uuid)
 void Engine::Scene::start()
 {
 	physicsStart();
+	for (auto& game_object : m_game_object_list)
+	{
+		game_object->start();
+	}
 }
 
 void Engine::Scene::update()
 {
+	//	***
+	// 
+	//	Physics
+	//
+	//	***
 	{
 		auto view = m_game_objects.view<Engine::RigidBody>();
 		for (auto i : view)
@@ -114,6 +123,13 @@ void Engine::Scene::update()
 					}
 				}
 			}
+		}
+	}
+
+	{
+		for (auto& game_object : m_game_object_list)
+		{
+			game_object->update();
 		}
 	}
 	destroyGameObject();

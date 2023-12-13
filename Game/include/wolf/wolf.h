@@ -17,7 +17,8 @@ public:
 	Wolf(double x, double y, int width, int height);
 	~Wolf();
 
-	void move(Engine::Vector2f vec, Engine::Vector2f target);
+	void start() override;
+	void update() override;
 	void onCollisionEnter(GameObject game_object) override;
 	void onCollisionExit(GameObject game_object) override;
 

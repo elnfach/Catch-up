@@ -18,7 +18,8 @@ public:
 	Hare(double x, double y, int width, int height);
 	~Hare();
 
-	void move(Engine::Vector2f vec, Engine::Vector2f target);
+	void start() override;
+	void update() override;
 	void onCollisionEnter(GameObject game_object) override;
 
 	EntityType getType() override;

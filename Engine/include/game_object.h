@@ -21,6 +21,8 @@ namespace Engine
 		~GameObject();
 
 		std::string getName() const { return name; }
+		virtual void start() {}
+		virtual void update() {}
 		virtual void onCollisionEnter(GameObject game_object) {}
 		virtual void onCollisionExit(GameObject game_object) {}
 		void destroy(GameObject* game_object);

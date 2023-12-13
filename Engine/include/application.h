@@ -24,9 +24,6 @@ namespace Engine
 
         void run();
 
-        virtual void start() = 0;
-        virtual void update() = 0;
-
         void closeWindow();
 
         inline Window& getWindow() { return *m_ptr_window; }

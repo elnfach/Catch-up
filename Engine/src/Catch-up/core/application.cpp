@@ -32,7 +32,6 @@ Engine::Application::~Application()
 
 void Engine::Application::run()
 {
-    start();
     m_ptr_scene->start();
     
     while (!m_running)
@@ -53,7 +52,6 @@ void Engine::Application::run()
         m_LastFrameTime = time;
         m_ptr_window->onUpdate();
         m_ptr_scene->update();
-        update();
     }
 }
 

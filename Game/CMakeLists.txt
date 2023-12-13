@@ -13,6 +13,8 @@ set(CATCH_UP_INCLUDES
 	include/entity/entity.h
 	include/entity/entity_type.h
 
+	include/event/event_manager.h
+
 	include/catch_up.h
 
 	include/utils/RayCast.h
@@ -29,6 +31,8 @@ set(CATCH_UP_SOURCES
 	src/scripts/wall/wall.cpp
 
 	src/scripts/catch_up.cpp
+
+	src/scripts/event/event_manager.cpp
 
 	src/main.cpp
 )

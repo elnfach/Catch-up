@@ -31,7 +31,11 @@ Hare::~Hare()
 {
 }
 
-void Hare::move(Engine::Vector2f vec, Engine::Vector2f target)
+void Hare::start()
+{
+}
+
+void Hare::update()
 {
 	Engine::Vector2f direction = calcDirection(transform->rotation);
 	Engine::Vector2f dir = Engine::Vector2f(direction.x, direction.y).normalized();
