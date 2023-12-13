@@ -1,6 +1,6 @@
 #include "wall/wall.h"
 
-Wall::Wall() : Entity()
+Game::Wall::Wall() : Entity()
 {
 	name = "wall";
 	type = EntityType::WALL;
@@ -9,7 +9,7 @@ Wall::Wall() : Entity()
 	box_collider = &addComponent<Engine::BoxCollider>();
 }
 
-Wall::Wall(double x, double y, int width, int height) : Entity()
+Game::Wall::Wall(double x, double y, int width, int height) : Entity()
 {
 	name = "wall";
 
@@ -21,19 +21,19 @@ Wall::Wall(double x, double y, int width, int height) : Entity()
 	drawable->size.x = width;
 	drawable->size.y = height;
 
-	type = EntityType::WOLF;
+	type = EntityType::WALL;
 }
 
-Wall::~Wall()
+Game::Wall::~Wall()
 {
 }
 
-void Wall::onCollisionEnter(GameObject game_object)
+void Game::Wall::onCollisionEnter(GameObject game_object)
 {
 	
 }
 
-EntityType Wall::getType()
+EntityType Game::Wall::getType()
 {
 	return type;
 }

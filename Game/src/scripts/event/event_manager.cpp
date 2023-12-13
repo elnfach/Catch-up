@@ -1,6 +1,7 @@
 #include "event/event_manager.h"
 
 #include "random.h"
+#include <thread>
 
 std::vector<Wolf*> Game::EventManager::s_ptr_wolf_list;
 std::vector<Hare*> Game::EventManager::s_ptr_hare_list;
@@ -20,7 +21,7 @@ uint32_t Game::EventManager::s_duration_carrot_time = 10;
 
 Game::EventManager* Game::EventManager::s_ptr_instance = nullptr;
 
-void Game::EventManager::destroy()
+void Game::EventManager::terminate()
 {
 	s_wolf_list.clear();
 	s_hare_list.clear();
@@ -125,6 +126,11 @@ void Game::EventManager::destroy(Engine::UUID uuid)
 			return;
 		}
 	}
+}
+
+void Game::EventManager::update()
+{
+
 }
 
 uint32_t Game::EventManager::getNumberOfWolf()

@@ -5,7 +5,7 @@
 
 namespace Game
 {
-	class EventManager
+	class EventManager : public Engine::ScriptBehaviour
 	{
 		static std::vector<Hare*> s_ptr_hare_list;
 		static std::vector<Wolf*> s_ptr_wolf_list;
@@ -32,7 +32,7 @@ namespace Game
 
 		static EventManager* getInstance();
 
-		static void destroy();
+		static void terminate();
 
 		void setNumberOfWolfAndSize(uint32_t number, Engine::Vector2f size = Engine::Vector2f(25.0f, 25.0f));
 		void setNumberOfHareAndSize(uint32_t number, Engine::Vector2f size = Engine::Vector2f(25.0f, 25.0f));
@@ -42,6 +42,8 @@ namespace Game
 
 		void spawn(Engine::Vector2f min_bound, Engine::Vector2f max_bound);
 		void destroy(Engine::UUID uuid);
+
+		void update() override;
 
 		uint32_t getNumberOfWolf();
 		uint32_t getNumberOfHare();

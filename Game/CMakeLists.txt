@@ -9,6 +9,7 @@ set(CATCH_UP_INCLUDES
 	include/wall/wall.h
 
 	include/hare/hare.h
+	include/carrot/carrot.h
 
 	include/entity/entity.h
 	include/entity/entity_type.h
@@ -25,6 +26,7 @@ set(CATCH_UP_SOURCES
 	src/scripts/body/body.cpp
 
 	src/scripts/hare/hare.cpp
+	src/scripts/carrot/carrot.cpp
 
 	src/scripts/wall/wall.cpp
 

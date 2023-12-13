@@ -21,5 +21,5 @@ Game::CatchUp::CatchUp()
 
 Game::CatchUp::~CatchUp()
 {
-	EventManager::destroy();
+	EventManager::terminate();
 }
