@@ -50,7 +50,7 @@ void Hare::update()
 	else {
 		transform->rotation += Engine::Vector3f(0.0f, 0.0f, -10.0f) * Engine::Timestep::getInstance()->getDeltaTime() * 15.0f;
 	}
-	//transform->position += m_velocity;
+	transform->position += m_velocity;
 }
 
 void Hare::onCollisionEnter(GameObject game_object)
