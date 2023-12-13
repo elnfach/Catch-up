@@ -4,6 +4,7 @@ namespace Engine
 {
 	class Random
 	{
+	public:
 		Random() = default;
 		Random(const Random&) = delete;
 		Random(const Random&&) = delete;
