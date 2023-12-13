@@ -14,6 +14,7 @@ For example, to escape from a wolf being pursued, or if they are lucky, to eat a
 - [x] Window created
 - [x] The playing field has been created
 - [ ] Implemented game objects (these are Wolf, Hare, Carrot)
+- [ ] Add simple artificial intelligence
 - [ ] Window with a message about the results of the round
 
 # Building CatchUp
