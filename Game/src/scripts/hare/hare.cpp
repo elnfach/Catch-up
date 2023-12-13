@@ -3,6 +3,7 @@
 #include "catch_up.h"
 #include "time_step.h"
 #include "event/event_manager.h"
+#include <random.h>
 
 Hare::Hare() : Entity()
 {
@@ -43,8 +44,8 @@ void Hare::update()
 
 	m_velocity = Engine::Vector2f(direction.x, direction.y) * Engine::Timestep::getInstance()->getDeltaTime() * m_speed;
 
-	srand(time(0));
-	if (rand() % 10 > 5) {
+	Engine::Random random;
+	if (random.Next(100) > 30) {
 		transform->rotation += Engine::Vector3f(0.0f, 0.0f, 10.0f) * Engine::Timestep::getInstance()->getDeltaTime() * 15.0f;
 	}
 	else {

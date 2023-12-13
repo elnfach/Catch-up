@@ -2,7 +2,6 @@
 #include "catch_up.h"
 #include <locale.h>
 
-
 static Engine::Application* createApplication()
 {
 	return new Game::CatchUp();
