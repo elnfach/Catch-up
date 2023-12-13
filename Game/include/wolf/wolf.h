@@ -3,6 +3,7 @@
 #include <vector>
 #include <functional>
 
+#include "utils/RayCast.h"
 #include "entity/entity.h"
 
 #include "components\transform.h"
@@ -24,6 +25,7 @@ public:
 
 	EntityType getType() override;
 private:
+	RayCast* ray_cast;
 	Engine::RigidBody* rigid_body;
 	Engine::BoxCollider* box_collider;
 

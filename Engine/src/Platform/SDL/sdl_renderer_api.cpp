@@ -37,24 +37,13 @@ void Engine::SDL_RendererAPI::clear()
 	SDL_RenderClear(m_ptr_renderer);
 }
 
-namespace Engine
-{
-	Vector2f Rotate(Vector2f pointR, Vector2f vector, float a) {
-		float R = sqrt(pow(vector.x - pointR.x, 2) + pow(vector.y - pointR.y, 2));
-		Vector2f vec1;
-		vec1.x = R * cos(a) + pointR.x;
-		vec1.y = R * sin(a) + pointR.y;
-		return vec1;
-	}
-}
-
 void Engine::SDL_RendererAPI::drawRectangle(const Transform transform, Vector2f size, const Vector4f color)
 {
 	float xOffset = size.x / 2;
 	float yOffset = size.y / 2;
 	SDL_Point rectangle[4] = { 
 		{transform.position.x - xOffset, transform.position.y - yOffset},
-		{transform.position.x + xOffset, transform.position.y - yOffset}, 
+		{transform.position.x + xOffset, transform.position.y - yOffset},
 		{transform.position.x + xOffset, transform.position.y + yOffset},
 		{transform.position.x - xOffset, transform.position.y + yOffset} 
 	};
@@ -70,8 +59,8 @@ void Engine::SDL_RendererAPI::drawRectangle(const Transform transform, Vector2f 
 	float angle = transform.rotation.z * SDL_PI_F / 180.0f;
 
 	for (int i = 0; i < 4; ++i) {
-		float x = rectangle[i].x;
-		float y = rectangle[i].y;
+		float x = rectangle[i].x + transform.offset.x;
+		float y = rectangle[i].y + transform.offset.y;
 		rectangle[i].x = x * cos(angle) - y * sin(angle);
 		rectangle[i].y = x * sin(angle) + y * cos(angle);
 	}

@@ -34,6 +34,8 @@ set(CATCH_UP_SOURCES
 
 	src/scripts/event/event_manager.cpp
 
+	src/utils/RayCast.cpp
+
 	src/main.cpp
 )
 

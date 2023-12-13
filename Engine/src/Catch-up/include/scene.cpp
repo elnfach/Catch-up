@@ -107,7 +107,7 @@ void Engine::Scene::update()
 					if (transform_1.position.x - x_offset_1 <= transform_2.position.x + x_offset_2 &&
 						transform_1.position.y - y_offset_1 <= transform_2.position.y + y_offset_2 &&
 						transform_1.position.x + x_offset_1 >= transform_2.position.x - x_offset_2 &&
-						transform_1.position.y + y_offset_1 >= transform_2.position.y - y_offset_2)
+						transform_1.position.y + y_offset_1 >= transform_2.position.y - y_offset_2	)
 					{
 						for (auto* go_1 : m_game_object_list)
 						{
