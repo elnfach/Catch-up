@@ -70,21 +70,37 @@ void Game::EventManager::spawn(Engine::Vector2f min_bound, Engine::Vector2f max_
 	Engine::Random random;
 	for (size_t i = 0; i < s_number_of_wolf; i++)
 	{
+		//!!!	There is a collision	!!!
+		// 
+		// Description:
+		// If the random number generator produces close positions for two or more objects, 
+		// then a collision will occur and there is a possibility that the objects 
+		// may get stuck in each other or be pushed beyond the boundaries of the map, 
+		// which is unacceptable.
+		// 
 		s_ptr_wolf_list.push_back(new Wolf(
 			random.Next(min_bound.x, max_bound.x),				//	position.x
 			random.Next(min_bound.y, max_bound.y),				//	position.y
-			s_size_of_wolf.x,												//	width
-			s_size_of_wolf.y												//	height
+			s_size_of_wolf.x,									//	width
+			s_size_of_wolf.y									//	height
 		));
 	}
 
 	for (size_t i = 0; i < s_number_of_hare; i++)
 	{
+		//!!!	There is a collision	!!!
+		//	
+		// Description:
+		// If the random number generator produces close positions for two or more objects, 
+		// then a collision will occur and there is a possibility that the objects 
+		// may get stuck in each other or be pushed beyond the boundaries of the map, 
+		// which is unacceptable.
+		//
 		s_ptr_hare_list.push_back(new Hare(
 			random.Next(min_bound.x, max_bound.x),				//	position.x
 			random.Next(min_bound.y, max_bound.y),				//	position.
-			s_size_of_hare.x,												//	width
-			s_size_of_hare.y												//	height
+			s_size_of_hare.x,									//	width
+			s_size_of_hare.y									//	height
 		));
 	}
 }
