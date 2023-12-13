@@ -59,8 +59,8 @@ void Engine::SDL_RendererAPI::drawRectangle(const Transform transform, Vector2f 
 	float angle = transform.rotation.z * SDL_PI_F / 180.0f;
 
 	for (int i = 0; i < 4; ++i) {
-		float x = rectangle[i].x + transform.offset.x;
-		float y = rectangle[i].y + transform.offset.y;
+		float x = rectangle[i].x;
+		float y = rectangle[i].y;
 		rectangle[i].x = x * cos(angle) - y * sin(angle);
 		rectangle[i].y = x * sin(angle) + y * cos(angle);
 	}
