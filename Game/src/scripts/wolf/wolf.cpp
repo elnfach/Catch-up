@@ -42,15 +42,19 @@ void Wolf::start()
 
 void Wolf::update()
 {
-	Engine::Vector2f direction = calcDirection(transform->rotation);				// calc direction by rotation
+	Engine::Vector2f direction = calcDirection(transform->rotation);					// calc direction by rotation
 	Engine::Vector2f a = Engine::Vector2f(direction.x, direction.y).normalized();		// wolf
 	Engine::Vector2f b;
 	for (auto& i : Game::EventManager::getInstance()->getHareTeam())
 	{
-		b = Engine::Vector2f(i - transform->position).normalized();						// hare
+		if (m_visibility_range >= Engine::Vector2f(i - transform->position).magnitude())
+		{
+			b = Engine::Vector2f(i - transform->position).normalized();						// hare
+		}
 	}
 	
 	float angle = acos(a.x * b.x + a.y * b.y) * 180.0f * M_PI;
+	
 
 	m_velocity = Engine::Vector2f(direction.x, direction.y) * Engine::Timestep::getInstance()->getDeltaTime() * m_speed;
 

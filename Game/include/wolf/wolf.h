@@ -29,6 +29,7 @@ private:
 
 	EntityBody* body;
 	float m_angle = 150.0f;
+	float m_visibility_range = 200.0f;
 	float m_speed = 100.0f;
 	Engine::Vector2f m_velocity = Engine::Vector2f(0.0f, 0.0f);
 };
