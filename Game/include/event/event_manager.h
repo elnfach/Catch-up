@@ -2,18 +2,18 @@
 #include <vector>
 #include "wolf/wolf.h"
 #include "hare/hare.h"
+#include "carrot/carrot.h"
+#include "timer.h"
 
 namespace Game
 {
 	class EventManager : public Engine::ScriptBehaviour
 	{
-		static std::vector<Hare*> s_ptr_hare_list;
-		static std::vector<Wolf*> s_ptr_wolf_list;
-		//static std::vector<Carrot*> s_ptr_carrot_list;
+		static std::vector<Entity*> s_ptr_entities_list;
 
 		static std::vector<Engine::Vector2f> s_hare_list;
 		static std::vector<Engine::Vector2f> s_wolf_list;
-		//static std::vector<Carrot*> s_carrot_list;
+		static std::vector<Engine::Vector2f> s_carrot_list;
 
 		static uint32_t s_number_of_wolf;
 		static uint32_t s_number_of_hare;
@@ -21,9 +21,15 @@ namespace Game
 
 		static Engine::Vector2f s_size_of_wolf;
 		static Engine::Vector2f s_size_of_hare;
+		static Engine::Vector2f s_size_of_carrot;
 
 		static uint32_t s_cooldown_carrot_time;
 		static uint32_t s_duration_carrot_time;
+
+		static Engine::Vector2f s_min_bound;
+		static Engine::Vector2f s_max_bound;
+
+		static Engine::Timer* m_ptr_timer;
 
 		static EventManager* s_ptr_instance;
 

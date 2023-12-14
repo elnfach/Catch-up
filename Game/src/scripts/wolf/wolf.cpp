@@ -54,7 +54,6 @@ void Wolf::update()
 	}
 	
 	float angle = acos(a.x * b.x + a.y * b.y) * 180.0f * M_PI;
-	
 
 	m_velocity = Engine::Vector2f(direction.x, direction.y) * Engine::Timestep::getInstance()->getDeltaTime() * m_speed;
 
