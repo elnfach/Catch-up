@@ -1,36 +1,28 @@
 #include "timer.h"
-#include <thread>
 
-void Engine::Timer::add(
-	std::chrono::milliseconds delay, 
-	std::function<void()> callback, 
-	bool asynchronous)
+#include <chrono>
+#include <functional>
+#include <queue>
+
+void Engine::Timer::start(uint32_t delay, TimeUnit unit)
 {
-	if (asynchronous) {
-		std::thread([=]() {
+	if (unit == TimeUnit::IN_MILLISECONDS)
+	{
+		m_timer_thread = std::thread([&]() {
 			std::this_thread::sleep_for(std::chrono::milliseconds(delay));
-			callback();
-			}).detach();
-	}
-	else {
-		std::this_thread::sleep_for(std::chrono::milliseconds(delay));
-		callback();
+			m_is_finished = true;
+		});
+	} 
+	if (unit == TimeUnit::IN_SECONDS)
+	{
+		m_timer_thread = std::thread([&]() {
+			std::this_thread::sleep_for(std::chrono::seconds(delay));
+			m_is_finished = true;
+		});
 	}
 }
 
-void Engine::Timer::add(
-	std::chrono::seconds delay, 
-	std::function<void()> callback, 
-	bool asynchronous)
+bool Engine::Timer::getStatus()
 {
-	if (asynchronous) {
-		std::thread([=]() {
-			std::this_thread::sleep_for(std::chrono::seconds(delay));
-			callback();
-			}).detach();
-	}
-	else {
-		std::this_thread::sleep_for(std::chrono::seconds(delay));
-		callback();
-	}
+	return m_is_finished;
 }
