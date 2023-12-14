@@ -87,7 +87,7 @@ void Game::Wolf::onCollisionExit(GameObject game_object)
 {
 }
 
-EntityType Game::Wolf::getType()
+Game::EntityType Game::Wolf::getType()
 {
 	return type;
 }

@@ -38,7 +38,7 @@ void Game::Carrot::onCollisionEnter(GameObject game_object)
 	}
 }
 
-EntityType Game::Carrot::getType()
+Game::EntityType Game::Carrot::getType()
 {
 	return type;
 }

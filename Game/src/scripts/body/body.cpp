@@ -18,7 +18,7 @@ Game::EntityBody::~EntityBody()
 {
 }
 
-EntityType Game::EntityBody::getType()
+Game::EntityType Game::EntityBody::getType()
 {
 	return type;
 }

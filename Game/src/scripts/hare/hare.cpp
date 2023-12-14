@@ -66,7 +66,7 @@ void Game::Hare::onCollisionEnter(GameObject game_object)
 	}
 }
 
-EntityType Game::Hare::getType()
+Game::EntityType Game::Hare::getType()
 {
 	return type;
 }

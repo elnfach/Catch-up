@@ -33,7 +33,7 @@ void Game::Wall::onCollisionEnter(GameObject game_object)
 	
 }
 
-EntityType Game::Wall::getType()
+Game::EntityType Game::Wall::getType()
 {
 	return type;
 }
