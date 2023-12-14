@@ -10,11 +10,13 @@ namespace Engine
 		bool m_is_finished	= false;
 		std::thread m_timer_thread;
 
-		Timer()		= default;
-		~Timer()	= default;
+		
+		
 	public:
+		Timer()						 = default;
 		Timer(const Timer&)			 = delete;
 		Timer(const Timer&&)		 = delete;
+		~Timer()					 = default;
 		void operator=(const Timer&) = delete;
 
 		enum class TimeUnit
