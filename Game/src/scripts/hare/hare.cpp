@@ -5,7 +5,7 @@
 #include "event/event_manager.h"
 #include <random.h>
 
-Hare::Hare() : Entity()
+Game::Hare::Hare() : Entity()
 {
 	name = "hare";
 	type = EntityType::HARE;
@@ -14,7 +14,7 @@ Hare::Hare() : Entity()
 	box_collider = &addComponent<Engine::BoxCollider>();
 }
 
-Hare::Hare(double x, double y, int width, int height)
+Game::Hare::Hare(double x, double y, int width, int height)
 {
 	name = "hare";
 
@@ -29,15 +29,15 @@ Hare::Hare(double x, double y, int width, int height)
 	type = EntityType::HARE;
 }
 
-Hare::~Hare()
+Game::Hare::~Hare()
 {
 }
 
-void Hare::start()
+void Game::Hare::start()
 {
 }
 
-void Hare::update()
+void Game::Hare::update()
 {
 	Engine::Vector2f direction = calcDirection(transform->rotation);
 	Engine::Vector2f dir = Engine::Vector2f(direction.x, direction.y).normalized();
@@ -54,7 +54,7 @@ void Hare::update()
 	transform->position += m_velocity;
 }
 
-void Hare::onCollisionEnter(GameObject game_object)
+void Game::Hare::onCollisionEnter(GameObject game_object)
 {
 	if (game_object.getName() == "wall")
 	{
@@ -66,7 +66,7 @@ void Hare::onCollisionEnter(GameObject game_object)
 	}
 }
 
-EntityType Hare::getType()
+EntityType Game::Hare::getType()
 {
 	return type;
 }

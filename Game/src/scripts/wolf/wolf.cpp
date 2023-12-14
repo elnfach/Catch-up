@@ -5,7 +5,7 @@
 #include "random.h"
 #include "event/event_manager.h"
 
-Wolf::Wolf() : Entity()
+Game::Wolf::Wolf() : Entity()
 {
 	name = "wolf";
 	type = EntityType::WOLF;
@@ -16,7 +16,7 @@ Wolf::Wolf() : Entity()
 	//body = new EntityBody(transform->position, box_collider->size);
 }
 
-Wolf::Wolf(double x, double y, int width, int height) : Entity()
+Game::Wolf::Wolf(double x, double y, int width, int height) : Entity()
 {
 	name = "wolf";
 
@@ -32,15 +32,15 @@ Wolf::Wolf(double x, double y, int width, int height) : Entity()
 	type = EntityType::WOLF;
 }
 
-Wolf::~Wolf()
+Game::Wolf::~Wolf()
 {
 }
 
-void Wolf::start()
+void Game::Wolf::start()
 {
 }
 
-void Wolf::update()
+void Game::Wolf::update()
 {
 	Engine::Vector2f direction = calcDirection(transform->rotation);					// calc direction by rotation
 	Engine::Vector2f a = Engine::Vector2f(direction.x, direction.y).normalized();		// wolf
@@ -73,7 +73,7 @@ void Wolf::update()
 	}
 }
 
-void Wolf::onCollisionEnter(GameObject game_object)
+void Game::Wolf::onCollisionEnter(GameObject game_object)
 {
 	if (game_object.getName() == "wall")
 		transform->position -= m_velocity;
@@ -83,11 +83,11 @@ void Wolf::onCollisionEnter(GameObject game_object)
 	}
 }
 
-void Wolf::onCollisionExit(GameObject game_object)
+void Game::Wolf::onCollisionExit(GameObject game_object)
 {
 }
 
-EntityType Wolf::getType()
+EntityType Game::Wolf::getType()
 {
 	return type;
 }

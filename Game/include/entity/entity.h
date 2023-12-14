@@ -5,18 +5,21 @@
 #include "components/drawable/rectangle_drawable.h"
 #include <components/colliders/box_collider.h>
 
-class Entity : public Engine::ScriptBehaviour
+namespace Game
 {
-protected:
-	EntityType type;
-	Engine::Transform* transform;
-	Engine::RectangleDrawable* drawable;
-public:
-	Entity();
-	~Entity();
+	class Entity : public Engine::ScriptBehaviour
+	{
+	protected:
+		EntityType type;
+		Engine::Transform* transform;
+		Engine::RectangleDrawable* drawable;
+	public:
+		Entity();
+		~Entity();
 
-	Engine::Vector2f calcDirection(Engine::Vector3f rotation);
-	float calcDirectionAngle(Engine::Vector2f direction);
+		Engine::Vector2f calcDirection(Engine::Vector3f rotation);
+		float calcDirectionAngle(Engine::Vector2f direction);
 
-	virtual EntityType getType() = 0;
-};
+		virtual EntityType getType() = 0;
+	};
+}

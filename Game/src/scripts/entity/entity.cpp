@@ -2,18 +2,18 @@
 
 #include <corecrt_math_defines.h>
 
-Entity::Entity()
+Game::Entity::Entity()
 {
 	type = EntityType::UNKNOWN;
 	transform = &getComponent<Engine::Transform>();
 	drawable = &getComponent<Engine::RectangleDrawable>();
 }
 
-Entity::~Entity()
+Game::Entity::~Entity()
 {
 }
 
-Engine::Vector2f Entity::calcDirection(Engine::Vector3f rotation)
+Engine::Vector2f Game::Entity::calcDirection(Engine::Vector3f rotation)
 {
 	float angle_in_radians = rotation.z * M_PI / 180.0f;
 	float cos_angle = cos(angle_in_radians);
@@ -30,7 +30,7 @@ Engine::Vector2f Entity::calcDirection(Engine::Vector3f rotation)
 	return direction;
 }
 
-float Entity::calcDirectionAngle(Engine::Vector2f direction)
+float Game::Entity::calcDirectionAngle(Engine::Vector2f direction)
 {
 	float angle = std::atan2(direction.y, direction.x);
 	float degrees = angle * 180.0 / M_PI;

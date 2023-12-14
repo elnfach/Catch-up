@@ -1,11 +1,14 @@
 #pragma once
 
-enum class EntityType
+namespace Game
 {
-	UNKNOWN = 0,
-	WALL,
-	WOLF,
-	HARE,
-	CARROT,
-	BODY
-};
+	enum class EntityType
+	{
+		UNKNOWN = 0,
+		WALL,
+		WOLF,
+		HARE,
+		CARROT,
+		BODY
+	};
+}

@@ -3,7 +3,7 @@
 #include "random.h"
 #include <thread>
 
-std::vector<Entity*> Game::EventManager::s_ptr_entities_list;
+std::vector<Game::Entity*> Game::EventManager::s_ptr_entities_list;
 
 std::vector<Engine::Vector2f> Game::EventManager::s_wolf_list;
 std::vector<Engine::Vector2f> Game::EventManager::s_hare_list;
