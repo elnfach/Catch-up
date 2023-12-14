@@ -4,25 +4,45 @@
 #include <functional>
 #include <queue>
 
-void Engine::Timer::start(uint32_t delay, TimeUnit unit)
+Engine::Timer::Timer(uint32_t delay, TimeUnit unit) : 
+	m_delay(delay), 
+	m_unit(unit), 
+	m_is_busy(false), 
+	m_is_finished(false)
 {
-	if (unit == TimeUnit::IN_MILLISECONDS)
+}
+
+void Engine::Timer::start()
+{
+	if (!m_is_busy)
 	{
-		m_timer_thread = std::thread([&]() {
-			std::this_thread::sleep_for(std::chrono::milliseconds(delay));
-			m_is_finished = true;
-		});
-	} 
-	if (unit == TimeUnit::IN_SECONDS)
-	{
-		m_timer_thread = std::thread([&]() {
-			std::this_thread::sleep_for(std::chrono::seconds(delay));
-			m_is_finished = true;
-		});
+		m_is_busy = true;
+		if (m_unit == TimeUnit::IN_MILLISECONDS)
+		{
+			m_timer_thread = std::thread([&]() {
+				std::this_thread::sleep_for(std::chrono::milliseconds(m_delay));
+				m_is_finished = true;
+				m_is_busy = false;
+			});
+		}
+		if (m_unit == TimeUnit::IN_SECONDS)
+		{
+			m_timer_thread = std::thread([&]() {
+				std::this_thread::sleep_for(std::chrono::seconds(m_delay));
+				m_is_finished = true;
+				m_is_busy = false;
+			});
+		}
+		m_timer_thread.detach();
 	}
 }
 
-bool Engine::Timer::getStatus()
+void Engine::Timer::reset()
+{
+	m_is_finished = false;
+}
+
+bool Engine::Timer::getStatus() const
 {
 	return m_is_finished;
 }
