@@ -26,10 +26,11 @@ namespace Game
 
 		EntityType getType() override;
 	private:
-		Engine::RigidBody* rigid_body;
-		Engine::BoxCollider* box_collider;
+		Engine::RigidBody* rigid_body = nullptr;
+		Engine::BoxCollider* box_collider = nullptr;
 		float m_angle = 150.0f;
 		float m_speed = 100.0f;
+		bool m_is_angry = false;
 		Engine::Vector2f m_velocity = Engine::Vector2f(0.0f, 0.0f);
 	};
 }

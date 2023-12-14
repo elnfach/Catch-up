@@ -1,14 +1,11 @@
 #ifndef CATCH_UP_ENGINE_INCLUDE_OBJECT_H
 #define CATCH_UP_ENGINE_INCLUDE_OBJECT_H
 
-#include <string>
-#include <vector>
 #include "application.h"
+#include <string>
 
 namespace Engine
 {
-	class ScriptBehaviour;
-	class SDL_Renderer;
 	class Object
 	{
 		inline static int m_id = 0;

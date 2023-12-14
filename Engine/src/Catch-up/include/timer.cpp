@@ -1,8 +1,5 @@
 #include "timer.h"
-
 #include <chrono>
-#include <functional>
-#include <queue>
 
 Engine::Timer::Timer(uint32_t delay, TimeUnit unit) : 
 	m_delay(delay), 

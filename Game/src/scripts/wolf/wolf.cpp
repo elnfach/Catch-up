@@ -28,6 +28,8 @@ Game::Wolf::Wolf(double x, double y, int width, int height) : Entity()
 	drawable->size.x = width;
 	drawable->size.y = height;
 
+	drawable->color = Engine::Vector4f(255, 0, 0, 0);
+
 	//body = new EntityBody(transform->position, box_collider->size);
 	type = EntityType::WOLF;
 }

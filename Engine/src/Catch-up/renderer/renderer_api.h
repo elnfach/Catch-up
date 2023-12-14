@@ -1,10 +1,9 @@
 #ifndef CATCH_UP_SRC_CATCH_UP_RENDERER_RENDERER_API_H
 #define CATCH_UP_SRC_CATCH_UP_RENDERER_RENDERER_API_H
 
-#include <functional>
 #include "Catch-up\props.h"
-#include "components\vector4f.h"
 #include "components\transform.h"
+#include "components\vector4f.h"
 
 struct SDL_Renderer;
 namespace Engine

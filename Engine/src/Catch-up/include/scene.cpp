@@ -1,22 +1,10 @@
-#include "scene.h"
+#include "Catch-up/renderer/renderer.h"
+#include "components/colliders/box_collider.h"
+#include "components/drawable/rectangle_drawable.h"
+#include "components/id/id_component.h"
+#include "components/rigidbody/rigid_body.h"
 #include "game_object.h"
-#include "time_step.h"
-#include "Catch-up\renderer\renderer.h"
-#include "components\colliders\box_collider.h"
-#include "components\rigidbody\rigid_body.h"
-#include "Catch-up\physics\physics2d.h"
-#include "Catch-up\physics\collision_listener.h"
-
-
-
-#include "box2d\b2_contact.h"
-#include "box2d/b2_world.h"
-#include "box2d/b2_body.h"
-#include "box2d/b2_fixture.h"
-#include "box2d/b2_polygon_shape.h"
-#include "box2d/b2_circle_shape.h"
-#include "components\id\id_component.h"
-
+#include "scene.h"
 
 void Engine::Scene::createGameObject(GameObject& object)
 {
@@ -29,7 +17,7 @@ void Engine::Scene::createGameObjectWithUUID(UUID uuid, GameObject& object)
 	object.addComponent<Transform>();
 	object.addComponent<RectangleDrawable>();
 
-	m_game_object_list.push_back(&object);
+	m_pending_addition_list.push_back(&object);
 	m_game_objects_map[uuid] = object;
 }
 
@@ -68,6 +56,17 @@ void Engine::Scene::start()
 
 void Engine::Scene::update()
 {
+	{
+		if (!m_pending_addition_list.empty())
+		{
+			for (auto& i : m_pending_addition_list)
+			{
+				m_game_object_list.push_back(i);
+			}
+			m_pending_addition_list.clear();
+		}
+	}
+
 	//	***
 	// 
 	//	Physics
@@ -127,9 +126,9 @@ void Engine::Scene::update()
 	}
 
 	{
-		for (auto& game_object : m_game_object_list)
+		for (auto& i : m_game_object_list)
 		{
-			game_object->update();
+			i->update();
 		}
 	}
 	destroyGameObject();

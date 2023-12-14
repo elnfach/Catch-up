@@ -14,6 +14,9 @@ namespace Engine
 		RigidBody(const RigidBody& rb);
 		~RigidBody();
 
+		inline std::string toString() const override { return name; }
+		inline int getInstanceID() const override { return id; }
+
 		BodyType type;
 		bool fixed_rotation;
 

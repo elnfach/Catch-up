@@ -1,8 +1,6 @@
 #ifndef CATCH_UP_ENGINE_INCLUDE_COMPONENTS_TRANSFORM_H
 #define CATCH_UP_ENGINE_INCLUDE_COMPONENTS_TRANSFORM_H
 
-#include <string>
-
 #include "component.h"
 #include "vector2f.h"
 #include "vector3f.h"

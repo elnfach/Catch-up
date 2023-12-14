@@ -2,13 +2,10 @@
 #define CATCH_UP_ENGINE_INCLUDE_GAME_OBJECT_H
 
 #include <format>
-#include <functional>
 #include <iostream>
 
 #include "entt.hpp"
-
 #include "scene.h"
-#include "components/drawable/rectangle_drawable.h"
 
 namespace Engine
 {

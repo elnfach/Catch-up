@@ -1,7 +1,5 @@
-#include <iostream>
-#include <functional>
-
 #include "Platform\SDL\sdl_renderer_api.h"
+#include <iostream>
 
 void Engine::SDL_RendererAPI::init(RendererProps& props)
 {

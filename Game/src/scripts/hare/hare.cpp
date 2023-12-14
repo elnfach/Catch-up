@@ -57,15 +57,12 @@ void Game::Hare::update()
 void Game::Hare::onCollisionEnter(GameObject game_object)
 {
 	if (game_object.getName() == "wall")
-	{
 		transform->position -= m_velocity;
-	}
+	if (game_object.getName() == "carrot")
+		m_is_angry = true;
 	if (game_object.getName() == "wolf")
-	{
 		Game::EventManager::getInstance()->destroy(this->GetUUID());
-	}
 }
-
 Game::EntityType Game::Hare::getType()
 {
 	return type;

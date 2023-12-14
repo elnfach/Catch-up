@@ -25,8 +25,8 @@ namespace Engine
 		void operator=(const Vector4f& vector);
 		bool operator==(const Vector4f& vector);
 
-		Vector4f normalized();
-		float magnitude();
+		Vector4f normalized() const;
+		float magnitude() const;
 
 		float x;
 		float y;
