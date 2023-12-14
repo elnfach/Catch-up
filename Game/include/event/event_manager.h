@@ -30,6 +30,7 @@ namespace Game
 		static Engine::Vector2f s_max_bound;
 
 		static Engine::Timer* s_ptr_cooldown_carrot_timer;
+		static Engine::Timer* s_ptr_duration_carrot_timer;
 
 		static EventManager* s_ptr_instance;
 
