@@ -23,7 +23,7 @@ namespace Engine
 			IN_MILLISECONDS = 1
 		};
 		
-		void start(uint32_t delay, TimeUnit unit);
+		void start(uint32_t delay, TimeUnit unit = TimeUnit::IN_SECONDS);
 		bool getStatus();
 	};
 }
