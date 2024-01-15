@@ -8,7 +8,6 @@
 #include "uuid.h"
 #include "component.h"
 
-class b2World;
 namespace Engine
 {
     class CollisionListener;
@@ -43,14 +42,11 @@ namespace Engine
 
         int m_step_frames = 60;
 
-        b2World* m_physics_world = nullptr;
-        CollisionListener* listener = nullptr;
+        std::list<UUID> m_pending_deletion_list;
+        std::list<GameObject*> m_game_object_list;
 
-        std::vector<GameObject*> m_pending_deletion_list;
-        std::vector<GameObject*> m_pending_addition_list;
-        std::vector<GameObject*> m_game_object_list;
         entt::registry m_game_objects;
-        std::unordered_map<UUID, entt::entity> m_game_objects_map;
+        std::unordered_map<UUID, entt::entity> m_entity_map;
 
         friend GameObject;
     };

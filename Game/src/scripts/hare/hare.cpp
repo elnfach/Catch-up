@@ -48,6 +48,8 @@ Game::Hare::Hare(double x, double y, int width, int height)
 
 Game::Hare::~Hare()
 {
+	delete rigid_body;
+	delete box_collider;
 }
 
 void Game::Hare::start()
@@ -99,10 +101,10 @@ void Game::Hare::onCollisionEnter(GameObject game_object)
 {
 	if (game_object.getName() == "wall")
 		transform->position -= m_velocity;
-	if (game_object.getName() == "carrot")
-		m_is_angry = true;
+	//if (game_object.getName() == "carrot")
+	//	// m_is_angry = true;
 	if (game_object.getName() == "wolf")
-		Game::EventManager::getInstance()->destroy(this->GetUUID());
+		Game::EventManager::getInstance()->destroy(getUUID());
 }
 Game::EntityType Game::Hare::getType()
 {

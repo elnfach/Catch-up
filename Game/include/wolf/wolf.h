@@ -29,9 +29,9 @@ namespace Game
 		Engine::RigidBody* rigid_body;
 		Engine::BoxCollider* box_collider;
 
-		EntityBody* body;
+		EntityBody* body = nullptr;
 		float m_angle = 150.0f;
-		float m_visibility_range = 200.0f;
+		float m_visibility_range = 2000.0f;
 		float m_speed = 100.0f;
 		Engine::Vector2f m_velocity = Engine::Vector2f(0.0f, 0.0f);
 	};

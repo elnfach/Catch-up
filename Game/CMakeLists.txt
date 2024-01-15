@@ -8,6 +8,8 @@ set(CATCH_UP_INCLUDES
 
 	include/wall/wall.h
 
+	include/map/map.h
+
 	include/hare/hare.h
 	include/carrot/carrot.h
 
@@ -29,6 +31,8 @@ set(CATCH_UP_SOURCES
 	src/scripts/carrot/carrot.cpp
 
 	src/scripts/wall/wall.cpp
+
+	src/scripts/map/map.cpp
 
 	src/scripts/catch_up.cpp
 

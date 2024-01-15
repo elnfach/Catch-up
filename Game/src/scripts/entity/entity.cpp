@@ -11,6 +11,8 @@ Game::Entity::Entity()
 
 Game::Entity::~Entity()
 {
+	delete transform;
+	delete drawable;
 }
 
 Engine::Vector2f Game::Entity::calcDirection(Engine::Vector3f rotation)

@@ -36,6 +36,8 @@ Game::Wolf::Wolf(double x, double y, int width, int height) : Entity()
 
 Game::Wolf::~Wolf()
 {
+	delete rigid_body;
+	delete box_collider;
 }
 
 void Game::Wolf::start()
@@ -79,10 +81,6 @@ void Game::Wolf::onCollisionEnter(GameObject game_object)
 {
 	if (game_object.getName() == "wall")
 		transform->position -= m_velocity;
-	if (game_object.getName() == "hare")
-	{
-		
-	}
 }
 
 void Game::Wolf::onCollisionExit(GameObject game_object)

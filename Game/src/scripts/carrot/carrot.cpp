@@ -34,7 +34,7 @@ void Game::Carrot::onCollisionEnter(GameObject game_object)
 {
 	if (game_object.getName() != "wall")
 	{
-		EventManager::getInstance()->destroy(this->GetUUID());
+		EventManager::getInstance()->destroy(this->getUUID());
 	}
 }
 

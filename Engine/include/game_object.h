@@ -22,7 +22,7 @@ namespace Engine
 		virtual void update() {}
 		virtual void onCollisionEnter(GameObject game_object) {}
 		virtual void onCollisionExit(GameObject game_object) {}
-		void destroy(GameObject* game_object);
+		void destroy(UUID uuid);
 
 		template<class T>
 		bool hasComponent()
@@ -75,7 +75,7 @@ namespace Engine
 		operator entt::entity() const;
 		operator unsigned int() const;
 
-		UUID GetUUID();
+		UUID getUUID();
 
 		bool operator==(const GameObject& other) const
 		{

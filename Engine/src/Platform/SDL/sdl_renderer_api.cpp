@@ -39,15 +39,15 @@ void Engine::SDL_RendererAPI::drawRectangle(const Transform transform, Vector2f 
 {
 	float xOffset = size.x / 2;
 	float yOffset = size.y / 2;
-	SDL_Point rectangle[4] = { 
+	SDL_Point rectangle[4] = {
 		{transform.position.x - xOffset, transform.position.y - yOffset},
 		{transform.position.x + xOffset, transform.position.y - yOffset},
 		{transform.position.x + xOffset, transform.position.y + yOffset},
 		{transform.position.x - xOffset, transform.position.y + yOffset} 
 	};
 
-	float centerX = (rectangle[0].x + rectangle[1].x + rectangle[2].x + rectangle[3].x) / 4;
-	float centerY = (rectangle[0].y + rectangle[1].y + rectangle[2].y + rectangle[3].y) / 4;
+	float centerX = (rectangle[0].x + rectangle[1].x + rectangle[2].x + rectangle[3].x) / 4.0f;
+	float centerY = (rectangle[0].y + rectangle[1].y + rectangle[2].y + rectangle[3].y) / 4.0f;
 
 	for (int i = 0; i < 4; ++i) {
 		rectangle[i].x -= centerX;

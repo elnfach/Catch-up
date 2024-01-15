@@ -16,14 +16,14 @@ Engine::Vector2f Game::EventManager::s_size_of_wolf = Engine::Vector2f(25.0f, 25
 Engine::Vector2f Game::EventManager::s_size_of_hare = Engine::Vector2f(25.0f, 25.0f);
 Engine::Vector2f Game::EventManager::s_size_of_carrot = Engine::Vector2f(12.0f, 12.0f);
 
-uint32_t Game::EventManager::s_cooldown_carrot_time = 20;
+uint32_t Game::EventManager::s_cooldown_carrot_time = 5;
 uint32_t Game::EventManager::s_duration_carrot_time = 10;
 
 Engine::Vector2f Game::EventManager::s_min_bound = Engine::Vector2f(0.0f, 0.0f);
 Engine::Vector2f Game::EventManager::s_max_bound = Engine::Vector2f(0.0f, 0.0f);
 
-Engine::Timer* Game::EventManager::s_ptr_cooldown_carrot_timer = nullptr;
-Engine::Timer* Game::EventManager::s_ptr_duration_carrot_timer = nullptr;
+std::unique_ptr<Engine::Timer> Game::EventManager::s_ptr_cooldown_carrot_timer = nullptr;
+std::unique_ptr<Engine::Timer> Game::EventManager::s_ptr_duration_carrot_timer = nullptr;
 
 Game::EventManager* Game::EventManager::s_ptr_instance = nullptr;
 
@@ -41,9 +41,8 @@ void Game::EventManager::terminate()
 	s_carrot_list.clear();
 	for (auto& i : s_entities_list)
 	{
-		i->destroy(i);
+		i->destroy((*i).getUUID());
 	}
-	delete s_ptr_cooldown_carrot_timer;
 	delete s_ptr_instance;
 	s_ptr_instance = nullptr;
 }
@@ -87,8 +86,8 @@ void Game::EventManager::spawn(Engine::Vector2f min_bound, Engine::Vector2f max_
 	Engine::Random random;
 	s_min_bound = min_bound;
 	s_max_bound = max_bound;
-	s_ptr_cooldown_carrot_timer = new Engine::Timer(s_cooldown_carrot_time);
-	s_ptr_duration_carrot_timer = new Engine::Timer(s_duration_carrot_time);
+	s_ptr_cooldown_carrot_timer = std::make_unique<Engine::Timer>(s_cooldown_carrot_time);
+	s_ptr_duration_carrot_timer = std::make_unique<Engine::Timer>(s_duration_carrot_time);
 
 	for (size_t i = 0; i < s_number_of_wolf; i++)
 	{
@@ -131,57 +130,52 @@ void Game::EventManager::spawn(Engine::Vector2f min_bound, Engine::Vector2f max_
 
 void Game::EventManager::destroy(Engine::UUID uuid)
 {
-	bool is_exists = false;
-	std::vector<Entity*>::iterator temp;
-	for (auto i = s_entities_list.begin(); i != s_entities_list.end(); i++)
+	for (auto i = s_entities_list.begin(); i != s_entities_list.end();)
 	{
-		if ((*i)->GetUUID() == uuid)
+		if ((*i)->getUUID() == uuid)
 		{
-			temp = i;
-			is_exists = true;
+			if ((*i)->getType() == EntityType::WOLF)
+				--s_number_of_wolf;
+			if ((*i)->getType() == EntityType::HARE)
+				--s_number_of_hare;
+			if ((*i)->getType() == EntityType::CARROT)
+				--s_number_of_carrot;
+			(*i)->destroy(uuid);
+			i = s_entities_list.erase(i);
 		}
-	}
-	if (is_exists)
-	{
-		if ((*temp)->getType() == EntityType::WOLF)
-			--s_number_of_wolf;
-		if ((*temp)->getType() == EntityType::HARE)
-			--s_number_of_hare;
-		if ((*temp)->getType() == EntityType::CARROT)
-			--s_number_of_carrot;
-		(*temp)->destroy((*temp));
-		s_entities_list.erase(temp);
+		else
+			++i;
 	}
 }
 
 void Game::EventManager::update()
 {
-	Engine::Random random;
-	s_ptr_cooldown_carrot_timer->start();
-	if (s_ptr_cooldown_carrot_timer->getStatus())
-	{
-		s_entities_list.push_back(new Carrot(
-			random.Next(s_min_bound.x, s_max_bound.x),				//	position.x
-			random.Next(s_min_bound.y, s_max_bound.y),				//	position.y
-			s_size_of_carrot.x,										//	width
-			s_size_of_carrot.y										//	height
-		));
-		s_number_of_carrot++;
-		s_ptr_cooldown_carrot_timer->reset();
-	}
-	for (auto& i : s_entities_list)
-	{
-		if (i->getType() == EntityType::CARROT)
-		{
-			s_ptr_duration_carrot_timer->start();
-			if (s_ptr_duration_carrot_timer->getStatus())
-			{
-				destroy(i->GetUUID());
-				s_number_of_carrot--;
-				s_ptr_duration_carrot_timer->reset();
-			}
-		}
-	}
+	//Engine::Random random;
+	//s_ptr_cooldown_carrot_timer->start();
+	//if (s_ptr_cooldown_carrot_timer->getStatus())
+	//{
+	//	s_entities_list.push_back(new Carrot(
+	//		random.Next(s_min_bound.x, s_max_bound.x),				//	position.x
+	//		random.Next(s_min_bound.y, s_max_bound.y),				//	position.y
+	//		s_size_of_carrot.x,										//	width
+	//		s_size_of_carrot.y										//	height
+	//	));
+	//	s_number_of_carrot++;
+	//	s_ptr_cooldown_carrot_timer->reset();
+	//}
+	//for (auto& i : s_entities_list)
+	//{
+	//	if (i->getType() == EntityType::CARROT)
+	//	{
+	//		s_ptr_duration_carrot_timer->start();
+	//		if (s_ptr_duration_carrot_timer->getStatus())
+	//		{
+	//			destroy(i->getUUID());
+	//			s_number_of_carrot--;
+	//			s_ptr_duration_carrot_timer->reset();
+	//		}
+	//	}
+	//}
 }
 
 uint32_t Game::EventManager::getNumberOfWolf() const
@@ -215,8 +209,10 @@ std::vector<Engine::Vector2f> Game::EventManager::getHareTeam() const
 	s_hare_list.clear();
 	for (size_t i = 0; i < s_entities_list.size(); i++)
 	{
-		if(s_entities_list[i]->getType() == EntityType::HARE)
+		if (s_entities_list[i]->getType() == EntityType::HARE)
+		{
 			s_hare_list.push_back(s_entities_list[i]->getComponent<Engine::Transform>().position);
+		}
 	}
 	return s_hare_list;
 }
