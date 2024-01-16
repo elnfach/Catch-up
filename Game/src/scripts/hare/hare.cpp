@@ -46,6 +46,22 @@ Game::Hare::Hare(double x, double y, int width, int height)
 	type = EntityType::HARE;
 }
 
+Game::Hare::Hare(double x, double y, int width, int height, std::vector<Engine::Vector2f> map)
+{
+	name = "hare";
+
+	rigid_body = &addComponent<Engine::RigidBody>(Engine::RigidBody::BodyType::Dynamic, false);
+	box_collider = &addComponent<Engine::BoxCollider>(Engine::Vector2f(width, height));
+
+	transform->position.x = x;
+	transform->position.y = y;
+	drawable->size.x = width;
+	drawable->size.y = height;
+
+	m_map = map;
+	type = EntityType::HARE;
+}
+
 Game::Hare::~Hare()
 {
 	delete rigid_body;
@@ -71,29 +87,35 @@ void Game::Hare::update()
 
 	float angle = acos(dir.x * b.x + dir.y * b.y) * 180.0f * M_PI;
 
-	m_velocity = Engine::Vector2f(direction.x, direction.y) * Engine::Timestep::getInstance()->getDeltaTime() * m_speed;
-
-	if (m_angle / 2 > angle)
+	float min = FLT_MAX;
+	Engine::Vector2f point;
+	float temp_point;
+	for (auto& i : m_map)
 	{
-		if (m_is_angry)
+		temp_point = Engine::Vector2f(i - transform->position).magnitude();
+		if (min > temp_point && m_visibility_range >= temp_point)
 		{
-			isAngry(dir);
+			min = temp_point;
+			point = Engine::Vector2f(i - transform->position).normalized();
 		}
-		else
+	}
+
+	m_velocity = point * Engine::Timestep::getInstance()->getDeltaTime() * m_speed;
+	if (m_is_angry)
+	{
+		isAngry(dir);
+	}
+	else
+	{
+		if (m_angle / 2 > angle)
 		{
 			transform->position += b * Engine::Timestep::getInstance()->getDeltaTime() * m_speed;
 			transform->rotation = Engine::Vector3f(0.0f, 0.0f, calcDirectionAngle(b));
 		}
-	}
-	else {
-		Engine::Random random;
-		if (random.Next(100) > 30) {
-			transform->rotation += Engine::Vector3f(0.0f, 0.0f, 10.0f) * Engine::Timestep::getInstance()->getDeltaTime() * 15.0f;
-		}
 		else {
-			transform->rotation += Engine::Vector3f(0.0f, 0.0f, -10.0f) * Engine::Timestep::getInstance()->getDeltaTime() * 15.0f;
+			transform->position += m_velocity;
+			transform->rotation = Engine::Vector3f(0.0f, 0.0f, calcDirectionAngle(point));
 		}
-		transform->position += m_velocity;
 	}
 }
 
@@ -101,8 +123,8 @@ void Game::Hare::onCollisionEnter(GameObject game_object)
 {
 	if (game_object.getName() == "wall")
 		transform->position -= m_velocity;
-	//if (game_object.getName() == "carrot")
-	//	// m_is_angry = true;
+	if (game_object.getName() == "carrot")
+		m_is_angry = true;
 	if (game_object.getName() == "wolf")
 		Game::EventManager::getInstance()->destroy(getUUID());
 }

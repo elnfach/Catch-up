@@ -19,6 +19,7 @@ namespace Game
 	public:
 		Hare();
 		Hare(double x, double y, int width, int height);
+		Hare(double x, double y, int width, int height, std::vector<Engine::Vector2f> map);
 		~Hare();
 
 		void start() override;
@@ -33,6 +34,7 @@ namespace Game
 		float m_visibility_range = 200.0f;
 		float m_speed = 100.0f;
 		bool m_is_angry = false;
+		std::vector<Engine::Vector2f> m_map;
 		Engine::Vector2f m_velocity = Engine::Vector2f(0.0f, 0.0f);
 	};
 }

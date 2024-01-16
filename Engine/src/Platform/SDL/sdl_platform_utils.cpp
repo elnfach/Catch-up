@@ -3,7 +3,7 @@
 
 namespace Engine
 {
-	float Time::GetTime()
+	float Time::getTime()
 	{
 		return SDL_GetTicks() / 1000.0f;
 	}

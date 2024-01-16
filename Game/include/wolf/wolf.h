@@ -9,6 +9,7 @@
 #include "components\drawable\rectangle_drawable.h"
 #include "components\rigidbody\rigid_body.h"
 #include "body.h"
+#include <map/map.h>
 
 namespace Game
 {
@@ -17,6 +18,7 @@ namespace Game
 	public:
 		Wolf();
 		Wolf(double x, double y, int width, int height);
+		Wolf(double x, double y, int width, int height, std::vector<Engine::Vector2f> map);
 		~Wolf();
 
 		void start() override;
@@ -33,6 +35,8 @@ namespace Game
 		float m_angle = 150.0f;
 		float m_visibility_range = 2000.0f;
 		float m_speed = 100.0f;
+		bool is_reached = true;
+		std:: vector<Engine::Vector2f> m_map;
 		Engine::Vector2f m_velocity = Engine::Vector2f(0.0f, 0.0f);
 	};
 }

@@ -33,6 +33,7 @@ namespace Game
 		static std::unique_ptr<Engine::Timer> s_ptr_duration_carrot_timer;
 
 		static EventManager* s_ptr_instance;
+		static Map* s_ptr_map;
 
 		EventManager();
 		

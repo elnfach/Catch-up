@@ -26,6 +26,7 @@ std::unique_ptr<Engine::Timer> Game::EventManager::s_ptr_cooldown_carrot_timer =
 std::unique_ptr<Engine::Timer> Game::EventManager::s_ptr_duration_carrot_timer = nullptr;
 
 Game::EventManager* Game::EventManager::s_ptr_instance = nullptr;
+Game::Map* Game::EventManager::s_ptr_map = nullptr;
 
 Game::EventManager::EventManager()
 {
@@ -44,6 +45,7 @@ void Game::EventManager::terminate()
 		i->destroy((*i).getUUID());
 	}
 	delete s_ptr_instance;
+	delete s_ptr_map;
 	s_ptr_instance = nullptr;
 }
 
@@ -90,38 +92,32 @@ void Game::EventManager::spawn(Engine::Vector2f min_bound, Engine::Vector2f max_
 	s_ptr_duration_carrot_timer = std::make_unique<Engine::Timer>(s_duration_carrot_time);
 
 	for (size_t i = 0; i < s_number_of_wolf; i++)
-	{
-		//!!!	There is a collision	!!!
-		// 
-		// Details:
-		// If the random number generator produces close positions for two or more objects, 
-		// then a collision will occur and there is a possibility that the objects 
-		// may get stuck in each other or be pushed beyond the boundaries of the map, 
-		// which is unacceptable.
-		// 
+	{ 
 		s_entities_list.push_back(new Wolf(
 			random.Next(min_bound.x, max_bound.x),				//	position.x
 			random.Next(min_bound.y, max_bound.y),				//	position.y
 			s_size_of_wolf.x,									//	width
-			s_size_of_wolf.y									//	height
+			s_size_of_wolf.y,									//	height
+			s_ptr_map->getInstance()->generateRandomMap(
+				Engine::Vector2f(min_bound.x, min_bound.y), 
+				Engine::Vector2f(max_bound.x, max_bound.y), 
+				5, 
+				25)
 		));
 	}
 
 	for (size_t i = 0; i < s_number_of_hare; i++)
 	{
-		//!!!	There is a collision	!!!
-		//	
-		// Details:
-		// If the random number generator produces close positions for two or more objects, 
-		// then a collision will occur and there is a possibility that the objects 
-		// may get stuck in each other or be pushed beyond the boundaries of the map, 
-		// which is unacceptable.
-		//
 		s_entities_list.push_back(new Hare(
 			random.Next(min_bound.x, max_bound.x),				//	position.x
 			random.Next(min_bound.y, max_bound.y),				//	position.y
 			s_size_of_hare.x,									//	width
-			s_size_of_hare.y									//	height
+			s_size_of_hare.y,									//	height
+			s_ptr_map->getInstance()->generateRandomMap(
+				Engine::Vector2f(min_bound.x, min_bound.y),
+				Engine::Vector2f(max_bound.x, max_bound.y),
+				5,
+				25)
 		));
 	}
 
@@ -150,32 +146,32 @@ void Game::EventManager::destroy(Engine::UUID uuid)
 
 void Game::EventManager::update()
 {
-	//Engine::Random random;
-	//s_ptr_cooldown_carrot_timer->start();
-	//if (s_ptr_cooldown_carrot_timer->getStatus())
-	//{
-	//	s_entities_list.push_back(new Carrot(
-	//		random.Next(s_min_bound.x, s_max_bound.x),				//	position.x
-	//		random.Next(s_min_bound.y, s_max_bound.y),				//	position.y
-	//		s_size_of_carrot.x,										//	width
-	//		s_size_of_carrot.y										//	height
-	//	));
-	//	s_number_of_carrot++;
-	//	s_ptr_cooldown_carrot_timer->reset();
-	//}
-	//for (auto& i : s_entities_list)
-	//{
-	//	if (i->getType() == EntityType::CARROT)
-	//	{
-	//		s_ptr_duration_carrot_timer->start();
-	//		if (s_ptr_duration_carrot_timer->getStatus())
-	//		{
-	//			destroy(i->getUUID());
-	//			s_number_of_carrot--;
-	//			s_ptr_duration_carrot_timer->reset();
-	//		}
-	//	}
-	//}
+	Engine::Random random;
+	s_ptr_cooldown_carrot_timer->start();
+	if (s_ptr_cooldown_carrot_timer->getStatus())
+	{
+		s_entities_list.push_back(new Carrot(
+			random.Next(s_min_bound.x, s_max_bound.x),				//	position.x
+			random.Next(s_min_bound.y, s_max_bound.y),				//	position.y
+			s_size_of_carrot.x,										//	width
+			s_size_of_carrot.y										//	height
+		));
+		s_number_of_carrot++;
+		s_ptr_cooldown_carrot_timer->reset();
+	}
+	for (auto& i : s_entities_list)
+	{
+		if (i->getType() == EntityType::CARROT)
+		{
+			s_ptr_duration_carrot_timer->start();
+			if (s_ptr_duration_carrot_timer->getStatus())
+			{
+				destroy(i->getUUID());
+				s_number_of_carrot--;
+				s_ptr_duration_carrot_timer->reset();
+			}
+		}
+	}
 }
 
 uint32_t Game::EventManager::getNumberOfWolf() const
