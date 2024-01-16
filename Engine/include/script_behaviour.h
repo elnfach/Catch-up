@@ -11,11 +11,6 @@ namespace Engine
 	public:
 		ScriptBehaviour();
 		~ScriptBehaviour();
-
-		ScriptBehaviour(const ScriptBehaviour&) = delete;
-		ScriptBehaviour(const ScriptBehaviour&&) = delete;
-
-		void operator=(const ScriptBehaviour&) = delete;
 	};
 }
 

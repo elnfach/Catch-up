@@ -24,7 +24,7 @@ namespace Engine
 		SDL_Window(const WindowProps& props);
 		virtual ~SDL_Window();
 
-		void onUpdate() override;
+		void update() override;
 
 		virtual void shutdown() override;
 

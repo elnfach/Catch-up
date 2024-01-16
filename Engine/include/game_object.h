@@ -2,13 +2,10 @@
 #define CATCH_UP_ENGINE_INCLUDE_GAME_OBJECT_H
 
 #include <format>
-#include <functional>
 #include <iostream>
 
 #include "entt.hpp"
-
 #include "scene.h"
-#include "components/drawable/rectangle_drawable.h"
 
 namespace Engine
 {
@@ -21,9 +18,11 @@ namespace Engine
 		~GameObject();
 
 		std::string getName() const { return name; }
+		virtual void start() {}
+		virtual void update() {}
 		virtual void onCollisionEnter(GameObject game_object) {}
 		virtual void onCollisionExit(GameObject game_object) {}
-		void destroy(GameObject* game_object);
+		void destroy(UUID uuid);
 
 		template<class T>
 		bool hasComponent()
@@ -76,7 +75,7 @@ namespace Engine
 		operator entt::entity() const;
 		operator unsigned int() const;
 
-		UUID GetUUID();
+		UUID getUUID();
 
 		bool operator==(const GameObject& other) const
 		{

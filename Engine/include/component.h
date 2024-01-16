@@ -39,8 +39,6 @@ namespace Engine
 			}
 		}
 
-		virtual void start() {}
-		virtual void update() {}
 	private:
 		ComponentType component_type;
 	};

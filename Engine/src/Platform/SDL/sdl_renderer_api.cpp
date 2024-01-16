@@ -1,7 +1,5 @@
-#include <iostream>
-#include <functional>
-
 #include "Platform\SDL\sdl_renderer_api.h"
+#include <iostream>
 
 void Engine::SDL_RendererAPI::init(RendererProps& props)
 {
@@ -37,30 +35,19 @@ void Engine::SDL_RendererAPI::clear()
 	SDL_RenderClear(m_ptr_renderer);
 }
 
-namespace Engine
-{
-	Vector2f Rotate(Vector2f pointR, Vector2f vector, float a) {
-		float R = sqrt(pow(vector.x - pointR.x, 2) + pow(vector.y - pointR.y, 2));
-		Vector2f vec1;
-		vec1.x = R * cos(a) + pointR.x;
-		vec1.y = R * sin(a) + pointR.y;
-		return vec1;
-	}
-}
-
 void Engine::SDL_RendererAPI::drawRectangle(const Transform transform, Vector2f size, const Vector4f color)
 {
 	float xOffset = size.x / 2;
 	float yOffset = size.y / 2;
-	SDL_Point rectangle[4] = { 
+	SDL_Point rectangle[4] = {
 		{transform.position.x - xOffset, transform.position.y - yOffset},
-		{transform.position.x + xOffset, transform.position.y - yOffset}, 
+		{transform.position.x + xOffset, transform.position.y - yOffset},
 		{transform.position.x + xOffset, transform.position.y + yOffset},
 		{transform.position.x - xOffset, transform.position.y + yOffset} 
 	};
 
-	float centerX = (rectangle[0].x + rectangle[1].x + rectangle[2].x + rectangle[3].x) / 4;
-	float centerY = (rectangle[0].y + rectangle[1].y + rectangle[2].y + rectangle[3].y) / 4;
+	float centerX = (rectangle[0].x + rectangle[1].x + rectangle[2].x + rectangle[3].x) / 4.0f;
+	float centerY = (rectangle[0].y + rectangle[1].y + rectangle[2].y + rectangle[3].y) / 4.0f;
 
 	for (int i = 0; i < 4; ++i) {
 		rectangle[i].x -= centerX;

@@ -1,10 +1,8 @@
 #pragma once
 
-#include <vector>
-#include <functional>
 #include "Catch-up\props.h"
-#include "renderer_api.h"
 #include "components\vector4f.h"
+#include "renderer_api.h"
 
 namespace Engine
 {

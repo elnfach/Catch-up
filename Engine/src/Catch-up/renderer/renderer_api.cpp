@@ -1,5 +1,5 @@
-#include "renderer_api.h"
 #include "Platform\SDL\sdl_renderer_api.h"
+#include "renderer_api.h"
 
 Engine::RendererAPI::API Engine::RendererAPI::s_API = Engine::RendererAPI::API::SDL;
 

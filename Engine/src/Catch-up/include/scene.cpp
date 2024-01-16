@@ -1,22 +1,10 @@
-#include "scene.h"
+#include "Catch-up/renderer/renderer.h"
+#include "components/colliders/box_collider.h"
+#include "components/drawable/rectangle_drawable.h"
+#include "components/id/id_component.h"
+#include "components/rigidbody/rigid_body.h"
 #include "game_object.h"
-#include "time_step.h"
-#include "Catch-up\renderer\renderer.h"
-#include "components\colliders\box_collider.h"
-#include "components\rigidbody\rigid_body.h"
-#include "Catch-up\physics\physics2d.h"
-#include "Catch-up\physics\collision_listener.h"
-
-
-
-#include "box2d\b2_contact.h"
-#include "box2d/b2_world.h"
-#include "box2d/b2_body.h"
-#include "box2d/b2_fixture.h"
-#include "box2d/b2_polygon_shape.h"
-#include "box2d/b2_circle_shape.h"
-#include "components\id\id_component.h"
-
+#include "scene.h"
 
 void Engine::Scene::createGameObject(GameObject& object)
 {
@@ -30,29 +18,41 @@ void Engine::Scene::createGameObjectWithUUID(UUID uuid, GameObject& object)
 	object.addComponent<RectangleDrawable>();
 
 	m_game_object_list.push_back(&object);
-	m_game_objects_map[uuid] = object;
+	m_entity_map[uuid] = object;
 }
 
 void Engine::Scene::destroyGameObject()
 {
-	for (auto i = m_pending_deletion_list.begin(); i != m_pending_deletion_list.end(); i++)
+	for (auto& i : m_pending_deletion_list)
 	{
-		std::vector<GameObject*>::iterator temp;
-		for (auto j = m_game_object_list.begin(); j != m_game_object_list.end(); j++)
-			if ((*i)->GetUUID() == (*j)->GetUUID())
-				temp = j;
-		m_game_object_list.erase(temp);
-		m_game_objects_map.erase((*i)->GetUUID());
-		m_game_objects.destroy(*(*i));
-		delete (*i);
+		std::cout << std::format("Что удаляется: {0}\n", i.operator size_t());
+		std::cout << "До удаления:\n";
+		for (auto j = m_game_object_list.begin(); j != m_game_object_list.end();)
+		{
+			std::cout << std::format("{0} | {1}, {2}\n", (uint32_t)(**j), (*j)->getName(), (*j)->getUUID().operator size_t());
+			if ((*j)->getUUID() == i)
+			{
+				m_entity_map.erase(i);
+				m_game_objects.destroy(**j);
+				j = m_game_object_list.erase(j);
+			}
+			else
+				++j;
+		}
+		std::cout << "После удаления:\n";
+		for (auto j = m_game_object_list.begin(); j != m_game_object_list.end();++j)
+		{
+			std::cout << std::format("{0} | {1}, {2}\n", (uint32_t)(**j), (*j)->getName(), (*j)->getUUID().operator size_t());
+		}
 	}
+	
 	m_pending_deletion_list.clear();
 }
 
 Engine::GameObject Engine::Scene::getGameObjectByUUID(UUID uuid)
 {
-	if (m_game_objects_map.find(uuid) != m_game_objects_map.end())
-		return { m_game_objects_map.at(uuid), this };
+	if (m_entity_map.find(uuid) != m_entity_map.end())
+		return { m_entity_map.at(uuid), this };
 
 	return {};
 }
@@ -60,10 +60,19 @@ Engine::GameObject Engine::Scene::getGameObjectByUUID(UUID uuid)
 void Engine::Scene::start()
 {
 	physicsStart();
+	for (auto& game_object : m_game_object_list)
+	{
+		game_object->start();
+	}
 }
 
 void Engine::Scene::update()
 {
+	//	***
+	// 
+	//	Physics
+	//
+	//	***
 	{
 		auto view = m_game_objects.view<Engine::RigidBody>();
 		for (auto i : view)
@@ -80,7 +89,7 @@ void Engine::Scene::update()
 				auto& transform_2 = game_object_2.getComponent<Transform>();
 				auto& box_collider_2 = game_object_2.getComponent<BoxCollider>();
 
-				if (game_object_1.GetUUID() != game_object_2.GetUUID() &&
+				if (game_object_1.getUUID() != game_object_2.getUUID() &&
 					(rigid_body_1.type != RigidBody::BodyType::Static || rigid_body_2.type != RigidBody::BodyType::Static))
 				{
 					float x_offset_1 = box_collider_1.size.x / 2;
@@ -92,22 +101,24 @@ void Engine::Scene::update()
 					//	***
 					//	
 					//	Primitive collision handling system.
-					//	This system does not take into account the rotation of the gameObject.
+					// 
+					//	Detail:
+					//	This system does not take into account the rotation of the GameObject.
 					//	
 					//	***
 					if (transform_1.position.x - x_offset_1 <= transform_2.position.x + x_offset_2 &&
 						transform_1.position.y - y_offset_1 <= transform_2.position.y + y_offset_2 &&
 						transform_1.position.x + x_offset_1 >= transform_2.position.x - x_offset_2 &&
-						transform_1.position.y + y_offset_1 >= transform_2.position.y - y_offset_2)
+						transform_1.position.y + y_offset_1 >= transform_2.position.y - y_offset_2	)
 					{
-						for (auto* go_1 : m_game_object_list)
+						for (auto item : m_game_object_list)
 						{
-							for (auto* go_2 : m_game_object_list)
+							for (auto item2 : m_game_object_list)
 							{
-								if (go_1->GetUUID() == game_object_1.GetUUID() &&
-									go_2->GetUUID() == game_object_2.GetUUID())
+								if (item->getUUID() == game_object_1.getUUID() &&
+									item2->getUUID() == game_object_2.getUUID())
 								{
-									go_1->onCollisionEnter(*go_2);
+									item->onCollisionEnter(*item2);
 								}
 							}
 						}
@@ -116,7 +127,16 @@ void Engine::Scene::update()
 			}
 		}
 	}
+
 	destroyGameObject();
+
+	{
+		for (auto& i : m_game_object_list)
+		{
+			i->update();
+		}
+	}
+	
 	renderScene();
 }
 
@@ -142,7 +162,5 @@ void Engine::Scene::physicsStart()
 
 void Engine::Scene::onPhysicsStop()
 {
-	delete listener;
-	delete m_physics_world;
-	m_physics_world = nullptr;
+	m_game_object_list.clear();
 }

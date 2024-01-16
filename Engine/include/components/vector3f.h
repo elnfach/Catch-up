@@ -35,8 +35,8 @@ namespace Engine
 
 		bool operator==(const Vector3f& vector);
 
-		Vector3f normalized();
-		float magnitude();
+		Vector3f normalized() const;
+		float magnitude() const;
 
 		float x;
 		float y;

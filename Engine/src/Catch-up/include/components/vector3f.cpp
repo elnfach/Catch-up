@@ -121,12 +121,12 @@ bool Engine::Vector3f::operator==(const Vector3f& vector)
 	return (x == vector.x && y == vector.y && z == vector.z);
 }
 
-Engine::Vector3f Engine::Vector3f::normalized()
+Engine::Vector3f Engine::Vector3f::normalized() const
 {
 	return Vector3f(x / magnitude(), y / magnitude(), z / magnitude());
 }
 
-float Engine::Vector3f::magnitude()
+float Engine::Vector3f::magnitude() const
 {
 	return sqrt(pow(x, 2) + pow(y, 2) + pow(z , 2));
 }

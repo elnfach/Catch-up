@@ -1,16 +1,16 @@
 #pragma once
 
-#include "entity\entity.h"
+#include "entity/entity.h"
 #include "components/rigidbody/rigid_body.h"
 
 namespace Game
 {
-	class Wall : public  Entity
+	class Carrot : public Entity
 	{
 	public:
-		Wall();
-		Wall(double x, double y, int width, int height);
-		~Wall();
+		Carrot();
+		Carrot(double x, double y, int width, int height);
+		~Carrot();
 
 		void onCollisionEnter(GameObject game_object) override;
 		EntityType getType() override;

@@ -1,12 +1,12 @@
 #include <cmath>
 #include "components/vector2f.h"
 
-float Engine::Vector2f::magnitude()
+float Engine::Vector2f::magnitude() const
 {
 	return sqrt(pow(x, 2) + pow(y, 2));
 }
 
-Engine::Vector2f Engine::Vector2f::normalized()
+Engine::Vector2f Engine::Vector2f::normalized() const
 {
 	return Vector2f(x / magnitude(), y / magnitude());
 }

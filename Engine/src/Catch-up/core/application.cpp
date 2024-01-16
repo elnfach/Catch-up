@@ -32,7 +32,6 @@ Engine::Application::~Application()
 
 void Engine::Application::run()
 {
-    start();
     m_ptr_scene->start();
     
     while (!m_running)
@@ -48,12 +47,11 @@ void Engine::Application::run()
             }
         }
 
-        float time = Engine::Time::GetTime();
-        Timestep::getInstance()->setDeltaTime(time - m_LastFrameTime);
-        m_LastFrameTime = time;
-        m_ptr_window->onUpdate();
+        float time = Engine::Time::getTime();
+        Timestep::getInstance()->setDeltaTime(time - m_last_frame_time);
+        m_last_frame_time = time;
+        m_ptr_window->update();
         m_ptr_scene->update();
-        update();
     }
 }
 

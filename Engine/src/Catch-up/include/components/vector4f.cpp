@@ -66,12 +66,12 @@ bool Engine::Vector4f::operator==(const Vector4f& vector)
 	return (x == vector.x && y == vector.y && z == vector.z && w == vector.w);
 }
 
-Engine::Vector4f Engine::Vector4f::normalized()
+Engine::Vector4f Engine::Vector4f::normalized() const
 {
 	return Vector4f(x / magnitude(), y / magnitude(), z / magnitude(), w / magnitude());
 }
 
-float Engine::Vector4f::magnitude()
+float Engine::Vector4f::magnitude() const
 {
 	return sqrt(pow(x, 2) + pow(y, 2) + pow(z , 2) + pow(w, 2));
 }

@@ -1,11 +1,11 @@
 #include "body.h"
 
-EntityBody::EntityBody()
+Game::EntityBody::EntityBody()
 {
 	type = EntityType::BODY;
 }
 
-EntityBody::EntityBody(Engine::Vector2f start_position, Engine::Vector2f head_size) : Entity()
+Game::EntityBody::EntityBody(Engine::Vector2f start_position, Engine::Vector2f head_size) : Entity()
 {
 	drawable->size = head_size * 1.5;
 	transform->position = start_position - head_size * 1.5;
@@ -14,11 +14,11 @@ EntityBody::EntityBody(Engine::Vector2f start_position, Engine::Vector2f head_si
 	type = EntityType::BODY;
 }
 
-EntityBody::~EntityBody()
+Game::EntityBody::~EntityBody()
 {
 }
 
-EntityType EntityBody::getType()
+Game::EntityType Game::EntityBody::getType()
 {
 	return type;
 }

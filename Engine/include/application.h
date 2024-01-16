@@ -15,7 +15,7 @@ namespace Engine
 
         SDL_bool m_running = false;
         
-        float m_LastFrameTime = 0.0f;
+        float m_last_frame_time = 0.0f;
         static Application* s_ptr_instance;
 
     public:
@@ -23,9 +23,6 @@ namespace Engine
         virtual ~Application();
 
         void run();
-
-        virtual void start() = 0;
-        virtual void update() = 0;
 
         void closeWindow();
 

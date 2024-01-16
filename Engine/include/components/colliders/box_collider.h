@@ -1,16 +1,19 @@
 #pragma once
-#include <string>
-#include <utility>
+
+#include "component.h"
 #include "components\vector2f.h"
 
 namespace Engine
 {
-	class BoxCollider
+	class BoxCollider : public Component
 	{	
 	public:
 		BoxCollider();
 		BoxCollider(Vector2f size);
 		~BoxCollider();
+
+		inline std::string toString() const override { return name; }
+		inline int getInstanceID() const override { return id; }
 
 		Vector2f offset;
 		Vector2f size;

@@ -8,14 +8,17 @@ set(CATCH_UP_INCLUDES
 
 	include/wall/wall.h
 
+	include/map/map.h
+
 	include/hare/hare.h
+	include/carrot/carrot.h
 
 	include/entity/entity.h
 	include/entity/entity_type.h
 
-	include/catch_up.h
+	include/event/event_manager.h
 
-	include/utils/RayCast.h
+	include/catch_up.h
 )
 
 set(CATCH_UP_SOURCES
@@ -25,10 +28,15 @@ set(CATCH_UP_SOURCES
 	src/scripts/body/body.cpp
 
 	src/scripts/hare/hare.cpp
+	src/scripts/carrot/carrot.cpp
 
 	src/scripts/wall/wall.cpp
 
+	src/scripts/map/map.cpp
+
 	src/scripts/catch_up.cpp
+
+	src/scripts/event/event_manager.cpp
 
 	src/main.cpp
 )

@@ -37,7 +37,7 @@ Engine::SDL_Window::~SDL_Window()
 	shutdown();
 }
 
-void Engine::SDL_Window::onUpdate()
+void Engine::SDL_Window::update()
 {
 
 }

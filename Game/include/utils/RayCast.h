@@ -5,51 +5,41 @@
 #include <list>
 #include <iostream>
 
+#include "components/vector2f.h"
+#include "entity/entity.h"
 #include "entity\entity_type.h"
 #include <vector>
+#include "components/rigidbody/rigid_body.h"
+#include "components/colliders/box_collider.h"
+#include "components/transform.h"
 
 # define M_PIl          3.141592653589793238462643383279502884L /* pi */
 
-class RayCast
+class RayCast : public Entity
 {
 	float m_x;
 	float m_y;
+	float lenght;
+	bool is_collided;
 
-	std::vector<float> list_of_rays;
+	Engine::RigidBody* m_rigid_body;
+	Engine::BoxCollider* m_box_collider;
 
 	EntityType type;
 
 public:
 	RayCast();
+	RayCast(Engine::Vector2f size, Engine::Vector2f offset);
 	~RayCast();
 
-	std::vector<float> cast()
+	void update(Engine::Vector2f position, Engine::Vector3f rotation);
+
+	bool onCollisionWithWall() const;
+
+	void onCollisionEnter(GameObject game_object);
+
+	EntityType getType()
 	{
-		for (size_t i = 0; i < 37; i++)
-		{
-			float degrees = (static_cast<float>(i) * 10) * M_PIl / 360.0f;
-
-			/*while (collider->is_collided())
-			{
-				m_x += cos(degrees);
-				m_y += sin(degrees);
-				collider->update(vec2((double)m_x, (double)m_y), vec2((int)(m_x + 1), (int)(m_y + 1)));
-			}*/
-			list_of_rays.push_back(degrees);
-		}
-		return list_of_rays;
+		return type;
 	}
-private:
-
 };
-
-RayCast::RayCast()
-{
-	m_x = 0;
-	m_y = 0;
-	type = EntityType::UNKNOWN;
-}
-
-RayCast::~RayCast()
-{
-}

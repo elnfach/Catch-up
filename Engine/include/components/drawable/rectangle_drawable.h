@@ -7,7 +7,7 @@
 
 namespace Engine
 {
-	class RectangleDrawable : Component
+	class RectangleDrawable : public Component
 	{
 	public:
 		RectangleDrawable();

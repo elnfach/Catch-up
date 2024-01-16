@@ -21,9 +21,9 @@ Engine::GameObject::~GameObject()
 	
 }
 
-void Engine::GameObject::destroy(GameObject* game_object)
+void Engine::GameObject::destroy(UUID uuid)
 {
-	m_scene->m_pending_deletion_list.push_back(game_object);
+	m_scene->m_pending_deletion_list.push_back(uuid);
 }
 
 Engine::GameObject::operator bool() const
@@ -41,7 +41,7 @@ Engine::GameObject::operator unsigned int() const
 	return (unsigned int)m_entity;
 }
 
-Engine::UUID Engine::GameObject::GetUUID()
+Engine::UUID Engine::GameObject::getUUID()
 {
 	return getComponent<IDComponent>().ID;
 }

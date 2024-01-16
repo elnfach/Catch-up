@@ -6,6 +6,7 @@ set(ENGINE_PUBLIC_INCLUDES
 	include/application.h
 	include/uuid.h
 	include/scene.h
+	include/timer.h
 	include/object.h
 	include/random.h
 	include/time_step.h
@@ -57,6 +58,7 @@ set(ENGINE_PRIVATE_SOURCES
 	src/Catch-up/include/component.cpp
 	src/Catch-up/include/random.cpp
 	src/Catch-up/include/scene.cpp
+	src/Catch-up/include/timer.cpp
 	src/Catch-up/include/components/vector2f.cpp
 	src/Catch-up/include/components/vector3f.cpp
 	src/Catch-up/include/components/vector4f.cpp

@@ -18,7 +18,7 @@ Engine::Transform::Transform(Vector2f translation) : position(translation)
 
 Engine::Transform::Transform(Vector2f translation, 
 	Vector3f rotation, 
-	Vector2f scale) 
+	Vector2f scale)
 	: position(translation), rotation(rotation), scale(scale)
 {
 }
