@@ -39,6 +39,8 @@ set(CATCH_UP_SOURCES
 	src/scripts/event/event_manager.cpp
 
 	src/main.cpp
+
+	src/lua/main.lua
 )
 
 set(CATCH_UP_ALL_SOURCES

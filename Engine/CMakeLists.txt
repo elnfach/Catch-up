@@ -40,6 +40,8 @@ set(ENGINE_PRIVATE_INCLUDES
 	src/Catch-up/renderer/renderer.h
 	src/Catch-up/renderer/renderer_api.h
 
+	src/Catch-up/scripting/script_engine.h
+
 	src/Catch-up/utils/platform_utils.h
 
 	src/Platform/SDL/sdl_window.h
@@ -108,3 +110,8 @@ target_link_libraries(${DIRECTORY_NAME} PRIVATE SDL3::SDL3)
 
 add_subdirectory(libs/box2d ${CMAKE_CURRENT_BINARY_DIR}/box2d)
 target_link_libraries(${DIRECTORY_NAME} PRIVATE box2d)
+
+add_subdirectory(libs/lua)
+target_link_libraries(${DIRECTORY_NAME} PRIVATE lua::lib)
+
+target_include_directories(${DIRECTORY_NAME} PRIVATE libs/sol2/include)

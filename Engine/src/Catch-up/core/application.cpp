@@ -6,6 +6,7 @@
 #include "Catch-up\utils\platform_utils.h"
 #include "time_step.h"
 #include "script_behaviour.h"
+#include "Catch-up/scripting/script_engine.h"
 
 #include <iostream>
 
@@ -33,6 +34,10 @@ Engine::Application::~Application()
 void Engine::Application::run()
 {
     m_ptr_scene->start();
+
+    lua.init();
+    lua.open("main.lua");
+    lua.start();
     
     while (!m_running)
     {
@@ -51,6 +56,7 @@ void Engine::Application::run()
         Timestep::getInstance()->setDeltaTime(time - m_last_frame_time);
         m_last_frame_time = time;
         m_ptr_window->update();
+        lua.update(Timestep::getDeltaTime());
         m_ptr_scene->update();
     }
 }
