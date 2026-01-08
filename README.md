@@ -1,5 +1,6 @@
 # CatchUp 
 
+This is a learning project. I'll rewrite it in Rust in the future.
 Using the SDL library.
 
 ### Rules of the game
